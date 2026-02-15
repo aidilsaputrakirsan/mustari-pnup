@@ -1,0 +1,37 @@
+{
+  "name": "simta-perbandingan-arsitektur",
+  "description": "SIMTA - Sistem Informasi Manajemen Tugas Akhir (Perbandingan Arsitektur 1A vs 1B)",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev:baseline": "vite --config vite.config.baseline.js",
+    "build:baseline": "vite build --config vite.config.baseline.js",
+    "preview:baseline": "vite preview --config vite.config.baseline.js",
+    "dev:optimized": "vite --config vite.config.optimized.js",
+    "build:optimized": "vite build --config vite.config.optimized.js",
+    "preview:optimized": "vite preview --config vite.config.optimized.js",
+    "analyze": "vite build --config vite.config.optimized.js && echo 'Buka stats.html di browser untuk melihat visualisasi bundle'"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.25",
+    "vue-chartjs": "^5.3.3",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "rollup-plugin-visualizer": "^6.0.5",
+    "tailwindcss": "^4.1.18",
+    "vite": "^8.0.0-beta.13",
+    "vite-plugin-compression": "^0.5.1"
+  },
+  "overrides": {
+    "vite": "^8.0.0-beta.13"
+  }
+}
