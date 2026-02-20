@@ -52,103 +52,120 @@ Menggunakan teknik *best-practice* industri modern.
 
 ## 4. METODOLOGI PENGUKURAN (PENGGANTI LIGHTHOUSE)
 
-Sesuai arahan Dosen Pembimbing untuk mencari alternatif yang lebih presisi dibanding Google Lighthouse, penelitian ini menggunakan **Metrik DevTools Lab** yang memberikan data "raw" (mentah) yang objektif:
+Berbeda dengan Lighthouse yang memberikan skor "magis", metode **DevTools Lab Metrics** menggunakan data mentah dari mesin browser (V8 Engine). Pengukuran dilakukan melalui dua jalur:
 
-### 4.1 Coverage Analysis (Unused Bytes)
-Mengukur efisiensi kode. Mengungkapkan berapa persen kode yang didownload namun tidak dieksekusi oleh browser. Ini adalah bukti visual utama keberhasilan *Lazy Loading*.
+### 4.1 Jalur Manual (Chrome DevTools)
+Menggunakan fitur bawaan browser tanpa *software* tambahan:
+- **Coverage Profiler**: Merekam setiap bita (byte) kode yang dieksekusi. Algoritma penghitungannya: `Total Bytes - Unused Bytes = Efficiency Rate`.
+- **Network Tracing**: Menghitung *Transferred Size* (payload terkompresi) vs *Resource Size* (ukuran asli).
 
-### 4.2 Network Payload Tracing
-Mencatat total *Transferred Bytes* lewat jaringan. Data ini membuktikan penghematan bandwidth yang signifikan pada arsitektur modular.
+### 4.2 Jalur Programatik (Performance Algorithm)
+Saya menyertakan skrip "Algorithm Tracker" yang disuntikkan ke dalam aplikasi untuk menangkap data secara otomatis melalui **Performance Observer API**.
 
-### 4.3 Runtime Performance API
-Mencatat waktu eksekusi skrip dalam milidetik (ms) menggunakan `PerformanceObserver`.
-- **FP (First Paint)**: Waktu render pertama kali.
-- **FCP (First Contentful Paint)**: Waktu konten utama muncul.
+**Algoritma Pengukuran (Pseudo-code):**
+```javascript
+// Lokasi: src/utils/performanceTracker.js (Analogi)
+Start_Observer {
+  Monitor: ["paint", "resource", "longtask"]
+  On_Entry(event) {
+    if (event.type == "FCP") Simpan_Waktu_Muncul_Konten
+    if (event.type == "longtask") Kalkulasi_TBT(duration - 50ms)
+    if (event.type == "resource") Hitung_Ukuran_JS_Halaman
+  }
+}
+```
+Hasil dari algoritma ini lebih akurat karena mencatat perilaku sistem tepat saat interaksi terjadi, bukan sekadar simulasi sekali jalan.
 
 ---
 
-## 5. PERBANDINGAN FLOWCHART: SEDERHANA VS KOMPLEKS
+## 5. PERBANDINGAN MODELING: SEDERHANA VS KOMPLEKS
 
-Untuk memperjelas mengapa teknik optimasi sangat dibutuhkan pada sistem seperti SIMTA, berikut adalah perbandingan alur muat antara sistem sederhana (Company Profile) dan sistem kompleks (SIMTA).
+Perbedaan mendasar antara website sederhana dan kompleks juga dapat dilihat dari pemodelan data (ERD) dan aliran datanya (DFD).
 
-### 5.1 Sistem Sederhana (Contoh: Website Company Profile)
-Pada sistem ini, alur bersifat linear dan ringan karena tidak ada dependensi eksternal yang besar atau logika bisnis yang berat.
+### 5.1 Perbandingan ERD (Entity Relationship Diagram)
 
+**Sederhana (Company Profile):**
+Hanya hubungan linear antara artikel dan kategori.
 ```mermaid
-graph LR
-    A[User Request] --> B[Server Response]
-    B --> C[Load HTML/CSS/Small JS]
-    C --> D[Render Seluruh Halaman]
-    D --> E[Selesai]
-    
-    style B fill:#f9f,stroke:#333
-    style D fill:#dfd,stroke:#333
+erDiagram
+    POST ||--o{ CATEGORY : belongs_to
+    POST {
+        string title
+        text content
+    }
+    CATEGORY {
+        string name
+    }
 ```
 
-### 5.2 Sistem Kompleks (Contoh: Aplikasi SIMTA)
-Pada sistem SIMTA, alur muat sangat berlapis karena melibatkan inisialisasi framework, manajemen state, data fetching, dan pemuatan komponen berat secara kondisional.
+**Kompleks (SIMTA):**
+Hubungan relasional yang saling mengunci (*Interlocking*).
+```mermaid
+erDiagram
+    MAHASISWA ||--|| JUDUL : mengajukan
+    DOSEN ||--o{ JUDUL : membimbing
+    JUDUL ||--o{ BIMBINGAN : memiliki
+    BIMBINGAN ||--o{ CHAT : berisi
+    DOSEN ||--o{ SEMINAR : menguji
+    
+    MAHASISWA {
+        string nim
+        string nama
+    }
+    JUDUL {
+        string judul_ta
+        string status
+    }
+    BIMBINGAN {
+        date tanggal
+        text progres
+    }
+```
+
+### 5.2 Perbandingan DFD (Data Flow Diagram)
+
+**Sederhana (Web Statis):** Alur data searah (Request -> Response).
+```mermaid
+graph LR
+    U[User] -- Request URL --> S[Server]
+    S -- Kirim File Statis --> U
+```
+
+**Kompleks (SIMTA):** Alur data berbasis *State* dan *Reactivity*.
+```mermaid
+graph TD
+    U[User] -- Interaksi UI --> St[State Management / Pinia]
+    St -- Trigger Action --> Ser[Service / Supabase]
+    Ser -- Async Fetch --> DB[(Database Simulation)]
+    DB -- Result --> Ser
+    Ser -- Update --> St
+    St -- Re-render Component --> U
+    Note right of St: Data diproses di memori browser <br/>sebelum ditampilkan
+```
+
+### 5.3 Perbandingan Flowchart Navigasi (Optimized)
+
+Pada sistem SIMTA, pemuatan komponen dilakukan secara kondisional (*Lazy*) untuk menghemat resource:
 
 ```mermaid
 sequenceDiagram
-    participant U as User Browser
-    participant S as Server (Vite)
-    participant C as Core App (Bootstrap)
-    participant R as Router & Middleware
-    participant P as Pinia (State Management)
-    participant V as Dynamic View (e.g. Dashboard)
-    participant L as Heavy Library (Chart.js)
+    participant Browser
+    participant Router
+    participant Module_JS
 
-    U->>S: HTTP GET /dashboard
-    S-->>U: Initial HTML & Skeleton
-    U->>S: Load Bundle Utama (Manifest JS)
-    S-->>U: Core Script (11KB)
-    U->>C: Bootstrapping Vue App
-    C->>P: Inisialisasi Auth & User Store
-    P-->>C: State Ready
-    C->>R: Evaluasi Rute /dashboard
-    
-    rect rgb(240, 248, 255)
-        Note over R,V: Lazy Loading Logic
-        R->>S: Request DashboardView.js (7KB)
-        S-->>V: Module Delivered
+    Browser->>Router: Navigasi ke /jadwal-seminar
+    Router->>Router: Cek Cache Module
+    alt Module Belum Ada
+        Router->>Module_JS: Request JadwalSeminarView.js (Chunks)
+        Module_JS-->>Browser: Unduh Chunks Khusus Jadwal
+    else Module Sudah Ada
+        Router->>Browser: Langsung Render (Instant)
     end
-
-    V->>P: Fetch Dashboard Stats (Async)
-    P->>S: API Call (Database Simulation)
-    S-->>P: Data JSON Response
-    P-->>V: Update Reactive State
-    
-    rect rgb(240, 255, 240)
-        Note over V,L: Async Component Loading
-        V->>S: Request vendor-chart.js (195KB)
-        S-->>L: Library Loaded
-    end
-
-    L-->>V: Render Grafik Statistik
-    V-->>U: Dashboard Tampil Lengkap
 ```
 
 ---
+**Tertanda,**
+*Mahasiswa Peneliti*
 
-## 6. HASIL PEMBANTU (DATA Build Metrics)
-
-| Parameter | Versi 1A (Baseline) | Versi 1B (Optimized) | Reduksi/Efisiensi |
-|-----------|---------------------|----------------------|-------------------|
-| **Initial JS Load** | 336.89 KB | 118.95 KB | **~64%** |
-| **JS Files Count** | 1 File | 22 Files | Terdistribusi |
-| **Gzip Compressed** | 120.79 KB | 38.45 KB | **~68%** |
-| **Vendor Caching** | Lemah (Satu Berkas) | Kuat (Terpisah) | Efisien |
-
----
-
-## 7. KESIMPULAN & TAHAP SELANJUTNYA
-Berdasarkan progres di atas, penelitian telah berhasil menunjukkan bahwa arsitektur Modular efektif dalam mereduksi beban awal aplikasi kompleks hingga lebih dari 60%.
-
-**Langkah Selanjutnya:**
-1.  Melengkapi penulisan Bab 4 (Hasil dan Pembahasan).
-2.  Melakukan pengujian pada skenario koneksi 3G/Slow Network untuk menguatkan urgensi optimasi.
-3.  Penyusunan simpulan dan saran untuk implementasi di lingkungan akademik nyata.
-
----
 **Tertanda,**
 *Mahasiswa Peneliti*
