@@ -1,6 +1,5 @@
 # LAPORAN KOMPREHENSIF PROGRES PENELITIAN TESIS
-**Judul:** Analisis Perbandingan Arsitektur Monolithic (Eager Loading) vs Modular (Lazy Loading) pada Aplikasi SIMTA (Sistem Informasi Manajemen Tugas Akhir)
-
+**Judul:** -
 ---
 
 ## I. PENDAHULUAN & STATUS PROYEK
@@ -213,5 +212,4 @@ output: {
 ```
 
 ---
-**Tertanda,**
-*Mahasiswa Peneliti*
+
