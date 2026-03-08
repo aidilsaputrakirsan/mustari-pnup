@@ -56,36 +56,59 @@ graph TD
 ```
 Kerumitan beban kerja di siklus DFD asimetris mendemonstrasikan bahwa skrip di belakang layar tidak cukup diringkas, tetapi memang butuh untuk disingkirkan prioritas muatannya dari benang utama peramban *browser* guna menghindari stagnasi respon inisial, yang mana menjadi pembenatan di penelitian ini untuk menyisipkan *Lazy Load*.
 
-## 2.4 Instrumen Pengumpulan Data (W3C Algoritma *Tracker* Tanpa Bias)
-Bertujuan meminimalisir deviasi (bias gangguan atau *Observer Effect*) atas penyusup skrip tambahan pada piranti evaluasi purna pihak-ketiga tradisional (seperti ekstensi navigasi komersial skor *Google Lighthouse*, *GTMetrix*, atau *PageSpeed Insights* dlsb.), evaluasi durasi pemuatan sengaja dirancang secara murni tanpa campur tangan layanan perangkat lunak *tracer* tambahan ke klien. Penggunaan Lighthouse pada komputer lambat terbukti secara mandiri seringkali menyumbang penalti CPU dan fluktuasi RAM *overhead* semu ke atas angka matrik asli.
+## 2.4 Instrumen Pengumpulan Data (W3C Algoritma *Tracker*)
+Dalam penelitian ini, kita sengaja menghindari penggunaan ekstensi pihak ketiga seperti Google Lighthouse atau GTMetrix. Mengapa demikian? Alat-alat eksternal seringkali membawa "beban bawaan" (*Observer Effect*). Artinya, ketika ekstensi tersebut digunakan pada perangkat dengan spesifikasi rendah, alat tersebut justru mengonsumsi RAM dan CPU tambahan yang membuat hasil pengukurannya menjadi lebih lambat dari kondisi aslinya.
 
-Alih-alih bersandar pada alat pengkaji simulasi metrik luar, pengujian dilacak 100% murni di habitat inti daur hidup kerangka SPA (*Web Vitals Programatic Native Metrics*). Algoritma penilaian sepenuhnya diklasifikasikan menggunakan obyek fungsi bawaan V8 peramban, yakni integrasi instans `PerformanceObserver` berbasis standar level dua ekstensi konsorsium W3C. Dengan begini, peramban sang klien merekam langsung getaran langkah waktu resolusinya secara otentik, di detik per detiknya langsung melalui perputaran eksekusi putaran kejadian internal *Event-Loop*.
+Sebagai gantinya, penelitian ini menciptakan sebuah skrip pelacak mandiri (*Tracker*) menggunakan fitur standar bawaan dari peramban (*browser*) itu sendiri, yaitu `PerformanceObserver` berbasis standar W3C. Sederhananya, metode ini mengizinkan peramban mencatat sendiri seberapa cepat ia menampilkan halaman dan di titik mana ia merasa "tersendat", selayaknya seorang atlet yang menekan sendiri *stopwatch*-nya saat berlari tanpa harus direpotkan oleh beban monitor tambahan. 
 
-Berikut rekonstruksi *pseudo-model* arsitektur instrumen pelacakan kecepatan (*PerformanceTracker.js*):
+Alur kerja instrumen pelacakan ini dapat digambarkan melalui diagram berikut:
+
+```mermaid
+graph TD
+    Start("Aplikasi Web Berjalan") --> Inject("Menyuntikkan Skrip Tracker (PerformanceObserver)")
+    Inject --> Listen("Memantau Aktivitas Rendering di Balik Layar")
+    Listen --> HitungA("Mencatat FCP (Waktu Tampil Pertama)")
+    Listen --> HitungB("Mencatat LCP (Waktu Tampil Utuh)")
+    Listen --> HitungC("Mengakumulasi TBT (Waktu Layar Membeku)")
+    HitungA --> Kumpul("Mengumpulkan Data JSON")
+    HitungB --> Kumpul
+    HitungC --> Kumpul
+    Kumpul --> Cetak("Menyimpan Hasil Kinerja")
+```
+
+Berikut adalah contoh potongan pemograman skrip yang bekerja merekam data di latar belakang:
 ```javascript
-// Arsitektur API native perekam titik metrik spesifik First Contentful Paint.
+// Memantau kemunculan halaman bergambar (cat piksel) fungsional pertama
 const paintObserver = new PerformanceObserver((list) => {
-    // Mengekstrak matriks kemunculan cat piksel fungsional
     for (const entry of list.getEntriesByName('first-contentful-paint')) {
         let fcpDelay = Math.round(entry.startTime);
-        MetricsTracker.record({ "FCP_ms": fcpDelay });
+        MetricsTracker.record({ "FCP_ms": fcpDelay }); // Data direkam!
     }
 });
 paintObserver.observe({ type: 'paint', buffered: true });
-
-// Observer untuk longTasks pembentuk TBT (Total Blocking Time)
-const taskObserver = new PerformanceObserver((list) => {
-    for (const entry of list.getEntries()) {
-        if(entry.duration > 50) { 
-           MetricsTracker.TBT_ms += (entry.duration - 50); 
-        }
-    }
-});
 ```
-Tracker disuntik paksa kepada titik injeksi blok-pertama sirkulasi `main.js`. *Tracer otomatis* ini bertanggung jawab memeras 4 pilar kunci utama ke layar konsol peramban secara otomatis (JSON Object Dump): *FCP*, *LCP*, *TBT Accumulator*, dan Jejak Memori Leksikal Terbuang (Heap Memory Megabytes).
+Skrip otomatis ini ditanamkan di baris paling awal pada sistem SIMTA. Tujuannya agar ia selalu "bangun" lebih dulu dan siap memanen keempat metrik utama (*FCP*, *LCP*, akumulasi kelambatan *TBT*, dan volume Jejak Memori RAM) secara mandiri.
 
-## 2.5 Perumusan Skenario Multi-Kasus Simulasi (Stress-Tests)
-Korelasi signifikansi atas penangguhan *Bundle* ke dalam satuan pecahan kepingan asinkron (Chunks) akan mustahil tervalidasi bila parameter diujikan mengorbit di iklim lab serba "Ideal" dari sistem server gawai premium sang perekayasa. Akurasi pelambatan justru memancarkan realisasinya saat beban penanganan tugas berat ditekankan berlebih pada klien peramban (Amenta & Castellani, 2019). Maka disusunlah 2 skema injeksi parameter tiruan terhadap peladen uji (melalui rekayasa interupsi *Google Chrome DevTools Protocol / Automasi Puppeteer Headless Node.js*):
+## 2.5 Perumusan Skenario Pengujian (*Stress-Tests*)
+Untuk melihat seberapa hebat efek dari teknik pemecahan kode ganda (Optimasi SPA) ini, pengujian tidak boleh hanya dilakukan dalam kondisi internet lancar dan komputer perancang yang super cepat. Dampak kemacetan lalu-lintas data (*Bundle Bloat*) justru baru terasa menyiksa ketika aplikasi dibuka pada perangkat keras yang biasa-biasa saja.
 
-1. **Skenario Baseline Optimal (*Ideal Kondisi Tanpa Interupsi*):** Mensimulasikan gawai klien dengan sistem arsitektural gahar tanpa keterbatasan utas *CPU Threads* maupun deviasi transfer lokal HTTP Localhost. Tujuannya sebagai tolak ukur parameter nol absolut.
-2. **Skenario Penyempitan Jeroan CPU (*4x CPU Slowdown Throttling*):** Mensimulasikan dengan kejam perangkat lawas atau gawai tingkat akar-rumput (Mobile Phone 3-jutaan) dengan memperlambat laju clock *cycle* komputasi JavaScript Parser sang browser hingga perempat-laju (4 Kali Lebih Lambat). Inilah kancah perang sebenarnya untuk membuktikan efikasi pembebasan *Main Thread* dari *Code Splitting* yang melepaskan muatan modul dari ikatan *blank execution*.
+Oleh karena itu, penelitian ini merancang dua skenario simulasi pengujian secara otomatis dengan menggunakan kepanjangan tangan dari bot peramban otomatis (*Puppeteer Headless Node.js*):
+
+1. **Skenario Optimal (Kondisi Ideal sebagai Acuan Dasar):** Skenario ini diuji murni dari komputer peladen (server) milik pengembang tanpa adanya perlakuan hambatan atau gangguan apapun (skor nol absolut). Skenario ini mengukur batasan laju terbaik yang mampu dicapai arsitektur web bila mesin klien punya spesifikasi kelas atas.
+2. **Skenario Emulasi Perangkat Terbatas (*4x CPU Slowdown*):** Skenario inilah yang menjadi medan pertempuran pembuktian sesungguhnya. Mesin peramban dikontrol secara paksa dari luar untuk memangkas atau "mencekik" kekuatan kinerja prosesornya sehingga menjadi 4 kali lipat lebih melambat dari biasanya. Skenario penderitaan ini sengaja dijatuhkan guna meniru secara nyata nasib mahasiswa reguler yang barangkali mengakses sistem akademik kampus dari gawai (*smartphone*) keluaran lama yang spesifikasinya tertinggal. 
+
+Alur simulasi untuk kedua skenario di atas berjalan secara robotik mengikuti diagram *flowchart* berikut:
+
+```mermaid
+graph TD
+    Persiapan("Pilih Mode Pengujian (Baseline vs Optimized)") --> Skenario{"Tentukan Skenario Lingkungan?"}
+    Skenario -- "Skenario 1 (Kondisi Ideal)" --> Normal("Memacu Mesin Secara Maksimal Tanpa Batasan")
+    Skenario -- "Skenario 2 (CPU Telat 4x)" --> Lemot("Mencekik Kapasitas Prosesor Hingga 4x Lebih Lambat")
+    Normal --> Navigasi("Menjalankan Bot Mandiri Untuk Mengunjungi Web")
+    Lemot --> Navigasi
+    Navigasi --> Rekam("Tracker Mengobservasi Metrik Layar FCP & TBT")
+    Rekam --> Screenshot("Mesin Bot Menekan Tombol Screenshot Otomatis")
+    Screenshot --> Selesai("Arsip Hasil Metrik ke Folder Pengukuran JSON")
+```
+
+Dengan mengutus bot otomatis ini (*Puppeteer automation*), kita mampu melenyapkan unsur kesalahan atau jeda reaksi (bias gerak) dari sentuhan tangan manusia. Mesin bot dipastikan me-klik tautan pada fraksi waktu milidetik yang presisi sama persis secara berulang-ulang dari skenario satu ke skenario kedua.
