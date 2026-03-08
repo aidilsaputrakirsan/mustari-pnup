@@ -11,7 +11,7 @@ Klasifikasi Varian Uji Kompilasi:
 Rencana riset direkayasa berkesinambungan melewati alur kerja investigatif sebagai berikut:
 1. **Investigasi dan Pemodelan Sistem Berjalan:** Memastikan dan meracik level tingkat kekompleksitasan (*Complexity Density*) pada struktur aplikasi purwarupa pangkalan (Aplikasi Sistem Informasi Manajemen Tugas Akhir / SIMTA) untuk mencapai simulasi keruwetan yang esensial.
 2. **Konstruksi Pengembangan Kode (*Development*):** Melakukan perancangan *Single Page Application* menggunakan kerangka bahasa *TypeScript/Javascript Framework Vue.js v3*, disokong *Vue Router 4* serta eksekusi sentral state pada manajemen penyimpanan memori dalam-klien (*Pinia Store*).
-3. **Rekayasa Formulasi Kompilasi (*Bundling Formulation*):** Membangkitkan dua mode operasi target perakitan ke direktori statis tersendiri (satu versi ke `dist-baseline` dan peracikan ganda ke `dist-optimized`) menggunakan *Vite Bundler*.
+3. **Rekayasa Formulasi Kompilasi (*Bundling Formulation*):** Membangkitkan dua mode operasi target perakitan ke direktori statis tersendiri (satu versi ke `dist-baseline` dan peracikan ganda ke `dist-optimized`) menggunakan kompilator hibrida *Vite Bundler*. Pada mode *Optimasi*, Vite dipercayakan mengeksploitasi mesin di balik layarnya yakini *Rollup.js* untuk meracik *Module Dependency Graph* (Pohon Grafik Ketergantungan Modul) secara statis sehingga mengizinkan fragmentasi *manual chunks* yang akurat antar rute. Sarananya divalidasi juga memanfaatkan *Plugin Rollup Visualizer*.
 4. **Instalasi dan Pemungutan Observasi (Pengumpulan Data):** Pemasangan log automasi menggunakan integrasi agen pendeteksi performa (*puppeteer* dikawinkan dengan API pelacak peramban asali/ *W3C Native PerformanceObserver*) untuk memperoleh integritas data kelancaran situs yang murni.
 5. **Evaluasi Deskriptif & Komparasi Matriks:** Kegiatan diseminasi konversi olah hitung variabel ukur log jaringan untuk membuktikan kebenaran hipotesa peredaman latensi (*Web Vitals TBT/FCP*).
 
@@ -56,8 +56,10 @@ graph TD
 ```
 Kerumitan beban kerja di siklus DFD asimetris mendemonstrasikan bahwa skrip di belakang layar tidak cukup diringkas, tetapi memang butuh untuk disingkirkan prioritas muatannya dari benang utama peramban *browser* guna menghindari stagnasi respon inisial, yang mana menjadi pembenatan di penelitian ini untuk menyisipkan *Lazy Load*.
 
-## 2.4 Instrumen Pengumpulan Data (W3C Algoritma *Tracker*)
-Bertujuan meminimalisir deviasi (bias gangguan) atas penyusup skrip tambahan pada piranti evaluasi purna pihak-ketiga tradisional (seperti ekstensi navigasi skor *Lighthouse* dlsb.), evaluasi durasi pemuatan tidak memakai layanan perangkat lunak *tracer* tambahan ke klien browser. Alih-alih pengujian dilacak 100% murni di habitat inti daur hidup kerangka SPA (*Web Vitals Programatic Native Metrics*) memakai obyek fungsi bawaan V8 `PerformanceObserver` berbasis *standar* level dua ekstensi W3C.
+## 2.4 Instrumen Pengumpulan Data (W3C Algoritma *Tracker* Tanpa Bias)
+Bertujuan meminimalisir deviasi (bias gangguan atau *Observer Effect*) atas penyusup skrip tambahan pada piranti evaluasi purna pihak-ketiga tradisional (seperti ekstensi navigasi komersial skor *Google Lighthouse*, *GTMetrix*, atau *PageSpeed Insights* dlsb.), evaluasi durasi pemuatan sengaja dirancang secara murni tanpa campur tangan layanan perangkat lunak *tracer* tambahan ke klien. Penggunaan Lighthouse pada komputer lambat terbukti secara mandiri seringkali menyumbang penalti CPU dan fluktuasi RAM *overhead* semu ke atas angka matrik asli.
+
+Alih-alih bersandar pada alat pengkaji simulasi metrik luar, pengujian dilacak 100% murni di habitat inti daur hidup kerangka SPA (*Web Vitals Programatic Native Metrics*). Algoritma penilaian sepenuhnya diklasifikasikan menggunakan obyek fungsi bawaan V8 peramban, yakni integrasi instans `PerformanceObserver` berbasis standar level dua ekstensi konsorsium W3C. Dengan begini, peramban sang klien merekam langsung getaran langkah waktu resolusinya secara otentik, di detik per detiknya langsung melalui perputaran eksekusi putaran kejadian internal *Event-Loop*.
 
 Berikut rekonstruksi *pseudo-model* arsitektur instrumen pelacakan kecepatan (*PerformanceTracker.js*):
 ```javascript
