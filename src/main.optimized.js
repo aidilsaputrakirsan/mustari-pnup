@@ -25,6 +25,12 @@ import App from './App.optimized.vue'
 // Import CSS
 import './style.css'
 
+// Import PerformanceTracker
+import { initPerformanceTracker } from './services/PerformanceTracker.js'
+
+// Inisialisasi Tracker (Akan mengukur FCP, LCP, Loader, dll)
+initPerformanceTracker('Optimized (Lazy Load + Split)')
+
 // ✅ BEST PRACTICE: Inisialisasi minimalis
 // Tidak ada import store, tidak ada import komponen berat
 const app = createApp(App)

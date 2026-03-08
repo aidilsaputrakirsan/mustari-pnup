@@ -1,0 +1,9 @@
+{
+  "Variant": "Baseline (Eager Load)",
+  "FCP_ms": 1216,
+  "LCP_ms": 1216,
+  "TBT_ms": 377,
+  "LoadTime_ms": 1039,
+  "MemoryUsed_MB": "2.85",
+  "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+}

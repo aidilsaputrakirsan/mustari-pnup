@@ -26,6 +26,10 @@ import App from './App.baseline.vue'
 
 // Import CSS
 import './style.css'
+import { initPerformanceTracker } from './services/PerformanceTracker.js'
+
+// Inisialisasi Tracker (Akan mengukur FCP, LCP, Loader, dll)
+initPerformanceTracker('Baseline (Eager Load)')
 
 // ❌ BAD PRACTICE: Import store instances di main.js
 // Meskipun belum dipakai, ini menambah ukuran entry bundle

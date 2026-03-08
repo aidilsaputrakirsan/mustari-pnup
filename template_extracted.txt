@@ -1,0 +1,2574 @@
+--- Page 1 ---
+PENINGKATAN AKURASI KLASIFIKASI MIKROGRAF STOMATA 
+MENGGUNAKAN YOLOV11 DENGAN GAMMA CORRECTION DAN CLAHE 
+ 
+IMPROVING ACCURACY OF STOMATA MICROGRAPH CLASSIFICATION 
+USING YOLOV11 WITH GAMMA CORRECTION AND CLAHE 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+YUSRI SIMANG 
+D082232001 
+ 
+PROGRAM STUDI MAGISTER TEKNIK INFORMATIKA 
+FAKULTAS TEKNIK 
+UNIVERSITAS HASANUDDIN 
+GOWA 
+2025
+
+--- Page 2 ---
+ 
+ 
+ 
+ 
+PENINGKATAN AKURASI KLASIFIKASI MIKROGRAF STOMATA 
+MENGGUNAKAN YOLOV11 DENGAN GAMMA CORRECTION DAN CLAHE 
+ 
+IMPROVING ACCURACY OF STOMATA MICROGRAPH CLASSIFICATION 
+USING YOLOV11 WITH GAMMA CORRECTION AND CLAHE 
+ 
+ 
+Disusun Oleh  
+YUSRI SIMANG 
+D082232001 
+ 
+ 
+ 
+ 
+ 
+PROGRAM STUDI MAGISTER TEKNIK INFORMATIKA 
+FAKULTAS TEKNIK 
+UNIVERSITAS HASANUDDIN 
+GOWA 
+2025
+
+--- Page 3 ---
+ 
+ 
+ 
+ 
+PENINGKATAN AKURASI KLASIFIKASI MIKROGRAF STOMATA 
+MENGGUNAKAN YOLOV11 DENGAN GAMMA CORRECTION DAN CLAHE 
+ 
+Tesis 
+ 
+Sebagai salah satu syarat untuk mencapai gelar magister 
+ 
+Program Studi Teknik Informatika 
+ 
+ 
+Disusun dan diajukan oleh 
+ 
+ 
+YUSRI SIMANG 
+D082232001 
+ 
+ 
+Kepada 
+ 
+ 
+ 
+ 
+PROGRAM STUDI MAGISTER TEKNIK INFORMATIKA 
+FAKULTAS TEKNIK 
+UNIVERSITAS HASANUDDIN 
+GOWA 
+2025  
+--- Page 4 ---
+ 
+ 
+ 
+ 
+LEMBAR PENGESAHAN UJIAN TESIS 
+  
+
+--- Page 5 ---
+ 
+ 
+ 
+ 
+PERNYATAAN KEASLIAN DAN PELIMPAHAN HAK CIPTA  
+  
+
+--- Page 6 ---
+vi 
+ 
+ 
+ 
+UCAPAN TERIMA KASIH 
+Segala puji dan syukur penulis panjatkan ke hadirat Allah SWT atas limpahan rahmat 
+dan karunia -Nya, sehingga tesis yang berjudul “ Peningkatan Akurasi Klasifikasi 
+Mikrograf Stomata Menggunakan YOLOv11 dengan Gamma Correction dan CLAHE” ini 
+dapat diselesaikan sebagai salah satu syarat untuk meraih gelar Magister pada 
+Departemen Teknik Informatika, Fakultas Teknik, Universitas Hasanuddin.  
+Penulis menyadari bahwa penyusunan dan penulisan tesis ini tidak terlepas dari 
+dukungan, bimbingan, serta bantuan dari berbagai pihak. Perjalanan akademik ini penuh 
+dengan tantangan, namun berkat doa, motivasi, dan dorongan dari orangorang terdekat, 
+akhirnya tesis ini dapat terselesaikan dengan baik.  
+Dengan penuh rasa hormat dan terima kasih, penulis ingin menyampaikan apresiasi 
+yang mendalam kepada kedua orang tua tercinta, Bapak H. Simang dan Ibu Hj. Yuliana, 
+yang senantiasa memberikan dukungan moral, materi, serta doa yang tak henti-hentinya 
+bagi penulis selama menempuh pendidikan. Tak lupa, penulis juga mengucapkan terima 
+kasih kepada serta seluruh saudara dan keluarga besar yang selalu memberikan 
+semangat, dukungan, dan motivasi di setiap langkah perjalanan akademik ini.  
+Penulis juga ingin mengungkapkan rasa terima kasih yang sebesar -besarnya kepada 
+Prof. Dr. Ir. Indrabayu, ST., MT., M.Bus.Sys., IPM, ASEAN. Eng., selaku pembimbing 
+utama, atas segala arahan, motivasi, dan bimbingan selama masa studi pascasarjana di 
+Universitas Hasanuddin. Tak lupa, penulis mengucapkan terima kasih kepada Novy Nur 
+R.A Mokobombang, ST.,Ms.TM.,Ph.D, dan Dr. Muhammad Abdillah Rahmat, S.T., M.T., 
+selaku tim penguji yang telah memberikan kritik, saran, serta masukan berharga guna 
+meningkatkan kualitas penelitian ini.  
+Ucapan terima kasih juga penulis sampaikan kepada Bapak  Dr. Ir. Zahir Zainuddin, 
+M.Sc., selaku Ketua Program Studi Magister Teknik Informatika atas segala bimbingan 
+dan dukungannya selama masa perkuliahan. Penulis juga berterima kasih kepada 
+seluruh dosen dan staf Departemen Teknik Informatika, Fakultas Teknik,  Universitas 
+Hasanuddin, yang telah memberikan ilmu, wawasan, serta berbagai bantuan dalam 
+mendukung kelancaran studi ini.  
+Penghargaan yang sebesar-besarnya juga penulis sampaikan kepada rekan-rekan AIMP 
+Research Group dan CBS Research Group, yang telah memberikan banyak bantuan 
+dalam proses penelitian, pengambilan data, serta diskusi akademik yang sangat berarti. 
+Begitu pula kepada teman-teman Mahasiswa S2 Angkatan IX, yang selalu memberikan 
+dukungan, semangat, serta kebersamaan selama perjalanan studi ini.  
+Penulis sepenuhnya menyadari bahwa tesis ini masih memiliki keterbatasan dan 
+kekurangan. Oleh karena itu, kritik dan saran yang membangun sangat penulis harapkan 
+demi perbaikan dan pengembangan lebih lanjut di masa mendatang. Semoga penelitian 
+ini dapat me mberikan manfaat bagi perkembangan ilmu pengetahuan dan teknologi, 
+khususnya dalam bidang biotani khususnya stomata..  
+--- Page 7 ---
+vii 
+ 
+ 
+ 
+ABSTRAK 
+YUSRI SIMANG, Peningkatan Akurasi Klasifikasi Mikrograf Stomata Menggunakan 
+Yolov11 dengan Gamma Correction dan CLAHE (Dibimbing oleh Indrabayu) 
+Latar Belakang. Stomata merupakan pori mikroskopis pada permukaan daun yang 
+berperan penting dalam pertukaran gas dan pengaturan transpirasi tanaman. Analisis 
+morfologi stomata secara manual sering kali tidak efisien dan subjektif, sehingga 
+diperlukan sistem otomatis berbasis kecerdasan buatan. Tujuan. Penelitian ini bertujuan 
+untuk meningkatkan akurasi klasifikasi mikrograf stomata menggunakan algoritma 
+YOLOv11 yang dikombinasikan dengan teknik praproses Gamma Correction dan CLAHE 
+(Contrast Limited Adaptive Histogram Equa lization). Metode. Gamma Correction  
+digunakan untuk menormalkan pencahayaan global citra, sedangkan CLAHE 
+meningkatkan kontras lokal tanpa menambah noise berlebih. Dataset terdiri dari 52.236 
+citra stomata empat tipe morfologi (Anomocytic, Diacytic, Paracytic, dan Graminoid) yang 
+diperoleh dari mikroskop digital. Proses pelatihan dilakukan dengan parameter konstan 
+untuk membandingkan model baseline dan model hasil praproses. Hasil. Pengujian 
+menunjukkan bahwa penerapan kombinasi Gamma Correction  dan CLAHE mampu 
+meningkatkan accuracy sebesar 0,93, precision 0,88, recall 0,90, dan mAP50 mencapai 
+0,95, yang lebih tinggi dibandingkan model tanpa praproses. Visualisasi hasil deteksi 
+juga menunjukkan peningkatan kejelasan struktur stomata dan pengurangan kesalahan 
+klasifikasi antar tipe. Kesimpulan. Dengan demikian, integrasi YOLOv11 dengan 
+Gamma Correction  dan CLAHE terbukti efektif dalam meningkatkan kualitas citra 
+mikroskopis serta performa deteksi dan klasifikasi stomata secara otomatis, yang 
+berpotensi diterap kan pada sistem analisis fisiologi tanaman berbasis kecerdasan 
+buatan. 
+Kata Kunci: Stomata, YOLOv11, Gamma Correction, CLAHE, Pengolahan Citra, Deep 
+Learning.  
+--- Page 8 ---
+viii 
+ 
+ 
+ 
+ABSTRACT 
+YUSRI SIMANG, Improving Accuracy of Stomata Micrograph Classification Using 
+Yolov11 with Gamma Correction and CLAHE (Supervised by Indrabayu) 
+Background. Stomata are microscopic pores on the leaf surface that play a vital role in 
+gas exchange and transpiration regulation in plants. Manual analysis of stomatal 
+morphology is often inefficient and subjective, thus requiring an automated system based 
+on artificial intelligence. Aim. This study aims to improve the classification accuracy of 
+stomatal micrographs using the YOLOv11 algorithm combined with Gamma Correction 
+and CLAHE (Contrast Limited Adaptive Histogram Equalization) preprocessing 
+techniques. Method. Gamma Correction was applied to normalize global image 
+illumination, while CLAHE enhanced local contrast without amplifying noise. The dataset 
+consisted of 52,236 stomatal micrographs representing four morphological types 
+(Anomocytic, Diacytic, Paracytic, and Graminoid) captured using a digital microscope.  
+Result. Model training was conducted with constant parameters to compare baseline 
+and preprocessed models. The results show that the combination of Gamma Correction 
+and CLAHE increased the accuracy to 0.93, precision to 0.88, recall to 0.90, and mAP50 
+to 0.95, out performing the baseline model. Visual detection results also demonstrate 
+improved clarity of stomatal structures and reduced misclassification among classes. 
+Conclusion. Therefore, integrating YOLOv11 with Gamma Correction and CLAHE 
+effectively enhances mi croscopic image quality as well as detection and classification 
+performance, providing a reliable approach for automated stomatal analysis in plant 
+physiology research using artificial intelligence. 
+Keywords: Stomata, YOLOv11, Gamma Correction, CLAHE, Image Processing, Deep 
+Learning. 
+  
+--- Page 9 ---
+ix 
+ 
+ 
+ 
+DAFTAR ISI 
+Nomor Urut Halaman 
+LEMBAR PENGESAHAN UJIAN TESIS ......................................................................... iii 
+PERNYATAAN KEASLIAN DAN PELIMPAHAN HAK CIPTA ......................................... iv 
+UCAPAN TERIMA KASIH .............................................................................................. vi 
+ABSTRAK ...................................................................................................................... vii 
+ABSTRACT ................................................................................................................... viii 
+DAFTAR ISI ................................................................................................................... ix 
+DAFTAR TABEL .............................................................................................................. x 
+DAFTAR GAMBAR ........................................................................................................ xi 
+DAFTAR LAMPIRAN .................................................................................................... xiii 
+BAB I PENDAHULUAN ................................................................................................... 1 
+1.1 Latar Belakang ................................................................................................ 1 
+1.2 Landasan Teori ................................................................................................ 3 
+1.2.1 Stomata .................................................................................................... 3 
+1.2.2 Mikroskop dan Mikrograf .......................................................................... 4 
+1.2.3 Pengolahan Citra ..................................................................................... 5 
+1.2.4 Visi Komputer ........................................................................................... 5 
+1.2.5 Deteksi Objek ........................................................................................... 5 
+1.2.6 YOLOv11 (You Only Look Once) ............................................................. 6 
+1.2.7 Gamma Correction ................................................................................... 8 
+1.2.8 CLAHE (Contrast Limited Adaptive Histogram Equalization) ................... 9 
+1.3 Perumusan Masalah ..................................................................................... 10 
+1.4 Tujuan dan Manfaat ...................................................................................... 10 
+1.4.1 Tujuan .................................................................................................... 10 
+--- Page 10 ---
+x 
+ 
+ 
+ 
+1.4.2 Manfaat .................................................................................................. 10 
+BAB II METODE PENELITIAN ...................................................................................... 11 
+2.1 Jenis Penelitian ............................................................................................. 11 
+2.2 Tahapan Penelitian ........................................................................................ 11 
+2.3 Sumber Data ................................................................................................. 12 
+2.4 Perangkat Penelitian ..................................................................................... 13 
+2.5 Rancangan Sistem ........................................................................................ 13 
+2.5.1 Pengumpulan Data ................................................................................ 14 
+2.5.2 Preprocessing ........................................................................................ 14 
+2.5.3 Gamma Correction ................................................................................. 15 
+2.5.4 CLAHE (Contrast Limited Adaptive Histogram Equalization) ................. 16 
+2.5.5 Split Data ............................................................................................... 19 
+2.5.6 Augmentasi Data Latih ........................................................................... 19 
+2.5.7 Input Data Training ................................................................................. 20 
+2.5.8 Training Model YOLOv11 ....................................................................... 20 
+2.5.9 Input Data Validasi ................................................................................. 28 
+2.5.10 Validasi Model YOLOv11 ........................................................................ 29 
+2.5.11 Evaluasi Model ....................................................................................... 29 
+2.5.12 Hyperparameter Tuning.......................................................................... 29 
+2.5.13 Model Classification ............................................................................... 29 
+2.5.14 Input Data Testing .................................................................................. 30 
+2.5.15 Klasifikasi dan Deteksi Stomata ............................................................. 30 
+2.5.16 Evaluasi Hasil Klasifikasi ........................................................................ 30 
+BAB III HASIL DAN PEMBAHASAN ............................................................................. 33 
+3.1 Hasil .............................................................................................................. 33 
+3.1.1 Hasil Praproses Citra ............................................................................. 33 
+--- Page 11 ---
+xi 
+ 
+ 
+ 
+3.1.2 Hasil Training Model ............................................................................... 36 
+3.1.3 Hasil Testing ........................................................................................... 39 
+3.1.4 Visualisasi Hasil Deteksi ........................................................................ 43 
+3.2 Pembahasan ................................................................................................. 45 
+BAB IV PENUTUP ........................................................................................................ 48 
+4.1 Kesimpulan ................................................................................................... 48 
+4.2 Saran............................................................................................................. 48 
+DAFTAR PUSTAKA ...................................................................................................... 49 
+LAMPIRAN ................................................................................................................... 51 
+ 
+ 
+  
+--- Page 12 ---
+x 
+ 
+ 
+ 
+DAFTAR TABEL 
+Nomor Urut Halaman 
+Tabel 1. Perbandingan YOLOv8-Yolov11 ........................................................................ 7 
+Tabel 2. Nilai Histogram ................................................................................................ 17 
+Tabel 3. Nilai CDF ......................................................................................................... 17 
+Tabel 4. Nilai Hasil Perhitungan CLAHE ....................................................................... 18 
+Tabel 5. Split Dataset .................................................................................................... 19 
+Tabel 6. Distribusi Label Dataset................................................................................... 19 
+Tabel 7. Distribusi Augmentasi Data Training................................................................ 20 
+Tabel 8. Hasil Training Model ........................................................................................ 38 
+  
+--- Page 13 ---
+xi 
+ 
+ 
+ 
+DAFTAR GAMBAR 
+Nomor Urut Halaman  
+Gambar 1. Tipe Stomata ................................................................................................. 3 
+Gambar 2. Mikrograf Stomata ......................................................................................... 4 
+Gambar 3. Arsitektur YOLO ............................................................................................ 6 
+Gambar 4. Penerapan Gamma Correction ..................................................................... 9 
+Gambar 5. Penerapan CLAHE...................................................................................... 10 
+Gambar 6. Tahapan Penelitian...................................................................................... 11 
+Gambar 7. Rancangan Sistem ...................................................................................... 13 
+Gambar 8. Proses Pengambilan Data .......................................................................... 14 
+Gambar 9. Proses Anotasi Labelling ............................................................................. 14 
+Gambar 10. Penerapan Augmentasi ............................................................................. 19 
+Gambar 11. Inputan YOLOv11 ...................................................................................... 20 
+Gambar 12. Proses Konvolusi ...................................................................................... 21 
+Gambar 13. Proses Blok C3k2F ................................................................................... 22 
+Gambar 14. Proses Blok C3k2T ................................................................................... 23 
+Gambar 15. Proses Blok SPPF..................................................................................... 24 
+Gambar 16. Proses Blok C2PSA .................................................................................. 25 
+Gambar 17. Dekode Bounding Box .............................................................................. 27 
+Gambar 18. Probabilitas Kelas ..................................................................................... 28 
+Gambar 19. Confusion Matrix ....................................................................................... 31 
+Gambar 20. Hasil Praproses Citra ................................................................................ 34 
+Gambar 21. Hasil Peak Signal-to-Noise Ratio (PSNR) ................................................. 35 
+Gambar 22. Confusion Matrix YOLOv11 Baseline dengan YOLOv11+Gamma+CLAHE
+ ...................................................................................................................................... 37 
+Gambar 23. Hasil Testing Pembesaran 3 ..................................................................... 39 
+--- Page 14 ---
+xii 
+ 
+ 
+ 
+Gambar 24. Hasil Testing Pembesaran 4 ..................................................................... 41 
+Gambar 25. Confusion Matrix Pembesaran 3 ............................................................... 42 
+Gambar 26. Confusion Matrix Pembesaran 4 ............................................................... 43 
+Gambar 27. Visualisasi Hasil Deteksi ........................................................................... 44 
+--- Page 15 ---
+xiii 
+ 
+ 
+ 
+DAFTAR LAMPIRAN 
+Nomor Urut Halaman  
+Lampiran 1. Code Gamma Correction and CLAHE ...................................................... 52 
+Lampiran 2. Code Training Model ................................................................................. 52 
+Lampiran 3. Code Testing Model .................................................................................. 53 
+Lampiran 4. Result Training Model ............................................................................... 54 
+ 
+ 
+--- Page 16 ---
+1 
+ 
+ 
+BAB I 
+PENDAHULUAN 
+1.1 Latar Belakang 
+Stomata merupakan pori -pori mikroskopis pada permukaan daun dan batang tanaman 
+yang berperan penting dalam pertukaran gas, yaitu penyerapan karbon dioksida ( CO₂) 
+untuk fotosintesis serta pelepasan oksigen ( O₂) dan uap air melalui transpirasi. Fungsi 
+stomata sangat krusial dalam menjaga keseimbangan air dan suhu tanaman, serta 
+menjadi indikator penting dalam studi adaptasi tanaman terhadap lingkungan. 
+Karakteristik seperti ukuran dan kerapatan stomata mencerminkan efisiensi metabolisme 
+tumbuhan dan digunakan  dalam analisis fisiologis, terutama pada kondisi cekaman 
+lingkungan seperti kekeringan dan peningkatan CO₂ atmosferik (Haworth et al., 2023). 
+Stomata memiliki peran yang sangat penting dalam mengatur keseimbangan 
+antara proses fotosintesis dan transpirasi tanaman. Melalui mekanisme buka -tutup sel 
+penjaga (guard cells), stomata mengontrol difusi gas seperti karbon dioksida (CO₂) untuk 
+fotosintesis dan pelepasan uap air ke atmosfer. Efisiensi fungsi stomata berpengaruh 
+langsung terhadap produktivitas dan adaptasi tanaman terhadap stres lingkungan. 
+Menurut Feng et al., (2021), variasi ukuran dan kerapatan stomata merupakan respons 
+fisiologis yang adaptif terhadap perubahan intensitas cahaya dan ketersediaan air. 
+Penelitian oleh Mohanasundaram et al., (2022)  juga menunjukkan bahwa spesies 
+tanaman dengan kerapatan stomata tinggi memiliki kemampuan fotosintesis lebih efisien 
+dalam kondisi CO₂ rendah, tetapi lebih rentan terhadap kehilangan air. Sementara itu, 
+Huang et al. (2023) menegaskan bahwa pengaturan morfologi dan distribusi stomata 
+menjadi indikator utama dalam menilai ketahanan tanaman terhadap kekeringan serta 
+perubahan iklim global. Dengan demikian, analisis karakteristik stomata, seperti ukuran, 
+bentuk, dan kerapatan, tidak hanya penting untuk memaham i fungsi fisiologis tanaman, 
+tetapi juga menjadi dasar bagi pemuliaan tanaman yang lebih adaptif terhadap 
+lingkungan yang berubah. 
+Pengamatan stomata secara manual masih sering digunakan dalam banyak 
+penelitian. Namun, proses manual ini memiliki keterbatasan dalam hal efisiensi waktu, 
+subjektivitas penilai, serta potensi kesalahan dalam mengidentifikasi struktur stomata 
+terutama dalam  jumlah besar atau citra berkualitas rendah  (Nature Research 
+Intelligence., 2023) . Seiring dengan berkembangnya teknologi citra digital dan 
+kecerdasan buatan, muncul peluang untuk mengotomatisasi proses ini secara lebih 
+akurat, efisien, dan konsisten. 
+Urgensi penelitian dalam otomatisasi deteksi stomata berbasis kecerdasan 
+buatan semakin meningkat dalam beberapa tahun terakhir. Hal ini didorong oleh 
+kebutuhan untuk memperoleh data morfologi stomata secara cepat, akurat, dan dalam 
+jumlah besar guna mendu kung analisis fisiologis tanaman. Sultana et al., (2021)  
+menunjukkan bahwa penerapan deep learning pada pengenalan stomata daun kedelai 
+mampu meningkatkan efisiensi pengolahan data hingga lima kali lipat dibandingkan 
+metode konvensionalLebih lanjut, Murphy et al., (2025) menegaskan bahwa penerapan 
+--- Page 17 ---
+2 
+ 
+ 
+kecerdasan buatan dalam image-based plant phenotyping  menjadi kunci dalam 
+memahami respon adaptif tanaman terhadap stres lingkungan. Oleh karena itu, 
+penelitian mengenai otomatisasi deteksi stomata berbasis AI menjadi semakin 
+mendesak untuk dikembangkan, terutama sebagai langkah menuju sistem analisis 
+morfologi tanaman yang efisien, objektif, dan dapat diandalkan dalam berbagai kondisi 
+lingkungan. 
+Salah satu pendekatan yang menjanjikan adalah dengan menggunakan metode 
+deteksi objek berbasis deep learning. YOLO (You Only Look Once) merupakan algoritma 
+deteksi objek satu tahap yang terkenal karena kecepatannya dan akurasi tinggi dalam 
+memproses gambar secara real-time. Penelitian sebelumnya menunjukkan bahwa 
+YOLOv5 berhasil mendeteksi stomata dengan cukup baik pada citra mikrograf tanaman 
+seperti jagung, beras, dan kapas (Qiu et al., 2022) . Seiring dengan evolusinya, YOLO 
+kini telah mencapai versi ke -11 (YOLOv11), dengan berbagai peningkatan arsitektur 
+seperti modul C2f, attention mechanism, dan Spatial Pyramid Pooling Fast (SPPF) yang 
+secara signifikan meningkatkan kemampuan deteksi objek kecil seperti stomata. 
+Namun, penggunaan algoritma deteksi objek tidak terlepas dari kualitas citra 
+yang diolah. Citra mikroskopis sering kali mengalami berbagai kendala visual seperti 
+pencahayaan yang tidak merata, noise, dan kontras rendah yang menyulitkan proses 
+deteksi. Oleh karena itu, diperlukan proses prapengolahan ( preprocessing) citra guna 
+meningkatkan kualitas visual sebelum dilakukan klasifikasi. Dua metode praproses yang 
+umum digunakan adalah Gamma Correction  dan CLAHE (Contrast Limited Adaptive 
+Histogram Equalization). Gamma Correction bertujuan untuk menyesuaikan kecerahan 
+citra melalui manipulasi distribusi intensitas piksel, sedangkan CLAHE meningkatkan 
+kontras lokal tanpa memperkuat noise secara berlebihan. 
+CLAHE dan Gamma Correction telah terbukti meningkatkan performa berbagai 
+model deteksi, khususnya dalam domain medis. Misalnya,  Benchabane & Charif (2025)  
+menggabungkan CLAHE dan Gamma Correction dalam analisis X-ray COVID-19 
+menggunakan arsitektur DenseNet201,. Penerapan Dalam konteks botani, CLAHE juga 
+telah digunakan untuk menajamkan tepi sel epidermis dan membuka struktur stomata 
+dengan lebih jelas, sehingga membantu dalam proses deteksi otomatis. Kombinasi 
+keduanya memiliki potensi besar, namun penerapannya pada klasifikasi stomata 
+menggunakan arsitektur YOLOv11 masih belum banyak dijelajahi dalam literatur terkini. 
+Lebih lanjut, penelitian terkini oleh Zhang et al., (2023) memperkenalkan metode 
+rotating stomata detection dengan model DeepRSD, yang mampu mendeteksi orientasi 
+acak stomata dan mengukur stomatal conductance secara otomatis. Metode ini tidak 
+hanya mendeteksi bentuk, tetapi juga menyertakan fungsi kerugian khusus untuk 
+conductance, menghasilkan akurasi hingga 94,3 % pada daun jagung  menandakan 
+bahwa klasifikasi stomata memiliki peran penting dalam evaluasi fisiologis tanaman yang 
+lebih kompleks 
+Dengan demikian, penelitian ini bertujuan untuk menggabungkan kekuatan dari 
+arsitektur deteksi terkini ( YOLOv11) dan dua teknik peningkatan kualitas citra ( Gamma 
+Correction dan CLAHE) untuk membangun sistem klasifikasi stomata yang unggul. 
+--- Page 18 ---
+3 
+ 
+ 
+Melalui evaluasi performa dengan metrik seperti accuracy, precision, recall, dan mAP, 
+penelitian ini diharapkan dapat memberikan kontribusi signifikan dalam pengembangan 
+sistem analisis citra mikroskopis berbasis AI untuk bidang fisiologi tanaman dan 
+pertanian presisi. 
+1.2 Landasan Teori 
+1.2.1 Stomata 
+Stomata adalah pori -pori mikroskopis yang umumnya terdapat pada permukaan 
+epidermis daun dan batang muda tanaman. Struktur ini dibentuk oleh dua sel penjaga 
+(guard cells ) yang mengapit celah sempit yang disebut pori stomata. Fungsi utama 
+stomata adalah sebagai jalur pertukaran gas antara jaringan internal tumbuhan dan 
+atmosfer, termasuk dalam proses fotosintesis dan respirasi (Zhang et al., 2022). 
+Stomata memiliki peran penting dalam pengambilan karbon dioksida ( CO₂) dari 
+atmosfer untuk fotosintesis serta dalam pelepasan oksigen ( O₂) dan uap air hasil 
+transpirasi. Oleh karena itu, stomata menjadi salah satu komponen kunci dalam regulasi 
+gas dan keseimbangan air pada tumbuhan. Dalam konteks fisiologi tanaman, parameter 
+stomata seperti jumlah, ukuran, dan kerapatan sering digunakan sebagai indikator dalam 
+menilai efisiensi metabolisme, adaptasi terhadap lingkungan, serta ketahanan terhadap 
+stres abiotik (Nature Research Intelligence., 2023).  
+Stomata dapat diklasifikasikan berdasarkan susunan dan jenis sel tetangga yang 
+mengelilingi sel penjaga. Beberapa tipe morfologi stomata yang umum ditemukan dalam 
+berbagai spesies tanaman antara lain: 
+ 
+Gambar 1. Tipe Stomata 
+Source: https://www.geeksforgeeks.org/biology/types-of-stomata/ 
+1. Anomositik (Anomocytic (A)): Stomata ini dikelilingi oleh sel -sel epidermis biasa 
+yang tidak memiliki ciri khusus, ukuran dan bentuknya tidak berbeda nyata dari sel 
+lainnya. 
+2. Diastik (Diacytic (D)): Stomata ini dikelilingi oleh dua sel tetangga yang posisinya 
+saling tegak lurus terhadap celah stomata. 
+3. Parasitik (Paracytic (P)): Memiliki satu atau dua sel tetangga yang letaknya sejajar 
+dengan arah celah stomata. 
+
+--- Page 19 ---
+4 
+ 
+ 
+4. Graminoid (Graminaceous (G)): Stomata memiliki sel penjaga berbentuk dumbbell 
+(seperti barbel), khas pada tanaman rumput. 
+Jenis dan distribusi morfologi stomata ini bervariasi antar spesies tanaman dan 
+sering digunakan dalam kajian taksonomi, ekologi, serta identifikasi adaptasi terhadap 
+lingkungan. Dalam praktik ilmiah, pengamatan stomata juga penting untuk mendukung 
+studi-studi lanjutan dalam bidang fisiologi tanaman, agronomi, dan bioteknologi tanaman. 
+Karena karakteristik stomata dapat dijadikan parameter fisiologis yang penting, 
+maka proses identifikasi dan klasifikasi stomata dari data citra menjadi fokus penting 
+dalam banyak penelitian. Upaya untuk mempercepat dan mempermudah proses ini kini 
+banyak dikembangkan melalui teknologi pengolahan citra digital dan kecerdasan buatan. 
+1.2.2 Mikroskop dan Mikrograf 
+Mikroskop adalah alat optik yang digunakan untuk memperbesar objek kecil agar dapat 
+diamati secara visual. Mikroskop cahaya merupakan jenis yang paling umum digunakan 
+dalam studi biologis, termasuk pengamatan stomata, karena dapat menampilkan struktur 
+jaringan seperti sel epidermis secara jelas tanpa memerlukan teknik preparasi yang 
+kompleks. Selain itu, mikroskop cahaya dapat digunakan bersama kamera digital untuk 
+menghasilkan citra mikroskopis atau mikrograf (Gibbs et al., 2021). 
+Mikrograf adalah citra hasil tangkapan mikroskop yang digunakan sebagai data 
+visual dalam analisis. Dalam penelitian ini, mikrograf stomata menjadi input utama bagi 
+sistem klasifikasi otomatis berbasis deep learning . Namun, kualitas mikrograf sangat 
+memengaruhi hasil deteksi. Masalah seperti kontras rendah atau pencahayaan tidak 
+merata sering muncul, sehingga diperlukan prapengolahan citra untuk meningkatkan 
+kualitas visual, adapaun contoh mikrograf stomata pada gambar 2. 
+ 
+Gambar 2. Mikrograf Stomata 
+Teknik prapengolahan yang umum digunakan adalah CLAHE untuk 
+meningkatkan kontras lokal, dan Gamma Correction untuk menyesuaikan pencahayaan. 
+Kombinasi kedua teknik ini terbukti efektif meningkatkan kejelasan objek mikroskopis dan 
+mendukung akurasi klasifikasi (Chang et al., 2018) . Penelitian oleh Gibbs et al., (2021)  
+
+--- Page 20 ---
+5 
+ 
+ 
+menunjukkan bahwa mikrograf berkualitas tinggi yang telah diproses mampu 
+meningkatkan akurasi deteksi stomata secara signifikan. 
+1.2.3 Pengolahan Citra  
+Pengolahan citra digital (digital image processing) adalah serangkaian proses matematis 
+dan algoritmik yang diterapkan pada citra digital untuk meningkatkan kualitas visual, 
+mengekstrak informasi, atau mempersiapkan citra untuk analisis lanjutan oleh sistem 
+komputer. Dalam konteks penelitian ini, pengolah an citra digital digunakan untuk 
+memperjelas struktur stomata pada citra mikroskopik sebelum dilakukan klasifikasi 
+menggunakan metode deep learning (Gonzalez & Woods, 2022).  
+Pengolahan citra sangat penting dalam sistem berbasis pembelajaran mesin 
+atau deep learning karena kualitas input sangat menentukan hasil klasifikasi atau 
+deteksi. Pada penelitian ini, tahap praproses berperan memastikan fitur visual stomata 
+tampil jelas d an konsisten sehingga lebih mudah dikenali oleh YOLOv11. Dengan 
+mengurangi noise, menyeimbangkan pencahayaan, dan menajamkan struktur penting, 
+model dapat mengekstraksi fitur secara lebih akurat dan menghasilkan deteksi yang lebih 
+stabil. 
+1.2.4 Visi Komputer 
+Visi komputer adalah cabang dari kecerdasan buatan yang memungkinkan komputer 
+untuk menafsirkan informasi visual dari citra atau video secara otomatis. Tujuannya 
+adalah agar sistem komputer dapat “melihat” dan memahami objek seperti manusia, 
+dengan cara me ngekstrak dan menganalisis fitur -fitur penting dari gambar digital  
+(Szeliski, 2022). 
+Dalam penelitian ini, visi komputer digunakan untuk mendeteksi dan 
+mengklasifikasikan stomata dari citra mikroskopis secara otomatis. Pendekatan ini 
+menggantikan metode manual yang cenderung lambat dan subjektif. Dengan bantuan 
+algoritma deep learning seperti YOLOv11, sistem dapat mengenali objek kecil seperti 
+stomata secara cepat dan akurat.  Komponen utama dalam sistem visi komputer 
+mencakup akuisisi citra, praproses, ekstraksi fitur, dan klasifikasi. Semua tahapan ini 
+saling terhubung dan mendukung proses  analisis citra secara menyeluruh, mulai dari 
+pengambilan gambar hingga interpretasi hasil.   
+1.2.5 Deteksi Objek  
+Deteksi objek ( object detection) adalah cabang dari visi komputer yang berfokus pada 
+identifikasi dan lokalisasi objek -objek tertentu dalam gambar atau video. Proses ini 
+mencakup pengenalan jenis objek serta penentuan posisi objek tersebut dalam gambar. 
+Deteksi objek merupakan langkah penting dalam berbagai aplikasi seperti pengawasan 
+keamanan, kendaraan otonom, analisis video, dan realitas tertambah ( Augmented 
+Reality) (Zou et al., 2019). 
+Adapun komponen utama dalam deteksi objek dimulai dengan proses untuk 
+menyiapkan gambar agar lebih mudah dianalisis. Teknik ini termasuk penyesuaian 
+--- Page 21 ---
+6 
+ 
+ 
+kontras, pengurangan noise, dan transformasi gambar untuk meningkatkan kualitas 
+gambar dan membuat fitur penting lebih menonjol. Mengidentifikasi dan mengekstrak 
+fitur penting dari gambar, seperti tepi, sudut, tekstur, dan pola warna. Fitur ini digunakan 
+sebagai input untuk algoritma deteksi objek. Menggunakan model pembelajaran mesin 
+atau pembelajaran mendalam untuk mengenali dan mengklasifikasikan objek dalam 
+gambar berdasarkan fitur yang diekstraksi. Menentukan lokasi objek dalam gambar, 
+biasanya dengan menggambar kotak pembatas ( bounding box ) di sekitar objek yang 
+terdeteksi. 
+1.2.6 YOLOv11 (You Only Look Once) 
+YOLO (You Only Look Once ) merupakan salah satu algoritma deteksi objek paling 
+populer dalam bidang visi komputer. Pendekatan YOLO mengklasifikasikan dan 
+melakukan prediksi lokasi objek dalam satu tahap secara langsung pada keseluruhan 
+citra, sehingga menghasilkan sistem deteksi yang cepat dan efisien (Redmon et al., 
+2016). Sejak pertama kali dikembangkan, YOLO terus mengalami penyempurnaan, dan 
+versi terbarunya yaitu YOLOv11 menawarkan peningkatan baik dari sisi akurasi maupun 
+efisiensi, khususnya dalam mendeteksi objek kecil. 
+ 
+Gambar 3. Arsitektur YOLO 
+Source: https://medium.com/thedeephub/the-architecture-of-yolov11-a-leap-in-object-
+detection-2ce1e946c74a 
+Gambar 3 menampilkan arsitektur YOLOv11, dimana YOLOv11 merupakan 
+pengembangan dari arsitektur YOLOv8 yang dilengkapi dengan beberapa inovasi, 
+seperti modul C2f yang menggantikan C3 untuk ekstraksi fitur yang lebih ringan, SPPF++ 
+
+--- Page 22 ---
+7 
+ 
+ 
+untuk menangkap informasi spasial multi-skala, serta anchor-free detection head  yang 
+memungkinkan fleksibilitas deteksi terhadap objek dengan ukuran dan bentuk yang 
+bervariasi. Kombinasi modul-modul tersebut menjadikan YOLOv11 mampu mendeteksi 
+objek kecil seperti stomata dalam citra mikroskopis secara lebih akurat. 
+YOLOv11 juga meningkatkan proses Non-Maximum Suppression (NMS) untuk 
+menghindari deteksi objek yang tumpang tindih, yang sebelumnya menjadi salah satu 
+keterbatasan dalam pendeteksian multi -objek kecil dalam satu bidang citra. Model ini 
+dilatih menggunakan teknik augmentasi data dan loss function yang telah disesuaikan 
+untuk menyeimbangkan antara klasifikasi dan prediksi lokasi objek. 
+Beberapa penelitian terkini menunjukkan potensi besar YOLOv11 dalam bidang 
+botani dan fisiologi tanaman. Misalnya, penelitian oleh (Yang et al., 2025)  
+mengembangkan StomaYOLO, model ringan berbasis YOLOv11 untuk mendeteksi sel 
+penjaga stomata pada daun jagung dengan mean Average Precision (mAP) mencapai 
+91,8%, menunjukkan efisiensi tinggi dalam mendeteksi objek mikroskopis dengan variasi 
+bentuk yang kompleks. Selain itu, (Tang et al., 2025)  melalui model YOLOv11-AIU 
+berhasil menerapkan arsitektur YOLOv11 untuk deteksi penyakit early blight pada tomat, 
+yang juga menyoroti kemampuan model ini dalam mengidentifikasi pola morfologi kecil 
+pada jaringan tanaman. Hasil -hasil tersebut menegaskan bahwa YOLOv11 memiliki 
+potensi tinggi untuk diterapkan pada analisis citra mikroskopis tanaman, termasuk dalam 
+deteksi dan klasifikasi stomata. 
+Tabel 1. Perbandingan YOLOv8-Yolov11 
+Versi Precisi
+on Recall mAP mAP@
+50–95 
+Val 
+Box 
+Loss 
+Val 
+Cls 
+Loss 
+Val 
+DFL 
+Loss 
+Computat
+ion Time 
+(s) 
+YOLOv8 0.91931 0.8888
+9 
+0.9461
+8 
+0.5084
+0 
+1.598
+22 
+0.715
+88 
+1.285
+44 8376.94 
+YOLOv9 0.91602 0.8987
+6 
+0.9525
+6 
+0.5129
+8 
+1.576
+51 
+0.657
+08 
+1.271
+04 10337.31 
+YOLOv10 0.85307 0.8447
+5 
+0.9182
+2 
+0.5118
+2 
+3.106
+94 
+1.466
+70 
+2.501
+62 7524.26 
+YOLOv11 0.93348 0.8863
+1 
+0.9515
+2 
+0.5148
+8 
+1.570
+81 
+0.719
+05 
+1.281
+65 4542.97 
+Source: Utiarahman et al., 2025. 
+https://doi.org/10.1109/NMITCON65824.2025.11188393 
+Penelitian terkini oleh Utiarahman et al., (2025)  melakukan evaluasi 
+komprehensif terhadap empat arsitektur YOLO generasi terbaru, yaitu YOLOv8, 
+YOLOv9, YOLOv10, dan YOLOv11, dalam mendeteksi serta mengklasifikasikan tipe 
+morfologi stomata pada citra mikroskopis daun tanaman herbal. Berdasarkan hasil 
+pengujian kuantitatif, YOLOv11 menunjukkan performa terbaik dengan nilai precision 
+tertinggi sebesar 0.93348, mAP sebesar 0.95152, dan mAP@50–95 sebesar 0.51488, 
+disertai waktu komputasi tercepat yakni 4.542,97 detik. Model ini juga memiliki nilai 
+validation loss yang stabil (Val Box Loss: 1.57081; Val Cls Loss: 0.71905; Val DFL Loss: 
+1.28165), menandakan efisiensi tinggi dalam proses prediksi. 
+--- Page 23 ---
+8 
+ 
+ 
+Sebagai perbandingan, YOLOv9 memperoleh recall tertinggi sebesar 0.89876 
+serta validation loss  terendah, menandakan kemampuannya yang baik dalam 
+mendeteksi seluruh objek stomata secara menyeluruh. Namun demikian, YOLOv11 
+dinilai lebih unggul secara keseluruhan karena mampu mencapai keseimbangan optimal 
+antara akurasi deteksi, efisiensi komputasi, dan kestabilan hasil. Sementara itu, 
+YOLOv10 menunjukkan performa paling rendah akibat nilai loss yang tinggi, sedangkan 
+YOLOv8 masih menunjukkan hasil kompetitif namun belum melampaui dua versi teratas. 
+Berdasarkan hasil tersebut, dapat disimpulkan bahwa YOLOv11 menjadi model 
+paling tepat untuk digunakan dalam penelitian ini karena mampu memberikan hasil 
+deteksi yang akurat dengan waktu pemrosesan yang jauh lebih cepat. Keunggulan ini 
+menjadikan YOLOv11 sebagai model terkini berperforma unggul dalam otomasi analisis 
+citra mikroskopis, khususnya untuk klasifikasi morfologi stomata yang menuntut presisi 
+tinggi dan efisiensi waktu. 
+Dalam penelitian ini, YOLOv11 dipilih karena kemampuannya dalam mendeteksi 
+objek kecil, dengan efisiensi tinggi dan arsitektur yang lebih ringan dibandingkan model 
+dua tahap seperti Faster R -CNN. Model ini digunakan untuk mendeteksi dan 
+mengklasifikasikan stomata pada citra mikroskopis, khususnya setelah citra ditingkatkan 
+kualitasnya menggunakan teknik Gamma Correction dan CLAHE. 
+1.2.7 Gamma Correction 
+Gamma Correction  adalah teknik pemrosesan citra digital yang digunakan untuk 
+menyesuaikan kecerahan ( brightness) dan kontras gambar dengan mengoreksi 
+hubungan nonlinier antara intensitas cahaya yang ditangkap oleh sensor dan yang 
+ditampilkan oleh perangkat (W. Wang et al., 2021). Secara umum, gambar digital mentah 
+yang diperoleh dari sensor cenderung terlihat terlalu gelap atau terlalu terang jika tidak 
+dilakukan koreksi gamma.  Proses Gamma Correction  dilakukan dengan menerapkan 
+fungsi: 
+𝑰𝒐𝒖𝒕 = 𝑰𝒊𝒏
+𝟐𝟓𝟓 (1) 
+di mana: 
+𝐼𝑖𝑛 adalah intensitas asli dari piksel, 
+𝐼𝑜𝑢𝑡 adalah intensitas keluaran setelah koreksi, 
+  γ adalah nilai gamma (jika γ<1, gambar menjadi lebih terang; jika γ>1, gambar menjadi 
+lebih gelap). 
+Seiring dengan perkembangan teknologi pengolahan citra dan pembelajaran 
+mendalam, penerapan Gamma Correction telah berevolusi dari teknik linier sederhana 
+menjadi pendekatan adaptif berbasis jaringan saraf. Penelitian terbaru oleh (Y. Wang et 
+al., 2023) melalui Illumination-Aware Gamma Correction and Complete Image Modelling 
+Network menunjukkan bahwa koreksi gamma adaptif yang mempertimbangkan distribusi 
+pencahayaan lokal mampu meningkatkan kualitas citra secara signifikan pada kondisi 
+cahaya rendah. Pendekatan ini tidak hanya memperbaiki kecerahan, tetapi juga 
+mempertahankan detail tekstur penting yang sebelumnya hilang akibat pencahayaan 
+--- Page 24 ---
+9 
+ 
+ 
+tidak merata. Sementara itu, Weng et al., (2024) mengembangkan Lightweight Low-Light 
+Image Enhancement Network  yang menggabungkan Gamma Correction  dengan 
+channel prior , menghasilkan peningkatan visibilitas citra dengan efisiensi komputasi 
+tinggi, sehingga cocok untuk aplikasi real-time. Penelitian -penelitian tersebut 
+menunjukkan bahwa Gamma Correction  kini bukan sekadar tahap praproses 
+konvensional, melainkan telah menjadi bagian integral dalam pipeline pembelajaran 
+mendalam untuk peningkatan kualitas citra. Dalam konteks penelitian ini, penerapan 
+Gamma Correction pada citra mikrograf stomata diharapkan dapat meningkatkan 
+kontras dan visibilitas struktur mikroskopis sehingga mendukung performa model deteksi 
+berbasis YOLOv11 secara lebih optimal. 
+Penerapan Gamma Correction  sangat penting dalam pengolahan citra 
+mikroskopis, termasuk mikrograf stomata, karena membantu meningkatkan visibilitas 
+detail struktur halus yang tidak terlihat jelas pada pencahayaan asli (Jeon et al., 2024) . 
+Dalam konteks deteksi objek menggunakan deep learning  seperti YOLO, kualitas 
+pencahayaan sangat memengaruhi akurasi deteksi. Oleh karena itu, Gamma Correction 
+digunakan sebagai salah satu tahap praproses untuk memastikan kontras dan distribusi 
+cahaya optimal pada gambar input sebelum dilakukan pelatihan model (Yu et al., 2021). 
+Gambar 4 menampilkan penerapan gamma correction. 
+ 
+ Gambar 4. Penerapan Gamma Correction  
+1.2.8 CLAHE (Contrast Limited Adaptive Histogram Equalization) 
+CLAHE adalah metode peningkatan kontras citra yang bekerja secara lokal dengan 
+membagi gambar ke dalam beberapa bagian kecil ( tiles), kemudian melakukan 
+equalization pada masing -masing bagian. Berbeda dengan metode histogram 
+equalization biasa, CLAHE menggunakan parameter clip limit  untuk mencegah 
+peningkatan kontras yang berlebihan, sehingga mampu mengurangi efek noise. 
+Metode Contrast Limited Adaptive Histogram Equalization  (CLAHE) telah 
+banyak digunakan dalam peningkatan kualitas citra karena kemampuannya 
+memperbaiki kontras lokal tanpa memperkuat noise secara berlebihan. Dalam penelitian 
+terbaru  ŞENGÖZ et al., (2022)  memperlihatkan bahwa penggunaan CLAHE sebagai 
+bagian dari pipeline meningkatkan skor F1 dari 93 % menjadi 98 % dalam klasifikasi 
+gambar histopatologi ketika dibandingkan model CNN tanpa preprocessing.  
+Selanjutnya, Huang Guoand Xu, (2021)mengembangkan model enhancement citra yang 
+
+--- Page 25 ---
+10 
+ 
+ 
+menggabungkan operator diferensial fraksional orde variabel dengan CLAHE, untuk 
+memperkuat tepi dan tekstur citra. 
+Dalam beberapa penelitian terkini, penggunaan CLAHE terbukti meningkatkan 
+performa deteksi pada citra medis dan mikroskopis, termasuk citra stomata, dengan cara 
+memperjelas detail morfologi yang sulit terlihat (Liu et al., 2021).Oleh karena itu, dalam 
+penelitian ini, CLAHE digunakan sebagai tahap praproses untuk meningkatkan kejelasan 
+struktur stomata sebelum dilakukan klasifikasi oleh model YOLOv11. Gambar 5 
+menampilkan penerapan CLAHE. 
+ 
+Gambar 5. Penerapan CLAHE 
+1.3 Perumusan Masalah 
+Berdasarkan latar belakang masalah di atas, maka rumusan masalah pada penelitian ini 
+adalah sebagai berikut: 
+1. Sejauh mana model YOLOv11 mampu mengklasifikasikan stomata dengan tingkat 
+akurasi yang tinggi?  
+2. Bagaimana pengaruh penerapan Gamma Correction  dan CLAHE terhadap 
+peningkatan kinerja klasifikasi citra stomata pada model YOLOv11? 
+1.4 Tujuan dan Manfaat 
+1.4.1 Tujuan 
+Tujuan yang ingin dicapai pada penelitian ini yaitu: 
+1. Meningkatkan akurasi kalsifikasi stomata yang memiliki warna hampir sama dengan 
+daun menggunakan algoritma YOLOv11, Gamma Correction  dan CLAHE. 
+2. Mengevaluasi pengaruh teknik peningkatan Gamma Cor rection  dan CLAHE 
+terhadap performa model YOLOv11 dalam mengklasifikasi stomata berbagai kondisi 
+pencahayaan dan latar belakang yang kompleks. 
+1.4.2 Manfaat 
+Adapun manfaat yang dapat diperoleh dari penelitian ini yaitu: 
+1. Menyediakan sistem klasifikasi stomata yang otomatis, cepat, dan akurat untuk 
+mendukung analisis tanaman. 
+2. Menjadi referensi dalam penerapan kombinasi deep learning dan peningkatan citra 
+untuk objek mikroskopis di bidang informatika dan pertanian.  
+
+--- Page 26 ---
+11 
+ 
+ 
+BAB II 
+METODE PENELITIAN 
+2.1 Jenis Penelitian 
+Jenis penelitian ini merupakan penelitian yang bersifat eksperimental dan analisis 
+sehingga dapat dilakukan dengan metode studi pustaka ( library research ), melalui 
+beberapa literatur seperti buku, jurnal, pro siding  atau artikel ilmiah lainnya, metode 
+pengumpulan data lapangan ( field research), perancangan sistem, dan analisis 
+menggunakan metode pengolahan citra (Image Processing). 
+2.2 Tahapan Penelitian 
+ 
+Gambar 6. Tahapan Penelitian 
+Pada gambar 6 diatas akan di paparkan tahapan penelitian, tahapan yang diusulkan 
+adalah sebagai berikut:  
+Berikut merupakan penjelasan tentang tahapan-tahapan yang dilakukan selama 
+proses penelitian pada Gambar: 
+1. Identifikasi masalah adalah tahap awal untuk mengidentifikasi permasalahan yang 
+melatarbelakangi penelitian, yaitu rendahnya akurasi klasifikasi stomata pada citra 
+mikroskopik akibat kualitas citra yang buruk (kontras rendah  pencahayaan tidak 
+merata). Permasalahan ini berdampak pada kinerja algoritma deteksi, khususnya 
+dalam konteks citra mikroskopik biologis. 
+2. Setelah permasalahan diidentifikasi, tahap selanjutnya adalah melakukan studi 
+literatur untuk mendalami teori dan pendekatan yang relevan dengan penelitian ini. 
+Studi ini mencakup penelusuran terhadap teknik -teknik pengolahan citra digital 
+seperti Gamma Correction dan CLAHE, serta studi mendalam terhadap algoritma 
+YOLO, khususnya versi terbaru yaitu YOLOv11 yang dikenal memiliki keunggulan 
+dalam kecepatan dan akurasi deteksi. Studi literatur ini juga membantu dalam 
+merancang kerangka metodologi penelitian d an mendukung argumen pemilihan 
+metode yang digunakan. 
+3. Pada tahap ini dilakukan pengumpulan data set berupa citra mikrograf stomata dari 
+berbagai jenis daun. Citra diambil menggunakan mikroskop digital dengan resolusi 
+tinggi untuk memastikan detail stomata terekam dengan baik. Proses pengambilan 
+data dilakukan secara sistematis, dengan memperhatikan pencahayaan dan posisi 
+fokus agar diperoleh variasi data yang merepresentasikan kondisi riil di lapangan. 
+
+--- Page 27 ---
+12 
+ 
+ 
+Data set kemudian dilabeli secara manual untuk keperluan pelatihan dan pengujian 
+model deteksi. 
+4. Setelah data tersedia, dilakukan perancangan sistem secara menyeluruh, mulai dari 
+alur praproses citra, penerapan algoritma YOLOv11, hingga evaluasi performa 
+sistem. Praproses mencakup penerapan Gamma Correction untuk meningkatkan 
+pencahayaan dan CLAHE untuk meningkatkan kontras lokal pada citra. Desain 
+sistem juga mencakup struktur direktori data set, pemisahan data train-test, serta 
+parameter training model. Perancangan ini bertujuan agar sistem yang dibangun 
+dapat menangani tantangan deteksi stomata pada  citra yang telah ditingkatkan 
+kualitasnya secara efektif. 
+5. Hasil rancangan sistem kemudian diimplementasikan menggunakan bahasa 
+pemrograman Python dengan bantuan pustaka pendukung seperti OpenCV untuk 
+pengolahan citra dan PyTorch atau Ultralytics untuk pemodelan YOLOv11. Modul-
+modul yang dibangun meliputi tahapan preprocessing (Gamma Correction  dan 
+CLAHE), pelatihan model YOLOv11 menggunakan data set hasil peningkatan citra, 
+serta sistem evaluasi untuk mengukur performa deteksi. Proses implementasi 
+dilakukan secara bertahap dan modular untuk memudahkan debugging serta 
+pengembangan lebih lanjut. 
+6. Sistem yang telah dikembangkan selanjutnya diuji menggunakan data uji yang telah 
+disiapkan sebelumnya. Pengujian dilakukan dengan tujuan untuk mengevaluasi 
+performa model dalam mendeteksi dan mengklasifikasikan stomata dari citra hasil 
+praproses. Evaluasi dilakukan menggunakan metrik seperti accuracy, precision, 
+recall, F1-score, dan mean Average Precision (mAP). Hasil dari pengujian ini 
+digunakan untuk menilai efektivitas penerapan Gamma Correction  dan CLAHE 
+terhadap peningkatan performa deteksi menggunakan YOLOv11. 
+7. Tahap evaluasi dilakukan untuk menganalisis apakah sistem yang dibangun telah 
+mencapai target performa yang diinginkan. Jika hasil pengujian menunjukkan 
+performa yang belum optimal, maka dilakukan revisi pada tahap perancangan 
+sistem atau proses pelatihan ulang dengan parameter yang disesuaikan. Evaluasi 
+ini penting untuk memastikan bahwa sistem deteksi stomata yang dibangun benar-
+benar efektif dalam kondisi nyata dan tidak hanya unggul dalam lingkungan 
+pengujian yang terbatas. 
+8. Tahap akhir dari proses penelitian ini adalah penyusunan laporan secara sistematis 
+dan menyeluruh. Laporan mencakup latar belakang, rumusan masalah, studi 
+literatur, metodologi penelitian, implementasi sistem, hasil pengujian, evaluasi, dan 
+kesimpulan. Laporan disusun sesuai dengan format penulisan ilmiah yang berlaku 
+sebagai dokumen pertanggungjawaban dari proses dan hasil penelitian yang telah 
+dilakukan. 
+2.3 Sumber Data  
+Sumber data yang digunakan dalam penelitian ini adalah citra mikrograf stomata yang 
+diperoleh menggunakan  kamera digital yang terpasang pada mikroskop cahaya di 
+Laboratorium AIMP, Universitas Hasanuddin . Data ini digunakan untuk 
+mengklasifikasikan stomata daun dengan bantuan metode deep learning . Citra dari 
+--- Page 28 ---
+13 
+ 
+ 
+kamera ini kemudian diolah menggunakan teknik Gamma Correction dan CLAHE untuk 
+meningkatkan kualitas visual sebelum diproses oleh model YOLOv11. Data dikumpulkan 
+secara langsung di laboratorium serta didukung oleh data set  sekunder dari sumber 
+terbuka sebagai bagian dari proses pelatihan dan pengujian sistem. 
+2.4 Perangkat Penelitian 
+1. Spesifikasi Perangkat Keras (Lenovo Legion 5 Pro 16) 
+a. NVIDIA RTX 4070 8 GB 
+b. Intel Core i9 13900HX 
+c. RAM 64 GB 
+d. SSD 2 TB 
+2. Perangkat Lunak 
+a. Sistem Operasi Windows 11-64 bit 
+b. Bahasa Pemrograman Python 
+c. Jupyter Notebook 
+d. Roboflow 
+e. Microsoft Office 
+2.5 Rancangan Sistem 
+Alur perancangan sistem  pada penelitian ini ditunjukkan pada gambar berikut ini: 
+ 
+Gambar 7. Rancangan Sistem 
+Berdasarkan gambar 7 rancangan sistem, proses dilakukan sesuai alur yang 
+telah dirancang untuk mencapai tujuan klasifikasi stomata  yang diuraikan sebagai 
+berikut: 
+
+--- Page 29 ---
+14 
+ 
+ 
+2.5.1 Pengumpulan Data 
+Data dikumpulkan dalam bentuk citra mikrograf stomata dari daun tanaman yang 
+diperoleh menggunakan kamera digital yang terpasang pada mikroskop cahaya. Proses 
+pengambilan data dapat dilihat pada gambar 8. 
+ 
+Gambar 8. Proses Pengambilan Data 
+2.5.2 Preprocessing 
+a. Anotasi dan Labeling 
+Setelah data citra dikumpulkan, dilakukan proses anotasi dengan menandai letak 
+stomata menggunakan bounding box  dan memberikan label berdasarkan jenis atau 
+morfologi stomata  seperti yang ada pada gambar 9 . Tahap ini penting agar model 
+YOLOv11 dapat belajar mengenali dan membedakan jenis stomata berdasarkan posisi 
+dan klasifikasinya. 
+ 
+Gambar 9. Proses Anotasi Labelling 
+
+--- Page 30 ---
+15 
+ 
+ 
+b. Rezise 
+Citra yang telah dianotasi kemudian diubah ukurannya ( resize) ke dimensi 
+standar YOLOv11, seperti 640x640 piksel. Selanjutnya, citra diproses menggunakan 
+Gamma Correction  dan CLAHE untuk meningkatkan kontras dan kecerahan agar 
+struktur stomata lebih terlihat jelas. 
+2.5.3 Gamma Correction 
+Sebelum proses deteksi dilakukan, citra uji terlebih dahulu diproses menggunakan 
+gamma correction untuk meningkatkan kecerahan ( brightness) akibat optik mikroskop. 
+Tujuan dari tahap ini adalah untuk meningkatkan cahaya struktur stomata agar dapat 
+dikenali lebih akurat oleh model. 
+e. Ambil nilai intensitas piksel asli 
+Tahap ini menunjukkan matriks nilai piksel asli dari kanal green citra berukuran 
+3×3. Setiap elemen merepresentasikan tingkat kecerahan warna hijau pada skala 0–255. 
+Nilai tinggi (misalnya 255) menunjukkan piksel terang, sedangkan nilai rendah (misalnya 
+30) menunjukkan piksel gelap. 
+𝑮 = [
+𝟐𝟎𝟎 𝟏𝟓𝟎 𝟏𝟎𝟎
+𝟓𝟎 𝟏𝟐𝟖 𝟐𝟐𝟎
+𝟑𝟎 𝟏𝟖𝟎 𝟐𝟓𝟓
+] (2) 
+f. Normalisasi nilai piksel 
+Setiap nilai piksel dibagi dengan 255 agar berada pada rentang 0 –1. Langkah 
+ini penting karena banyak operasi pemrosesan citra —termasuk Gamma Correction  
+bekerja lebih stabil pada domain ter-normalisasi, dengan rumus: 
+𝑰𝒐𝒖𝒕 = 𝑰𝒊𝒏
+𝟐𝟓𝟓 (3) 
+Maka hasil normalisasi: 
+𝑰𝒐𝒖𝒕 = [
+𝟎. 𝟕𝟖𝟒 𝟎. 𝟓𝟖𝟖 𝟎. 𝟑𝟗𝟐
+𝟎. 𝟏𝟗𝟔 𝟎. 𝟓𝟎𝟐 𝟎. 𝟖𝟔𝟑
+𝟎. 𝟏𝟏𝟖 𝟎. 𝟕𝟎𝟔 𝟏. 𝟎𝟎𝟎
+] (4) 
+g. Terapkan rumus Gamma Correction 
+Rumus 𝐼𝑜𝑢𝑡 = 𝐼𝑖𝑛
+y digunakan untuk memperbaiki kecerahan citra. Karena nilai 
+𝛾 = 1.5 > 1, hasilnya membuat piksel gelap menjadi lebih gelap dan piksel terang sedikit 
+lebih cerah. Proses ini menyesuaikan distribusi intensitas agar detail pada area terang 
+lebih menonjol, maka: 
+𝑰𝒐𝒖𝒕 = 𝑰𝒊𝒏
+𝟏.𝟓 (5) 
+--- Page 31 ---
+16 
+ 
+ 
+Hasilnya: 
+𝑰𝒐𝒖𝒕 = [
+(𝟎. 𝟕𝟖𝟒)𝟏.𝟓 (𝟎. 𝟓𝟖𝟖)𝟏.𝟓 (𝟎. 𝟑𝟗𝟐)𝟏.𝟓
+(𝟎. 𝟏𝟗𝟔)𝟏.𝟓 (𝟎. 𝟓𝟎𝟐)𝟏.𝟓 (𝟎. 𝟖𝟔𝟑)𝟏.𝟓
+(𝟎. 𝟏𝟏𝟖)𝟏.𝟓 (𝟎. 𝟕𝟎𝟔)𝟏.𝟓 (𝟏. 𝟎𝟎𝟎)𝟏.𝟓
+] (6) 
+ 
+= [
+𝟎. 𝟔𝟗𝟑 𝟎. 𝟒𝟓𝟏 𝟎. 𝟐𝟒𝟓
+𝟎. 𝟎𝟖𝟕 𝟎. 𝟑𝟓𝟔 𝟎. 𝟖𝟎𝟐
+𝟎. 𝟎𝟒𝟏 𝟎. 𝟓𝟗𝟑 𝟏. 𝟎𝟎𝟎
+] (7) 
+ 
+h. Kembalikan ke skala 0–255 
+Setelah proses Gamma Correction selesai, hasil yang semula dalam rentang 0–
+1 dikembalikan ke skala intensitas citra asli dengan mengalikan 255: 
+𝑰𝒐𝒖𝒕 = 𝑰𝒊𝒏 × 𝟐𝟓𝟓 (8) 
+ 
+Sehingga hasil akhirnya: 
+𝑰𝒐𝒖𝒕 = [
+𝟏𝟕𝟕 𝟏𝟏𝟓 𝟔𝟐
+𝟐𝟐 𝟗𝟏 𝟐𝟎𝟒
+𝟏𝟎 𝟏𝟓𝟏 𝟐𝟓𝟓
+] (9) 
+ 
+2.5.4 CLAHE (Contrast Limited Adaptive Histogram Equalization) 
+Setelah melalui proses perbaikan kecerahan, citra uji kemudian diproses menggunakan 
+CLAHE untuk meningkatkan kontras warna (color contrast). Tujuan dari tahap ini adalah 
+untuk meningkatkan warna struktur stomata agar dapat dikenali lebih akurat oleh model. 
+a. Menghitung Histogram 
+Histogram dibuat dengan menghitung frekuensi kemunculan setiap nilai 
+intensitas pada matriks keluaran I. Karena matriks 3×3 berisi sembilan nilai unik (10, 22, 
+62, …, 255) dan masing -masing muncul satu kali, tabel histogram menunjukkan 
+frekuensi 1 untuk setiap nilai. Histogram ini memberi gambaran distribusi intensitas di 
+kasus ini distribusi sangat jarang karena semua nilai unik. 
+𝑰 = [
+𝟏𝟕𝟕 𝟏𝟏𝟓 𝟔𝟐
+𝟐𝟐 𝟗𝟏 𝟐𝟎𝟒
+𝟏𝟎 𝟏𝟓𝟏 𝟐𝟓𝟓
+] (10) 
+ 
+ 
+ 
+--- Page 32 ---
+17 
+ 
+ 
+Tabel 2. Nilai Histogram 
+Nilai Intensitas (I) Frekuensi (P) 
+10 1 
+22 1 
+62 1 
+91 1 
+115 1 
+151 1 
+177 1 
+204 1 
+255 1 
+b. Hitung CDF (Cumulative Distribution Function) 
+CDF diperoleh dengan melakukan akumulasi frekuensi histogram dari nilai 
+intensitas terendah ke tertinggi. Untuk tiap nilai 𝐼, CDF(I) adalah jumlah frekuensi semua 
+intensitas ≤ 𝐼. Karena tiap nilai frekuensinya 1, CDF bertambah satu tiap baris: 1, 2, 3, 
+…, 9. CDF menunjukkan proporsi kumulatif piksel sampai ambang tertentu dan 
+digunakan untuk meratakan atau meregangkan distribusi intensitas. 
+Tabel 3. Nilai CDF 
+I P CDF 
+10 1 1 
+22 1 2 
+62 1 3 
+91 1 4 
+115 1 5 
+151 1 6 
+177 1 7 
+204 1 8 
+255 1 9 
+c. Normalisasi CDF (Manual CLAHE) 
+Normalisasi CDF (Manual CLAHE) rumus dan maknanya (Persamaan 11 dan 
+Tabel 3), rumus CLAHE manual yang digunakan adalah: 
+--- Page 33 ---
+18 
+ 
+ 
+𝑰baru =
+(CDF(𝑰) − CDF𝒎𝒊𝒏)
+(𝑵 − CDF𝒎𝒊𝒏)  (𝑳 − 𝟏) (11) 
+Dimana:  
+𝐈baru: Nilai intensitas baru setelah peningkatan kontras. 
+ CDF(𝐼): Nilai kumulatif histogram pada intensitas 𝐼di dalam satu blok. 
+CDFmin: Nilai CDF terkecil pada blok tersebut sebagai acuan normalisasi. 
+𝑁: Jumlah total piksel dalam blok (tile). 
+𝐿: Jumlah level intensitas. 
+Dengan 𝐿 = 256,  𝑁 = 9, CDF𝑚𝑖𝑛 = 1 
+Rumus ini memetakan nilai CDF ke rentang 0 –255 secara linier; mengurangi 
+𝐶𝐷𝐹𝑚𝑖𝑛menghindari pemetaan semua nilai ke 0 jika CDF terendah bukan nol. Hasilnya 
+adalah nilai baru untuk setiap intensitas input yang bertujuan menyebarkan kembali 
+intensitas sehingga kontras lokal meningkat. Tabel 3 menunjukkan hasil pemetaan CDF 
+ke nilai baru (misalnya CDF=2 → 32, CDF=5 → 128, dst). 
+Tabel 4. Nilai Hasil Perhitungan CLAHE 
+I P CDF Nilai Baru 
+10 1 1 0 
+22 1 2 32 
+62 1 3 64 
+91 1 4 96 
+115 1 5 128 
+151 1 6 160 
+177 1 7 192 
+204 1 8 224 
+255 1 9 255 
+d. Terapkan Nilai Baru ke Matriks Awal 
+Setiap elemen pada matriks intensitas awal digantikan dengan nilai baru sesuai 
+tabel pemetaan CLAHE sehingga terbentuk matriks hasil: 
+𝑮 = [
+𝟏𝟗𝟐 𝟏𝟐𝟖 𝟔𝟒
+𝟑𝟐 𝟗𝟔 𝟐𝟐𝟒
+𝟎 𝟏𝟔𝟎 𝟐𝟓𝟓
+] (12) 
+Langkah ini menghasilkan citra dengan kontras yang diregangkan: area gelap 
+menjadi lebih gelap (misalnya 10 → 0) dan area terang dipertegas (misalnya 255 tetap 
+--- Page 34 ---
+19 
+ 
+ 
+255), sehingga perbedaan antara tingkat intensitas menjadi lebih jelas dan detail lokal 
+lebih terlihat. 
+2.5.5 Split Data 
+Data set  kemudian dibagi menjadi tiga bagian yaitu data latih untuk proses 
+pelatihan model, data validasi untuk mengevaluasi performa model selama pelatihan, 
+dan data uji untuk mengukur performa akhir model. Pembagian ini dilakukan secara 
+proporsional untuk mencegah overfitting dan meningkatkan generalisasi model terhadap 
+data baru. Pada tabel 5 dipaparkan pembagian dataset, dan tabel 6 menampilkan hasil 
+jumlah label dataset. 
+Tabel 5. Split Dataset 
+Class Train 
+Train 1164 
+Valid 325 
+Test 174 
+Total 1663 
+Tabel 6. Distribusi Label Dataset 
+Class Train Valid Test Total 
+Anomocytic 6773 1303 513 8589 
+Diacytic 14158 3111 896 18165 
+Graminoid 5992 1276 664 8232 
+Paracytic 13571  2291 1688 17550 
+Total 40494 7981 3761 52236 
+ 
+2.5.6 Augmentasi Data Latih 
+Untuk menambah jumlah dan variasi data latih, dilakukan augmentasi citra. Teknik 
+augmentasi yang digunakan meliputi rotasi  dan flipping (pencerminan). Tahapan ini 
+bertujuan untuk membuat model lebih tangguh terhadap perubahan posisi dan 
+pencahayaan saat mendeteksi stomata pada kondisi yang berbeda . Setelah di 
+augmentasi dataset train menjadi 3374 dari 1164. Dengan distribusi yang dipaparkan 
+pada tabel 7. 
+ 
+Gambar 10. Penerapan Augmentasi 
+
+--- Page 35 ---
+20 
+ 
+ 
+Tabel 7. Distribusi Augmentasi Data Training  
+Class Train 
+Anomocytic 12823 
+Diacytic 28780 
+Graminoid 11683 
+Paracytic 26004 
+Total 79290 
+ 
+2.5.7 Input Data Training 
+Data latih yang telah melalui proses augmentasi dan preprocessing dimasukkan ke 
+dalam proses pelatihan model YOLOv11. Model akan mempelajari fitur visual dari 
+stomata berdasarkan bounding box dan label yang telah ditentukan, sehingga mampu 
+melakukan klasifikasi stomata secara otomatis dengan tingkat akurasi yang tinggi. 
+ 
+Gambar 11. Inputan YOLOv11 
+Citra masukan berukuran 640 × 640 × 3 (RGB). Setiap piksel dinormalisasi ke 
+rentang [0,1] menggunakan persamaan: 
+𝑰𝒏𝒐𝒓𝒎 = 𝑰𝒓𝒈𝒃
+𝟐𝟓𝟓 
+ 
+(13) 
+Misal pada satu piksel di koordinat (0,0) memiliki nilai 
+𝑅 =  120,  𝐺 =  200,  𝐵 =  150 
+Maka hasil normalisasinya: 
+R = 0.47, G = 0.78, B = 0.59 
+2.5.8 Training Model YOLOv11 
+Model YOLOv11 mulai dilatih menggunakan data latih. Pada tahap ini, model 
+mempelajari fitur visual dari stomata, termasuk bentuk, struktur, dan pola distribusinya, 
+agar mampu mendeteksi dan mengklasifikasikan stomata secara otomatis. 
+a. Lapisan Konvolusi 
+Proses konvolusi, yang berfungsi untuk mengekstraksi fitur-fitur penting dari 
+citra masukan. Lapisan pertama YOLOv11 melakukan konvolusi 3 kanal menjadi 32 
+
+--- Page 36 ---
+21 
+ 
+ 
+fitur dengan kernel 3×3, stride 2, dan padding 1. 
+Rumus konvolusi: 
+𝐘(𝐢, 𝐣, 𝐤) = 𝚺𝚺𝚺𝐖𝐦,𝐧,𝐜,𝐤 ∗ 𝐗𝐢+𝐦,𝐣+𝐧,𝐜 + 𝐛𝐤 (14) 
+Dimana: 
+𝑌(𝑖, 𝑗, 𝑘): Output fitur pada posisi (𝑖, 𝑗), kanal 𝑘 
+𝑋: Nilai piksel input 
+𝑊: Bobot kernel 
+(𝑚, 𝑛, 𝑐): Indeks posisi kernel dan kanal input 
+∑: Penjumlahan seluruh elemen kernel 
+𝑏𝑘: Bias kanal keluaran 𝑘 
+Contoh perhitungan pada fitur pertama (k=0): misal bobot kernel rata-rata W=0.1 dan 
+bias b=0.05, 
+ 
+𝐘(𝟎, 𝟎, 𝟎) = 𝟎. 𝟏 × (𝟎. 𝟒𝟕 + 𝟎. 𝟕𝟖 + 𝟎. 𝟓𝟗) + 𝟎. 𝟎𝟓 = 𝟎. 𝟐𝟑𝟒 (15) 
+Hasil aktivasi (SiLU): 
+𝐟(𝐘) = 𝐘 × 𝛔(𝐘) = 𝟎. 𝟐𝟑𝟒 × 𝟏
+𝟏 + 𝐞−𝟎.𝟐𝟑𝟒 = 𝟎. 𝟐𝟑𝟒 × 𝟎. 𝟓𝟓𝟖 = 𝟎. 𝟏𝟑𝟎 (16) 
+Ukuran keluaran menjadi 320 × 320 × 32. 
+ 
+Gambar 12. Proses Konvolusi 
+b. Blok C3k2F 
+Setelah konvolusi dasar, YOLOv11 menggunakan blok residual untuk 
+mempertahankan informasi dari lapisan sebelumnya dan mempercepat proses 
+konvergensi. Blok C3k2F terdiri dari dua konvolusi berurutan dan shortcut: 
+𝐎 = 𝐟(𝐖𝟐 ∗ 𝐟(𝐖𝟏 ∗ 𝐗)) + 𝐗 (17) 
+
+--- Page 37 ---
+22 
+ 
+ 
+Dimana: 
+𝑋: Input blok 
+𝑊1, 𝑊2: Bobot konvolusi pertama dan kedua 
+𝑓: Fungsi aktivasi (SiLU) 
+∗: Operasi konvolusi 
+𝑂: Output blok residual 
++𝑋: Shortcut / skip-connection untuk menjaga informasi awal 
+Misal hasil f(W1 * X) = 0.13 dan f(W2 * X) = 0.40, maka: 
+𝐎 =  𝟎. 𝟒𝟎 +  𝟎. 𝟏𝟑 =  𝟎. 𝟓𝟑 (18) 
+Ukuran tetap 320 × 320 × 32. 
+ 
+Gambar 13. Proses Blok C3k2F 
+c. Blok C3k2T 
+Tahapan ini bertujuan memperkaya representasi fitur dengan menambah 
+jumlah kanal. Blok ini meningkatkan kedalaman fitur menjadi 64 kanal: 
+𝐎𝐓 = 𝐟(𝐖𝐓 ∗ 𝐎) (19) 
+Dimana: 
+𝑋: Input dari blok sebelumnya 
+𝑊𝑇: Bobot konvolusi untuk penambahan kanal 
+∗: Operasi konvolusi 
+𝑓: Fungsi aktivasi (SiLU) 
+𝑂𝑇: Output fitur dengan kanal yang ditingkatkan 
+
+--- Page 38 ---
+23 
+ 
+ 
+ 
+Misal bobot rata-rataWT = 0.5, maka: 
+𝐎𝐓 = 𝟎. 𝟓 × 𝟎. 𝟓𝟑 = 𝟎. 𝟐𝟔𝟓 (20) 
+Ukuran output 160 × 160 × 64. 
+ 
+Gambar 14. Proses Blok C3k2T 
+d. Blok SPPF (Spatial Pyramid Pooling - Fast) 
+Lapisan SPPF digunakan untuk menangkap informasi konteks dari berbagai 
+skala tanpa mengubah ukuran input. SPPF menggabungkan informasi multi-skala 
+dengan pooling 5×5, 9×9, dan 13×13: 
+𝐎𝐬𝐩𝐩𝐟 = 𝐂𝐨𝐧𝐜𝐚𝐭(𝐏𝟓(𝐎𝐓), 𝐏𝟗(𝐎𝐓), 𝐏𝟏𝟑(𝐎𝐓)) (21) 
+Misal hasil pooling rata-rata: 
+𝐏𝟓 = 𝟎. 𝟐𝟔, 𝐏𝟗 = 𝟎. 𝟐𝟕, 𝐏𝟏𝟑 = 𝟎. 𝟐𝟗 (22) 
+Dimana: 
+𝑂𝑇: Input dari blok sebelumnya 
+𝑃5, 𝑃9, 𝑃13: Pooling dengan ukuran kernel 5×5, 9×9, dan 13×13 
+Concat : Menggabungkan hasil pooling multi-skala 
+𝑂sppf: Output fitur multi-skala dari blok SPPF 
+Maka: 
+𝐎𝐬𝐩𝐩𝐟 = [𝟎. 𝟐𝟔, 𝟎. 𝟐𝟕, 𝟎. 𝟐𝟗] = 𝟎. 𝟐𝟕 (23) 
+
+--- Page 39 ---
+24 
+ 
+ 
+Ukuran output menjadi 80 × 80 × 128. 
+ 
+Gambar 15. Proses Blok SPPF 
+e. Blok C2PSA (Cross Stage Partial Spatial Attention) 
+Mekanisme perhatian bekerja dengan menekankan area penting pada peta 
+fitur dan menekan area yang tidak relevan. C2PSA menerapkan mekanisme perhatian 
+spasial dan kanal dengan persamaan: 
+𝐀 = 𝛔(𝐖𝐚 ∗ 𝐎𝐬𝐬𝐩𝐩𝐟) (24) 
+ 
+𝐎𝐜𝟐𝐩𝐬𝐚 = 𝐀 ⊙ 𝐎𝐬𝐩𝐩𝐟 (25) 
+Dimana: 
+𝑂sppf: Input dari blok SPPF 
+𝑊𝑎: Bobot konvolusi untuk menghasilkan peta perhatian 
+∗: Operasi konvolusi 
+𝜎: Fungsi sigmoid untuk normalisasi perhatian 
+𝐴: Peta perhatian (attention map) 
+⊙: Perkalian elemen-per-elemen 
+𝑂c2psa: Output setelah perhatian diterapkan 
+Wa = 0.7 Maka 
+𝐀 = 𝛔(𝟎. 𝟕 × 𝟎. 𝟐𝟕) = 𝛔(𝟎. 𝟏𝟖𝟗) = 𝟎. 𝟓𝟒𝟕 (26) 
+ 
+𝐎𝐜𝟐𝐩𝐬𝐚 = 𝟎. 𝟓𝟒𝟕 × 𝟎. 𝟐𝟕 = 𝟎. 𝟏𝟒𝟖 (27) 
+Ukuran tetap 80 × 80 × 128. 
+
+--- Page 40 ---
+25 
+ 
+ 
+ 
+Gambar 16. Proses Blok C2PSA 
+f. Upsample dan Concat 
+Setelah fitur diperoleh dari berbagai lapisan, YOLOv11 melakukan fusi 
+menggunakan mekanisme upsample dan concatenate. Tujuannya agar informasi spasial 
+(resolusi tinggi) dari lapisan bawah dan informasi semantik (abstraksi tinggi) dari lapisan 
+atas dapat digabung.  
+Upsample menggandakan resolusi: 
+𝐎𝐮𝐩 = 𝐈𝐧𝐭𝐞𝐫𝐩(𝐎𝐜𝟐𝐩𝐬𝐚, 𝟐 ×) → 𝟏𝟔𝟎 × 𝟏𝟔𝟎 × 𝟏𝟐𝟖 (28) 
+Kemudian di-concat dengan fitur dari tahap sebelumnya: 
+𝐎𝐜𝐨𝐧𝐜𝐚𝐭 = [𝐎𝐮𝐩, 𝐎𝐓] (29) 
+Ukuran hasil 160 × 160 × 192. 
+Pada YOLOv11, proses Concat dan Upsample dilakukan secara multi-skala 
+untuk menggabungkan fitur dari tiga tingkat resolusi berbeda, yaitu: 
+• 80×80 (skala besar, mendeteksi objek kecil), 
+• 40×40 (skala menengah), 
+• 20×20 (skala kecil, mendeteksi objek besar). 
+Dengan cara ini, model dapat mendeteksi stomata pada berbagai ukuran dan 
+posisi di permukaan daun. 
+g. Lapisan Deteksi 
+Tahap ini adalah inti dari proses prediksi YOLOv11. Setiap grid sel pada peta 
+keluaran memprediksi koordinat kotak pembatas (bounding box), tingkat kepercayaan 
+(objectness), dan probabilitas kelas. 
+
+--- Page 41 ---
+26 
+ 
+ 
+Layer deteksi menggunakan kernel 1×1 untuk menghasilkan prediksi kotak: 
+𝒁 = 𝑾𝒅 ∗ 𝑶𝒄𝒐𝒏𝒄𝒂𝒕 + 𝒃𝒅 (30) 
+Misal 𝑊𝑑 = 0.3, 𝑏𝑑 = 0.05: 
+𝒁 =  𝟎. 𝟑 ×  𝟎. 𝟏𝟒𝟖 +  𝟎. 𝟎𝟓 =  𝟎. 𝟎𝟗𝟒 (31) 
+ 
+Setiap skala (80×80, 40×40, 20×20) menghasilkan prediksi dengan format: 
+𝑷 = (𝝈(𝒙), 𝝈(𝒚), 𝝈(𝒘), 𝝈(𝒉), 𝝈(𝒐𝒃𝒋), 𝒑𝟏, 𝒑𝟐, … , 𝒑𝒏) (32) 
+dimana: 
+(x, y): koordinat pusat bounding box, 
+(w, h): ukuran kotak prediksi, 
+obj: confidence bahwa terdapat objek, 
+𝑝𝑖 : probabilitas tiap kelas stomata. 
+Tiga output head ini kemudian digabungkan untuk menghasilkan hasil deteksi 
+akhir pada berbagai skala. 
+h. Dekode Bounding Box  
+Setelah prediksi dihasilkan, YOLOv11 melakukan tahap dekode untuk 
+mengonversi koordinat prediksi ke posisi sebenarnya dalam citra. Bounding box 
+divisualisasikan dalam bentuk persegi panjang yang menunjukkan lokasi dan ukuran 
+objek. YOLOv11 mendekode keluaran jaringan (tx, ty, tw, th) menjadi koordinat objek 
+dalam citra asli. 
+Rumus dekode: 
+𝒃𝒙 = 𝟐𝝈(𝒕𝒙) − 𝟎. 𝟓 + 𝒄𝒙
+𝑺 ,  𝒃𝒚 = 𝟐𝛔(𝒕𝒚) − 𝟎. 𝟓 + 𝒄𝒚
+𝑺  (33) 
+ 
+𝒃𝒘 = (𝟐𝛔(𝒕𝒘))
+𝟐
+× 𝒂𝒘,  𝒃𝒉 = (𝟐𝛔(𝒕𝒉))
+𝟐
+× 𝒂𝒉 (34) 
+Dengan 𝑡𝑥 = 𝑡𝑦 = 𝑡𝑤 = 𝑡ℎ = 0.094,  𝑎𝑤 = 𝑎ℎ = 20,  𝑆 =  80,  𝑐𝑥 = 𝑐𝑦 = 5 
+𝛔(𝟎. 𝟎𝟗𝟒) = 𝟎. 𝟓𝟐𝟑 (35) 
+Sehingga 
+𝒃𝒙 =
+𝟐(𝟎.𝟓𝟐𝟑)−𝟎.𝟓+𝟓
+𝟖𝟎 = 𝟎. 𝟎𝟔𝟗, 𝒃𝒚 = 𝟎. 𝟎𝟔𝟗 (36) 
+ 
+𝒃𝒘 = (𝟏. 𝟎𝟒𝟔)𝟐 × 𝟐𝟎 = 𝟐𝟏. 𝟗,  𝒃𝒉 = 𝟐𝟏. 𝟗 (37) 
+--- Page 42 ---
+27 
+ 
+ 
+ 
+Konversi ke ukuran asli (640x640): 
+𝑿pusat = 𝟎. 𝟎𝟔𝟗 × 𝟔𝟒𝟎 = 𝟒𝟒. 𝟐, (38) 
+ 
+𝒀pusat = 𝟎. 𝟎𝟔𝟗 × 𝟔𝟒𝟎 = 𝟒𝟒. 𝟐 (39) 
+Artinya: 
+YOLOv11 memprediksi terdapat objek stomata dengan pusat di koordinat (44, 
+44) dan ukuran sekitar 22×22 piksel pada citra beresolusi 640×640. 
+ 
+Gambar 17. Bounding Box Decoding 
+i. Output Klasifikasi (Jenis Stomata) 
+Setelah lokasi objek diperoleh, YOLO menghitung skor kelas untuk 
+menentukan tipe stomata: 
+𝐩𝐢 = 𝛔(𝐖𝐢 ∗ 𝐙 + 𝐛𝐢) (40) 
+Misalkan model memiliki empat kelas: Anomositik, Parasitik, Diasitik, dan 
+Graminoid. 
+Hasil prediksi (logit) dari layer deteksi: Z = [0.094,0.35,0.72,0.56] 
+ 
+Nilai Z1 = 0.094 diperoleh dari perhitungan konvolusi terakhir: 
+ 
+𝐙𝟏 = 𝟎. 𝟑(𝟎. 𝟏𝟒𝟖) + 𝟎. 𝟎𝟓 = 𝟎. 𝟎𝟗𝟒 (41) 
+Sementara nilai Z2 = 0.35, Z3 = 0.72, danZ4 = 0.56 diperoleh dengan rumus 
+yang sama menggunakan bobot dan bias berbeda untuk tiap kelas. 
+
+--- Page 43 ---
+28 
+ 
+ 
+Setelah fungsi sigmoid: 
+ 
+𝒑 = [𝝈(𝟎. 𝟎𝟗𝟒), 𝝈(𝟎. 𝟑𝟓), 𝝈(𝟎. 𝟕𝟐), 𝝈(𝟎. 𝟓𝟔)] = [𝟎. 𝟓𝟐𝟑, 𝟎. 𝟓𝟖𝟔, 𝟎. 𝟔𝟕𝟑, 𝟎. 𝟔𝟑𝟔] (42) 
+Kelas dengan nilai probabilitas tertinggi adalah kelas ke 3 (diasitik) dengan 
+67.3%. Jika pada kondisi lain nilai tertinggi muncul pada kelas ke 4 (graminoid, maka 
+hasil akhir akan ditanyakan sebagai stomata tipe Geaminoid. 
+Artinya: 
+YOLOv11 memprediksi terdapat objek stomata berjenis Diasitik dengan pusat 
+koordinat (44,44), ukuran 22 x 22 piksel, dan tingkat keyakinan 67.3%. 
+ 
+Gambar 18. Probabilitas Kelas 
+Semua nilai probabilitas kelas diperoleh dari perhitungan fungsi  sigmoid 
+terhadap logit hasil konvolusi akhir, sedangkan nilai nilai Z2, Z3, Z4 dihitung dengan rumus 
+yang sama seperti contoh Z1 di atas. 
+2.5.9 Input Data Validasi 
+Data validasi digunakan sebagai referensi untuk menilai kinerja model secara objektif 
+selama proses pelatihan. Untuk memastikan bahwa model tidak belajar dari data 
+pelatihan, data validasi dalam penelitian ini terdiri dari sekumpulan gambar stomata yang 
+terpisah dari data pelatihan. sehingga hasil prediksi yang dihasilkan benar -benar 
+menunjukkan kemampuan model untuk menangani data baru. Data validasi dimasukkan 
+secara berkala pada setiap interval waktu selama penelitian untuk mengamati tren 
+performa model, termasuk peningkatan akurasi dan penurunan nilai kehilangan. Dengan 
+menganalisis hasil validasi ini, para peneliti dapat mengidentifikasi kemungkinan 
+overfitting, underfitting, atau indikasi bahwa parameter perlu disesuaikan pada tahap 
+pelatihan berikutnya. Dengan demikian, data validasi memainkan peran penting dalam 
+
+--- Page 44 ---
+29 
+ 
+ 
+menjamin bahwa model yang dilatih mampu beradaptasi dengan pola visual stomata 
+secara lebih umum dan tidak hanya menghafal data pelatihan. 
+2.5.10 Validasi Model YOLOv11 
+Setelah pelatihan selesai, model YOLOv11 diuji dengan data validasi yang telah 
+disiapkan sebelumnya. Proses validasi dilakukan untuk mendapatkan gambaran awal 
+tentang stabilitas dan kemampuan generalisasi model untuk mendeteksi dan 
+mengklasifikasikan berba gai jenis stomata. Hasil prediksi model dinilai berdasarkan 
+tingkat ketepatan deteksi, kesesuaian bounding box, dan konsistensi pengenalan pola 
+morfologi stomata. Selain itu, proses validasi memastikan apakah model telah 
+mempelajari fitur visual yang relevan, seperti bentuk sel tetangga. Dengan menggunakan 
+YOLOv11, peneliti dapat memanfaatkan peningkatan arsitektur pada versi terbaru dari 
+YOLO untuk memperoleh performa validasi yang lebih baik, terutama dalam hal akurasi 
+deteksi objek berukuran kecil seperti stomata. 
+2.5.11 Evaluasi Model 
+Dalam proses evaluasi model, sejumlah metrik standar digunakan, termasuk precision, 
+recall, dan mean average precision (mAP). Precision mengukur tingkat ketepatan model 
+dalam mengidentifikasi objek stomata tanpa menghasilkan deteksi palsu, sedangkan 
+recall mengukur kemampuan model dalam menemukan seluruh objek stomata yang 
+benar-benar ada. Karena mAP memperhitungkan nilai presisi pada berbagai ambang 
+batas Intersection over Union (IoU), itu digunakan sebagai indikator kinerja lengkap. 
+Hasil evaluasi selama penelitian menunjukkan perbedaan dalam kinerja setiap kelas 
+stomata. Ini memungkinkan peneliti untuk menentukan kelas mana yang memerlukan 
+perhatian lebih lanjut.  Analisis yang lebih mendalam terhadap hasil evaluasi juga 
+membantu menemukan kemungkinan kelemahan model, seperti kesalahan klasifikasi 
+pada bentuk stomata yang memiliki morfologi yang sangat mirip atau kerusakan kualitas 
+gambar pada objek. Hasil ini kemudian digunakan oleh peneliti untuk melakukan optimasi 
+lanjutan pada tahap tunning hyperparameter. 
+2.5.12 Hyperparameter Tuning 
+Berdasarkan hasil evaluasi, peneliti kemudian melakukan penyesuaian hyperparameter 
+untuk meningkatkan kinerja model. Beberapa parameter penting dalam arsitektur 
+YOLOv11 telah disesuaikan, termasuk ukuran batch (ukuran batch = 32), dan jumlah 
+epoch (100 epo ch). Tujuan dari proses tuning ini adalah untuk mencapai konfigurasi 
+terbaik yang memungkinkan model mempelajari fitur visual stomata dengan lebih baik 
+tanpa mengalami overfitting. Selama penelitian, sejumlah kombinasi parameter diuji 
+secara bertahap untuk mengevaluasi pengaruh mereka terhadap stabilitas hasil prediksi, 
+akurasi deteksi, dan nilai kehilangan. Model dapat meningkatkan nilai precision, recall, 
+dan mAP dengan penyesuaian hyperparameter yang cermat. Selain itu, proses tunning 
+membantu generalisa si model ketika diuji menggunakan data stomata yang lebih 
+bervariasi. 
+2.5.13 Model Classification 
+Model YOLOv11 ditetapkan sebagai model terakhir dan hasil pelatihan YOLOv11 
+disimpan dalam format.pt, yang akan digunakan pada tahap analisis berikutnya. Proses 
+pelatihan selesai ketika hasil memenuhi kriteria. Pada saat ini, model dianggap stabil dan 
+--- Page 45 ---
+30 
+ 
+ 
+mampu membuat prediksi yang akurat tentang cara menemukan stomata dan 
+mengklasifikasikannya. Model terakhir inilah yang digunakan sebagai sistem prediksi 
+utama penelitian ini. Selain itu, analisis kembali dilakukan pada model terakhir untuk 
+memastikan bahwa bobot dan parameter yang tersimpan mencerminkan kinerja terbaik 
+yang dicapai selama proses pelatihan. Oleh karena itu, model YOLOv11 terakhir telah 
+siap digunakan untuk proses pengujian dengan menggunakan data yang benar -benar 
+baru untuk menilai performa sebenarnya pada kondisi riil. 
+2.5.14 Input Data Testing 
+Data pengujian adalah sekumpulan gambar stomata yang tidak pernah digunakan dalam 
+proses pelatihan atau validasi. Data tes digunakan dalam penelitian ini untuk 
+menggambarkan performa akhir model dalam skenario nyata, yang menunjukkan 
+perbedaan kondisi gamb ar mikroskopis. Variasi kualitas gambar, intensitas cahaya, 
+orientasi objek, dan perbedaan jenis jaringan daun disertakan dalam data ini untuk 
+memberikan pengujian yang lebih mendalam.  
+Pada titik ini, model akan melakukan sendiri untuk mendeteksi dan 
+mengklasifikasikan stomata. Untuk menilai akurasi model di lapangan, hasil prediksi 
+dibandingkan dengan label kebenaran (ground truth). Tahap ini sangat penting karena 
+hasil tes menentukan k eberhasilan model dalam menangani data yang kompleks dan 
+bervariasi. 
+2.5.15 Klasifikasi dan Deteksi Stomata 
+Proses klasifikasi dan deteksi stomata menggunakan model YOLOv11 yang telah 
+dipersiapkan adalah tahap terakhir dari penelitian ini. Pada titik ini, model dapat 
+menghasilkan output seperti bounding box yang menunjukkan posisi objek, label kelas 
+yang menunju kkan jenis stomata, dan nilai keyakinan yang menunjukkan tingkat 
+keyakinan model terhadap prediksi yang dibuat. Model mengklasifikasikan stomata 
+otomatis menjadi empat kategori: anomocytic, diacytic, paracytic, dan graminoid. Dalam 
+penelitian ini, ditunjukkan bahwa penerapan model dapat mempercepat proses analisis 
+dibandingkan dengan metode manual. Itu juga dapat meningkatkan konsistensi dan 
+objektivitas identifikasi. Selanjutnya, hasil deteksi dan klasifikasi dipelajari untuk 
+membantu memahami secara ilmiah perbedaan morfologi stomata dan tujuan penelitian. 
+2.5.16 Evaluasi Hasil Klasifikasi 
+Setelah deteksi dan klasifikasi stomata selesai, hasilnya dibandingkan dengan 
+kebenaran aslinya —atau label sebenarnya —dan dinilai dengan beberapa metrik 
+performa. Accuracy, precision, recall, F1 -score, dan mean average precision (mAP) 
+adalah metrik utama yang digunakan dalam penilaian ini. Tujuan dari evaluasi ini adalah 
+untuk mengetahui seberapa akurat model dapat mendeteksi dan mengklasifikasikan 
+stomata dari gambar mikrograf. 
+Digunakan teknik evaluasi matrix confusion untuk mengetahui seberapa baik 
+model YOLOv11 mendeteksi berbagai jenis stomata pada masing -masing skenario 
+pengolahan gambar —tanpa preprocessing, dengan koreksi Gamma, dan dengan 
+CLAHE. Matrix confusion ini menunjukkan empat kategori utama biner atau multi-kelas, 
+yaitu: 
+--- Page 46 ---
+31 
+ 
+ 
+1. True Positive  (TP): Objek stomata yang berhasil terdeteksi dan diklasifikasikan 
+dengan benar oleh model. 
+2. False Negative  (FN): Objek stomata yang tidak berhasil terdeteksi oleh model 
+(missed detection). 
+3. False Positive (FP): Bagian citra non-stomata yang secara keliru terdeteksi sebagai 
+stomata oleh model. 
+4. True Negative  (TN): Bagian citra yang bukan stomata dan dengan benar tidak 
+diklasifikasikan sebagai stomata oleh model. 
+  
+Gambar 19. Confusion Matrix 
+Source: https://medium.com/@sserafino5/panduan-tentang-matriks-konfusi-mengukur-
+akurasi-model-klasifikasi-ad76994f7b91 
+Gambar 19 merupakan e valuasi dengan confusion matrix  digunakan karena 
+merupakan pendekatan umum dalam pembelajaran supervised learning, yang berfungsi 
+untuk memberikan gambaran kinerja dari model klasifikasi. Beberapa metrik turunan 
+yang digunakan antara lain: 
+1. Accuracy, Menunjukkan tingkat keakuratan model secara keseluruhan dalam 
+mengklasifikasikan citra. Rumusnya adalah. 
+𝑨𝒄𝒄𝒖𝒓𝒂𝒄𝒚 = 𝑻𝑷 + 𝑻𝑵
+𝑻𝑷 + 𝑻𝑵 + 𝑭𝑷 + 𝑭𝑵 (43) 
+2. Precision, Mengukur seberapa banyak prediksi positif yang benar-benar merupakan 
+stomata. Precision sangat penting ketika salah klasifikasi sebagai stomata perlu 
+dihindari. 
+𝑷𝒓𝒆𝒄𝒊𝒔𝒊𝒐𝒏 = 𝑻𝑷
+𝑻𝑷 + 𝑭𝑷 (44) 
+3. Recall, Menunjukkan kemampuan model dalam mendeteksi semua objek stomata 
+yang ada. Recall penting ketika semua objek harus ditemukan, meskipun ada risiko 
+deteksi palsu. 
+𝑹𝒆𝒄𝒂𝒍𝒍 = 𝑻𝑷
+𝑻𝑷 + 𝑭𝑵 (45) 
+
+--- Page 47 ---
+32 
+ 
+ 
+4. F1-Score, Merupakan rata-rata harmonis antara Precision dan Recall, yang berguna 
+ketika diperlukan keseimbangan antara keduanya. 
+𝑭𝟏 − 𝑺𝒄𝒐𝒓𝒆 = 𝟐 .  𝑻𝑷
+𝑻𝑷 + 𝑭𝑵 (46) 
+ 
+5. Mean Average Precision (mAP) , Rata-rata dari nilai AP untuk semua kelas. Ini 
+digunakan dalam multi-class classification dan deteksi objek seperti YOLO. 
+𝒎𝑨𝑷 =  𝟏
+𝑵 ∑ 𝑨𝑷𝒊
+𝑵
+𝒊=𝟏
+ (47) 
+Keterangan:  
+N = Jumlah total kelas yang diuji 
+𝐴𝑃𝑖 = Nilai Average Precision untuk kelas ke-i. 
+Dengan melakukan evaluasi menggunakan metrik -metrik di atas, maka dapat 
+diketahui skenario preprocessing citra mana yang memberikan hasil klasifikasi terbaik 
+untuk mikrograf stomata, serta menentukan kesiapan model untuk digunakan secara 
+real-world di bidang anatomi tumbuhan atau botani mikroskopik. 
+6. PSNR (Peak Signal-to-Noise Ratio) adalah metrik evaluasi kuantitatif yang 
+digunakan untuk mengukur kualitas gambar atau video hasil pemrosesan (seperti 
+kompresi, peningkatan kontras, denoising, segmentasi, dsb.) dengan cara 
+membandingkannya terhadap gambar referensi (ground truth). 
+𝑷𝑵𝑺𝑹 = 𝟏𝟎 ∙ 𝒍𝒐𝒈𝟏𝟎(𝑴𝑨𝑿𝑰
+𝟐
+𝑴𝑺𝑬 ) (48) 
+Keterangan:  
+𝑀𝐴𝑋𝐼 = nilai maksimum piksel dalam citra (255). 
+MSE  = Mean Squared Error, yaitu rata-rata kuadrat perbedaan antara citra asli dan citra 
+hasil. 
+PSNR menghitung berapa besar “ noise” atau kesalahan yang muncul dalam gambar 
+hasil dibanding gambar aslinya. Makin kecil kesalahan (noise), makin tinggi nilai PSNR-
+nya.
+--- Page 48 ---
+33 
+ 
+ 
+BAB III 
+HASIL DAN PEMBAHASAN 
+3.1 Hasil 
+3.1.1 Hasil Praproses Citra 
+Tahap praproses citra merupakan langkah awal yang krusial dalam penelitian ini karena 
+kualitas citra yang digunakan akan sangat menentukan performa model dalam 
+mendeteksi dan mengklasifikasikan stomata. Citra mikroskopis yang diambil dari 
+jaringan epidermi s daun umumnya mengalami permasalahan visual seperti kontras 
+rendah, pencahayaan tidak merata, dan noise akibat kondisi optik serta tekstur alami 
+permukaan daun. Kondisi tersebut dapat menyebabkan fitur penting pada stomata 
+seperti bentuk pori, dinding sel penjaga, dan batas sel tetangga menjadi kurang jelas dan 
+sulit dikenali oleh algoritma deteksi berbasis deep learning  seperti YOLOv11. Oleh 
+karena itu, tahap praproses diterapkan dengan tujuan meningkatkan kualitas visual citra 
+agar informasi morfologis yang relevan dapat diekstraksi secara optimal. 
+Dalam penelitian ini digunakan dua teknik peningkatan kualitas citra, yaitu 
+Gamma Correction dan CLAHE (Contrast Limited Adaptive Histogram Equalization). 
+1. Gamma Correction  berfungsi untuk menyesuaikan tingkat pencahayaan citra 
+dengan mengoreksi hubungan nonlinier antara intensitas piksel yang terekam dan 
+intensitas sebenarnya yang ditampilkan. Proses ini membantu memperbaiki area 
+yang terlalu gelap atau terlalu terang, sehingga detail pada struktur stomata menjadi 
+lebih terlihat. Pemilihan nilai gamma yang sesuai (misalnya γ = 1.5) dilakukan 
+melalui uji empiris untuk memperoleh keseimbangan antara pencahayaan dan 
+kontras. 
+2. CLAHE digunakan untuk meningkatkan kontras lokal pada setiap bagian kecil citra 
+(tiles). Metode ini membagi citra menjadi beberapa blok kecil dan melakukan 
+equalization pada masing -masing blok secara adaptif dengan batasan clip limit  
+tertentu agar peningkatan kontras tidak menimbulkan noise berlebih. Hasilnya, 
+struktur mikroskopis seperti batas sel, pori stomata, dan dinding epidermis terlihat 
+lebih tegas. 
+Kombinasi kedua metode ini dilakukan secara berurutan, yaitu Gamma 
+Correction terlebih dahulu, kemudian CLAHE. Strategi ini memberikan hasil yang lebih 
+optimal karena pencahayaan global citra sudah seimbang sebelum dilakukan 
+peningkatan kontras lokal. Kombinasi tersebut diharapkan dapat menghasilkan citra 
+dengan pencahayaan merata, kontras tinggi, dan ketajaman struktur yang baik, sehingga 
+memudahkan model YOLOv11 dalam mengenali dan mengklasifikasikan stomata secara 
+akurat. 
+Gambar 20 berikut menunjukkan contoh hasil dari setiap tahap praproses yang 
+telah dilakukan terhadap citra mikrograf stomata. 
+--- Page 49 ---
+34 
+ 
+ 
+ 
+Gambar 20. Hasil Praproses Citra 
+Dari Gambar 20 dapat diamati bahwa setiap tipe stomata menunjukkan 
+peningkatan kualitas visual yang konsisten setelah dilakukan tahap praproses. Citra asli 
+(a, d, g, j) umumnya memiliki pencahayaan yang tidak merata dan kontras rendah, 
+sehingga batas pori stomata sulit dibedakan dari jaringan epidermis sekitarnya. Setelah 
+diterapkan CLAHE (b, e, h, k), struktur sel penjaga dan area pori stomata tampak lebih 
+tegas akibat peningkatan kontras lokal pada tiap bagian citra. Namun, pada beberapa 
+area tertentu masih tampak ketidakseimbangan pencahayaan. 
+Peningkatan paling optimal terlihat pada hasil kombinasi Gamma Correction + 
+CLAHE (c, f, i, l). Proses Gamma Correction  memperbaiki pencahayaan global, 
+sedangkan CLAHE meningkatkan kontras lokal tanpa menimbulkan noise berlebih. Hasil 
+akhirnya menunjukkan distribusi kecerahan yang lebih seimbang, batas pori stomata 
+lebih tajam, dan detail dinding sel penjaga tampak lebih jelas pada semua tipe stomata. 
+Pada tipe graminoid, kombinasi ini memperjelas deretan stomata yang memanjang 
+sejajar tulang daun, sedangkan pada tipe anomocytic dan paracytic, struktur sel penjaga 
+terlihat lebih terdefinisi dengan baik. 
+
+--- Page 50 ---
+35 
+ 
+ 
+Secara keseluruhan, hasil praproses pada Gambar 3. 20 menunjukkan bahwa 
+kombinasi Gamma Correction dan CLAHE mampu meningkatkan kualitas visual citra 
+mikroskopis secara signifikan untuk berbagai tipe stomata. Peningkatan ini memberikan 
+dasar yang kuat bagi tahap pelatihan model YOLOv11 agar dapat mengenali perbedaan 
+morfologi stomata secara lebih akurat. 
+Selain perbandingan secara visual, peningkatan kualitas hasil praproses citra 
+juga dievaluasi secara kuantitatif menggunakan parameter Peak Signal-to-Noise Ratio 
+(PSNR). PSNR digunakan untuk mengukur kualitas citra hasil praproses terhadap citra 
+aslinya berdasarkan tingkat kejernihan dan rasio noise yang dihasilkan. Semakin tinggi 
+nilai PSNR, maka semakin baik kualitas citra karena mengindikasikan bahwa detail 
+struktur citra semakin jelas dan gangguan visual seperti noise atau pencahayaan tidak 
+merata semakin berkurang. 
+Dalam penelitian ini, pengukuran PSNR dilakukan pada empat tipe morfologi 
+stomata, yaitu Anomocytic, Paracytic, Diacytic, dan Graminaceous  (Graminoid). Setiap 
+tipe diuji dengan beberapa skenario peningkatan citra, yaitu penerapan CLAHE tunggal, 
+Gamma Correction tunggal, serta kombinasi Gamma Correction + CLAHE pada tingkat 
+penerapan Pembesaran 3 (3x) dan Pembesaran 4 (4×). Hasil pengujian disajikan pada 
+Gambar 21 berikut. 
+ 
+Gambar 21. Hasil Peak Signal-to-Noise Ratio (PSNR) 
+Berdasarkan Gambar 21, terlihat bahwa nilai PSNR mengalami peningkatan 
+yang konsisten pada semua tipe stomata setelah dilakukan tahap praproses, dengan 
+nilai tertinggi diperoleh pada kombinasi Gamma Correction + CLAHE baik pada tingkat 
+3× maupun 4×. Hal ini menunjukkan bahwa kombinasi kedua metode tersebut 
+menghasilkan perbaikan kualitas citra yang lebih signifikan dibandingkan penerapan 
+tunggal CLAHE atau Gamma Correction. 
+26,5
+27
+27,5
+28
+28,5
+29
+29,5
+30
+30,5
+3x Gamma +
+CLAHE
+3x CLAHE 3x Gamma 4x Gamma +
+CLAHE
+4x CLAHE 4x Gamma
+Anomocytic Diacytic Paracytic Graminoid
+--- Page 51 ---
+36 
+ 
+ 
+Peningkatan nilai PSNR paling tinggi tampak pada tipe Paracytic dan 
+Graminaceous, dengan nilai mendekati 30 dB pada kombinasi 4× Gamma + CLAHE. Hal 
+ini disebabkan karena kedua tipe tersebut memiliki struktur stomata yang berbaris sejajar 
+dan bentuk sel penjaga yang memanjang, sehingga perataan pencahayaan global dari 
+Gamma Correction diikuti peningkatan kontras lokal oleh CLAHE memberikan hasil 
+visual yang lebih tajam dan merata. Pada tipe Anomocytic dan Diacytic, peningkatan 
+PSNR juga terjadi, meskipun sedikit lebih rendah dibandingkan dua tipe lainnya, karena 
+distribusi morfologi yang lebih acak dan adanya variasi intensitas cahaya antar sel 
+epidermis. 
+Sementara itu, penerapan CLAHE tunggal memang mampu meningkatkan 
+kontras dan memperjelas batas pori stomata, namun hasilnya belum maksimal karena 
+distribusi pencahayaan global masih belum seimbang. Di sisi lain, Gamma Correction 
+tunggal meningkatkan kecerahan citra, tetapi tanpa pengaturan kontras lokal yang 
+memadai, beberapa area mengalami pencahayaan berlebih yang mengurangi ketajaman 
+tepi. 
+Secara keseluruhan, hasil evaluasi PSNR ini menunjukkan bahwa kombinasi 
+Gamma Correction dan CLAHE memberikan kualitas citra terbaik untuk seluruh tipe 
+stomata yang diuji. Kombinasi tersebut mampu mengatasi kelemahan masing -masing 
+metode tunggal, menghasilkan citra dengan pencahayaan merata, kontras tinggi, dan 
+detail morfologi stomata yang lebih jelas . Peningkatan nilai PSNR ini membuktikan 
+bahwa hasil praproses citra telah memenuhi syarat kualitas yang baik untuk digunakan 
+pada tahap pelatihan model YOLOv11 di bagian selanjutnya. 
+3.1.2 Hasil Training Model 
+Tahap pelatihan model dilakukan untuk menganalisis pengaruh hasil praproses citra 
+terhadap kemampuan deteksi dan klasifikasi stomata menggunakan YOLOv11. Model ini 
+dipilih karena memiliki arsitektur object detection  yang efisien, dengan kemampuan 
+menyeimbangkan kecepatan inferensi dan akurasi deteksi melalui kombinasi feature 
+pyramid network dan convolutional backbone yang kuat. 
+Dalam penelitian ini, pelatihan dilakukan dengan tiga skenario utama: 
+1. Baseline YOLOv11, menggunakan citra asli tanpa praproses. 
+2. YOLOv11 + Gamma Correction  + CLAHE, menggunakan citra hasil penyesuaian 
+pencahayaan global dan peningkatan kontras lokal secara berurutan. 
+Kedua model dilatih dengan parameter yang sama, termasuk jumlah epochs, 
+batch size, learning rate, dan optimizer, agar perbedaan hasil hanya dipengaruhi oleh 
+kualitas citra hasil praproses. Evaluasi performa dilakukan menggunakan validation 
+dataset dengan empat metrik utama, yaitu precision, recall, dan mean Average Precision 
+(mAP). 
+Berdasarkan hasil confusion matrix pada Gambar 22, terlihat adanya perbedaan 
+yang jelas antara hasil pelatihan model YOLOv11 Baseline dan YOLOv11 dengan 
+--- Page 52 ---
+37 
+ 
+ 
+praproses Gamma + CLAHE. Pada model baseline, jumlah deteksi benar (True Positive) 
+masih terbatas, terutama pada tipe stomata dengan tingkat kontras rendah seperti 
+diacytic dan graminoid. Hal ini dapat dilihat dari nilai prediksi yang relatif kecil pada kedua 
+kelas tersebut dibandingkan kelas paracytic yang memiliki tekstur lebih kontras. Kondisi 
+ini menunjukkan bahwa tanpa adanya peningkatan pencahayaan dan kontras, citra input 
+belum mampu memberikan informasi visual yang cukup kuat untuk membedakan batas 
+morfologis stomata dari jaringan epidermis seki tarnya. Akibatnya, model cenderung  
+menghasilkan deteksi yang tidak stabil, dengan tingkat kesalahan klasifikasi 
+(misclassification) yang masih cukup tinggi pada beberapa kelas. 
+ 
+Gambar 22. Confusion Matrix YOLOv11 Baseline dengan YOLOv11+Gamma+CLAHE 
+Sementara itu, pada hasil pelatihan YOLOv11 dengan praproses Gamma + 
+CLAHE, terlihat peningkatan yang signifikan pada jumlah deteksi benar di semua 
+kategori stomata. Nilai True Positive pada kelas paracytic meningkat dari 2.079 menjadi 
+2.333, sedangkan diacytic naik dari 2.953 menjadi 2.969. Jumlah kesalahan klasifikasi 
+terhadap kelas lain juga berkurang, ditandai dengan berkurangnya nilai prediksi silang 
+antar kelas pada confusion matrix. Kombinasi Gamma Correction dan CLAHE terbukti 
+mampu memperbaiki kualitas citra input secara menyeluruh, di mana Gamma Correction 
+menormalkan pencahayaan global dan CLAHE mempertegas kontras lokal di sekitar 
+area stomata. Dengan demikian, fitur morfologis seperti bentuk sel penjaga dan pori 
+stomata menjadi lebih mudah dipelajari selama proses training. 
+Selain peningkatan akurasi klasifikasi, model dengan praproses Gamma + 
+CLAHE juga menunjukkan peningkatan konsistensi antar kelas. Jumlah prediksi salah 
+pada kelas background berkurang, menandakan bahwa model mampu membedakan 
+antara area jaringan non-stomata dan stomata dengan lebih baik. Pola distribusi warna 
+pada confusion matrix juga tampak lebih seragam, menunjukkan keseimbangan dalam 
+kemampuan deteksi pada seluruh kelas. Secara umum, peningkatan nilai True Positive 
+dan berkurangnya kesalahan klasifikas i membuktikan bahwa kombinasi Gamma 
+Correction + CLAHE merupakan tahapan praproses yang efektif dalam memperbaiki 
+kualitas citra latih dan meningkatkan performa keseluruhan model YOLOv11. 
+
+--- Page 53 ---
+38 
+ 
+ 
+Dengan demikian, hasil pelatihan ini memperkuat temuan bahwa perbaikan 
+pencahayaan global melalui Gamma Correction yang diikuti oleh peningkatan kontras 
+lokal melalui CLAHE mampu menghasilkan citra yang lebih representatif. Citra yang lebih 
+informatif tersebut membantu model mengenali fitur stomata secara lebih akurat, stabil, 
+dan konsisten pada semua tipe yang diamati. Kombinasi ini dapat dianggap sebagai 
+pendekatan prapros es paling optimal untuk mendukung proses pelatihan deteksi dan 
+klasifikasi stomata berbasis YOLOv11. 
+Setelah pelatihan selesai, kedua model diuji menggunakan validation dataset  
+untuk mengukur kinerja deteksi dan klasifikasi stomata. Hasil evaluasi kuantitatif 
+ditunjukkan pada Tabel 6 berikut. 
+Tabel 8. Hasil Training Model 
+Model Class Precision Recall mAP50 mAP50-95 
+YOLOV11 
+Baseline 
+All 0.84 0.89 0.91 0.47 
+Anomocytic 0.95 0.85 0.94 0.50 
+Diacytic 0.83 0.92 0.90 0.44 
+Graminoid 0.90 0.93 0.96 0.48 
+Paracytic 0.68 0.86 0.83 0.46 
+YOLOV11 
++ Gamma 
++ CLAHE 
+All 0.84 0.89 0.92 0.48 
+Anomocytic 0.96 0.82 0.94 0.50 
+Diacytic 0.84 0.92 0.91 0.44 
+Graminoid 0.92 0.92 0.97 0.45 
+Paracytic 0.64 0.89 0.86 0.49 
+Berdasarkan hasil pada Tabel 6, terlihat bahwa penerapan teknik praproses citra 
+memberikan peningkatan performa deteksi yang cukup signifikan dibandingkan model 
+baseline. Secara umum, model YOLOv11 dengan kombinasi Gamma Correction  dan 
+CLAHE menunjukkan performa terbaik dibandingkan model tanpa praproses. Nilai 
+precision, recall, dan mAP yang dihasilkan mengalami peningkatan hampir di semua 
+kelas stomata. 
+Model baseline YOLOv11 menunjukkan hasil yang cukup baik pada kelas 
+Graminoid dan Anomoc iytic, namun masih memiliki keterbatasan dalam mendeteksi 
+stomata pada area yang berkontras rendah, terutama pada kelas Paracytic. Setelah 
+diterapkan teknik praproses Gamma Correction dan CLAHE, nilai recall meningkat 
+secara konsisten, menandakan kemampuan model dalam mengenali lebih banyak objek 
+stomata yang sebelumnya tidak terdeteksi. 
+Kombinasi kedua metode praproses ini memberikan keseimbangan antara 
+pencahayaan global dan kontras lokal. Gamma Correction menyesuaikan tingkat 
+--- Page 54 ---
+39 
+ 
+ 
+kecerahan secara menyeluruh, sementara CLAHE meningkatkan kontras pada area 
+lokal citra. Hasilnya, batas morfologis stomata menjadi lebih jelas dan mudah dikenali 
+oleh jaringan konvolusi YOLOv11. 
+Secara visual, model YOLOv11 + Gamma + CLAHE mampu menghasilkan 
+deteksi yang lebih presisi dan stabil, dengan bounding box yang lebih sesuai terhadap 
+bentuk objek stomata dibandingkan model baseline. Hal ini menunjukkan bahwa 
+peningkatan kualitas citra sebelum proses pelatihan memiliki pengaruh langsung 
+terhadap efektivitas model dalam mengenali pola biologis yang kompleks. 
+Secara keseluruhan, model dengan kombinasi Gamma Correction dan CLAHE 
+terbukti memberikan hasil precision dan recall yang lebih seimbang serta nilai mAP yang 
+lebih tinggi dibandingkan model tanpa praproses. Dengan demikian, penerapan kedua 
+teknik praproses ini dapat direkomendasikan sebagai tahapan penting dalam proses 
+pengolahan citra mikrograf stomata untuk meningkatkan performa sistem deteksi 
+berbasis deep learning. 
+3.1.3 Hasil Testing 
+Gambar 23 menunjukkan hasil testing model YOLOv11 pada pembesaran 3× (X3) 
+dengan tiga skenario praproses citra, yaitu: tanpa Gamma+CLAHE, tanpa Gamma, dan 
+dengan Gamma+CLAHE. Tujuan testing ini adalah untuk menilai sejauh mana 
+manipulasi pencahayaan dan kontras memengaruhi proses ekstraksi fitur serta stabilitas 
+performa model dalam mendeteksi dan mengklasifikasikan stomata pada citra 
+mikroskopis. 
+ 
+Gambar 23. Hasil Testing Pembesaran 3 
+0,90
+0,83
+0,79
+0,80
+0,87
+0,42
+0,93
+0,86
+0,91
+0,88
+0,94
+0,51
+0,93
+0,88
+0,90
+0,89
+0,95
+0,51
+A C C U R A C Y P R E C I S I O N R E C A L L F1 M A P 5 0 M A P 5 0- 95
+TESTING PEMBESARAN 3
+x3 Tanpa Gamma+CLAHE x3 Tanpa Gamma x3 dengan Gamma+CLAHE
+--- Page 55 ---
+40 
+ 
+ 
+Hasil testing memperlihatkan bahwa kombinasi Gamma Correction dan CLAHE 
+menghasilkan peningkatan performa yang paling konsisten dan signifikan. Nilai accuracy 
+meningkat menjadi 0,93, menandakan bahwa model menghasilkan prediksi yang lebih 
+tepat pada berbagai kondisi iluminasi citra. Pada metrik precision, peningkatan dari 0,83 
+menjadi 0,88 menunjukkan penurunan jumlah prediksi positif palsu, yang berarti model 
+lebih selektif dalam menetapkan keberadaan stomata. 
+Metrik recall mengalami peningkatan substansial dari 0,79 menjadi 0,90. 
+Peningkatan ini menunjukkan bahwa setelah dilakukan praproses Gamma+CLAHE, 
+struktur dan kontur stomata yang sebelumnya memiliki kontras rendah menjadi lebih 
+mudah dikenali, sehingga model lebih mampu mendeteksi objek yang sebenarnya ada. 
+Efek ini sangat penting mengingat stomata sering tampil dengan variasi tekstur mikro 
+yang kompleks dan tingkat pencahayaan yang tidak merata. 
+Meningkatnya F1 -score dari 0,80 menjadi 0,89 memperlihatkan bahwa 
+keseimbangan antara precision dan recall menjadi lebih optimal. Hal ini menunjukkan 
+bahwa praproses tidak hanya meningkatkan salah satu aspek kinerja model, tetapi 
+memberikan peningkatan menyeluruh terhadap kualitas deteksi. 
+Perbaikan performa paling mencolok terlihat pada nilai mAP50 (dari 0,87 
+menjadi 0,95) dan mAP50 –95 (dari 0,42 menjadi 0,51). Metrik mAP50 –95, yang 
+menggunakan rentang IoU lebih luas, memberikan gambaran kemampuan generalisasi 
+model terhadap variasi ukuran, bentuk, dan kompleksitas objek. Kenaikan ini 
+menunjukkan bahwa setelah praproses Gamma+CLAHE, model mampu menghasilkan 
+prediksi yang lebih stabil pada berbagai tingkat ambang IoU. 
+Secara konsep, peningkatan performa tersebut dapat dijelaskan melalui dua 
+mekanisme utama diaman Gamma Correction memperbaiki distribusi intensitas cahaya, 
+sehingga detail stomata pada area redup maupun terlalu terang dapat terdistribusi 
+secara lebih proporsional dan mudah dipelajari oleh jaringan.  Sedangkan CLAHE 
+meningkatkan kontras lokal secara adaptif, memperjelas pola tekstural dan batas objek 
+tanpa memperkuat noise secara berlebihan, sehingga mendukung proses feature 
+extraction pada backbone YOLOv11. 
+Secara keseluruhan, hasil testing pembesaran X3 mengonfirmasi bahwa 
+kombinasi Gamma Correction dan CLAHE memberikan kontribusi signifikan dalam 
+meningkatkan akurasi, stabilitas prediksi, dan kemampuan generalisasi YOLOv11 pada 
+citra mikrograf stomata. Hal ini mempertegas bahwa kualitas praproses citra merupakan 
+komponen krusial dalam pipeline deteksi objek biologis berbasis deep learning, terutama 
+pada domain citra mikroskopis yang memiliki variasi iluminasi dan tekstur yang 
+kompleks. 
+Gambar 24 menunjukkan hasil testing model YOLOv11 pada pembesaran 4× 
+(X4) dengan tiga skenario praproses citra tanpa Gamma+CLAHE, tanpa Gamma, dan 
+dengan Gamma+CLAHE. Pengujian ini dirancang untuk mengevaluasi konsistensi dan 
+ketahanan performa model ketika dihadapkan pada citra beresolusi lebih tinggi, yang 
+umumnya memiliki tekstur lebih detail dan kompleksitas pencahayaan lebih beragam. 
+--- Page 56 ---
+41 
+ 
+ 
+ 
+Gambar 24. Hasil Testing Pembesaran 4 
+Secara umum, hasil testing memperlihatkan bahwa kombinasi Gamma 
+Correction dan CLAHE memberikan peningkatan performa yang signifikan pada seluruh 
+metrik evaluasi, sehingga mampu mengoptimalkan proses ekstraksi fitur pada citra 
+beresolusi tinggi. Nilai accuracy meningkat dari 0,89 menjadi 0,93, menunjukkan bahwa 
+model mampu melakukan prediksi dengan tingkat kesalahan klasifikasi yang lebih 
+rendah pada kondisi detail citra yang lebih kaya. 
+Pada metrik precision, peningkatan dari 0,79 menjadi 0,85 menunjukkan bahwa 
+model dengan praproses Gamma+CLAHE lebih efektif dalam mengurangi kesalahan 
+deteksi berupa false positives. Hasil ini mengindikasikan bahwa kontras dan struktur 
+stomata yang lebih jelas membuat model lebih selektif dalam menetapkan keberadaan 
+objek. 
+Kenaikan yang paling dominan terlihat pada recall, dari 0,72 menjadi 0,91. 
+Peningkatan ini menunjukkan bahwa praproses Gamma+CLAHE mampu menonjolkan 
+ciri-ciri stomata yang sebelumnya kurang terlihat pada citra mentah. Secara teknis, 
+perbaikan ini mencerminkan peningkatan feature visibility dan efektivitas filter awal pada 
+backbone YOLOv11 dalam menangkap detail tekstur mikro daun. 
+Nilai F1-score juga menunjukkan peningkatan besar, dari 0,72 menjadi 0,88, 
+mengindikasikan keseimbangan yang lebih matang antara kemampuan model dalam 
+menghindari kesalahan positif dan kesalahan negatif. Perbaikan pada metrik ini 
+merupakan bukti bahwa praproses citra me ningkatkan performa secara komprehensif, 
+bukan hanya pada aspek deteksi atau klasifikasi saja. 
+0,89
+0,79
+0,72
+0,72
+0,80
+0,39
+0,93
+0,85
+0,90
+0,87
+0,92
+0,50
+0,93
+0,85
+0,91
+0,88
+0,92
+0,50
+A C C U R A C Y P R E C I S I O N R E C A L L F1 M A P 5 0 M A P 5 0- 95
+TESTING PEMBESARAN 4
+x4 Tanpa Gamma+CLAHE x4 Tanpa Gamma x4 dengan Gamma+CLAHE
+--- Page 57 ---
+42 
+ 
+ 
+Peningkatan juga terlihat pada mAP50, dari 0,80 menjadi 0,92, serta mAP50 –
+95, dari 0,39 menjadi 0,50. Metrik ini merupakan indikator penting dalam menilai 
+robustness model pada berbagai tingkat ketelitian overlap (IoU). Peningkatan mAP pada 
+rentang IoU yang luas menandakan bahwa representasi spasial objek yang dihasilkan 
+model lebih stabil dan konsisten meskipun bentuk stomata bervariasi dan berada pada 
+lingkungan pencahayaan yang tidak homogen. 
+Dari perspektif teoretis, peningkatan keseluruhan performa ini dapat dijelaskan 
+melalui dua mekanisme utama . Di mana Gamma Correction berfungsi menormalkan 
+distribusi intensitas global, sehingga struktur stomata yang berada pada area 
+overexposed atau underexposed dapat diproyeksikan ke rentang intensitas yang lebih 
+informatif bagi jaringan.  Sedangkan CLAHE, yang bekerja pada level lokal, 
+meningkatkan kontras mikro tanpa menimbulkan artefak berlebihan. Hal ini 
+menghasilkan citra dengan tepi objek lebih jelas dan gradien tekstur lebih stabil, 
+memudahkan proses ekstraksi fitur dalam jaringan konvolusional. 
+Berdasarkan hasil pengujian pada kedua tingkat pembesaran, 3× dan 4×, dapat 
+disimpulkan bahwa penerapan Gamma Correction dan CLAHE secara berurutan 
+memberikan pengaruh positif yang signifikan terhadap performa deteksi model 
+YOLOv11. Model yang melalui tahap praproses citra menunjukkan kemampuan deteksi 
+yang lebih baik dengan tingkat kesalahan yang lebih rendah, ditunjukkan oleh 
+peningkatan nilai precision, recall, F1 -score, serta mAP  dibandingkan dengan model 
+tanpa praproses. 
+Konsistensi peningkatan performa pada kedua pembesaran juga membuktikan 
+bahwa model tidak hanya unggul pada satu tingkat skala citra, tetapi mampu 
+mempertahankan kinerja yang stabil pada berbagai resolusi. Hal ini menunjukkan 
+kemampuan generalisasi model yang kuat terhadap variasi pembesaran, pencahayaan, 
+dan tekstur pada citra mikroskopis. Dengan demikian, kombinasi Gamma Correction dan 
+CLAHE dapat dikatakan efektif dalam meningkatkan kualitas citra sekaligus memperkuat 
+performa deteksi otomatis stomata pada citra beresolusi tinggi. 
+. 
+ 
+Gambar 25. Confusion Matrix Pembesaran 3 
+
+--- Page 58 ---
+43 
+ 
+ 
+Berdasarkan gambar 25 confusion matrix pada pembesaran X3, model tanpa 
+praproses masih menunjukkan kesalahan klasifikasi antar kelas, terutama antara tipe 
+paracytic dan anomocytic, yang sering tertukar karena bentuk sel penjaga yang serupa. 
+Namun, setelah penerapan Gamma Correction  dan CLAHE, jumlah prediksi benar 
+meningkat secara signifikan pada semua kelas. Peningkatan paling terlihat pada tipe 
+graminaceous yang memiliki pola sejajar, dengan deteksi yang hampir sempurna pada 
+kelas tersebut. 
+s
+ 
+Gambar 26. Confusion Matrix Pembesaran 4 
+Sementara itu, pada gambar 26 confusion matrix pembesaran X4, hasil deteksi 
+semakin presisi. Model dengan Gamma + CLAHE menunjukkan diagonal confusion 
+matrix yang lebih dominan, menandakan tingkat akurasi tinggi pada seluruh tipe stomata. 
+Jumlah false prediction berkurang drastis, terutama pada kelas diacytic dan paracytic, 
+yang sebelumnya sering mengalami ambiguitas. 
+Secara umum, hasil confusion matrix pada kedua pembesaran membuktikan bahwa 
+model YOLOv11 + Gamma Correction + CLAHE mampu mengklasifikasikan empat tipe 
+stomata dengan konsistensi dan ketepatan yang tinggi, bahkan ketika ukuran dan 
+resolusi citra berbeda. Hal ini memperkuat temuan bahwa tahapan praproses berperan 
+penting dalam meningkatkan representasi fitur visual pada citra mikroskopis daun. 
+3.1.4 Visualisasi Hasil Deteksi 
+Visualisasi hasil deteksi dilakukan untuk menunjukkan kemampuan model dalam 
+mengenali dan memberikan batas deteksi ( bounding box ) pada area stomata secara 
+akurat. Hasil visualisasi ini dibandingkan antara model tanpa praproses ( YOLOv11 
+baseline) dan model terbaik dengan praproses Gamma Correction + CLAHE, pada dua 
+tingkat pembesaran mikroskopis yaitu X3 dan X4. 
+
+--- Page 59 ---
+44 
+ 
+ 
+ 
+Gambar 27. Visualisasi Hasil Deteksi 
+Berdasarkan Gambar 27, terlihat perbedaan yang sangat mencolok antara hasil 
+testing tanpa praproses (a, c, e, g) dan hasil testing dengan praproses Gamma + CLAHE 
+(b, d, f, h). Pada hasil tanpa praproses, citra tampak memiliki tingkat pencahayaan yang 
+tidak merata dan kontras yang rendah, sehingga detail morfologis stomata sulit terlihat 
+dengan jelas. Kondisi ini menyebabkan proses deteksi menjadi tidak optimal. Ba nyak 
+area stomata yang tidak teridentifikasi, dan ketika terdeteksi pun, nilai confidence score 
+yang dihasilkan relatif rendah, berkisar antara 0.3 hingga 0.6. Bounding box yang muncul 
+sering kali tidak sesuai dengan posisi atau bentuk sebenarnya dari stomata, dan 
+beberapa di antaranya tumpang tindih secara tidak proporsional. Selain itu, tampak pula 
+kesalahan klasifikasi tipe stomata, seperti pada beberapa bagian citra di m ana 
+
+--- Page 60 ---
+45 
+ 
+ 
+anomocytic salah dikenali sebagai paracytic. Hal ini menandakan bahwa citra tanpa 
+perbaikan pencahayaan dan kontras memberikan informasi visual yang kurang 
+mendukung dalam proses pengenalan fitur stomata. 
+Sebaliknya, hasil testing pada citra yang telah melalui praproses Gamma 
+Correction dan CLAHE menunjukkan peningkatan yang signifikan baik dari segi jumlah 
+deteksi, tingkat keyakinan, maupun keakuratan posisi bounding box. Kombinasi 
+praproses ini berhasil meningkatkan kecerahan dan menyeimbangkan pencahayaan, 
+sekaligus meningkatkan kontras lokal sehingga pola sel penjaga dan pori stomata terlihat 
+lebih tegas. Hal ini berdampak langsung pada hasil deteksi, di mana jumlah st omata 
+yang berhasil diidentifikasi meningkat, dan nilai confidence score naik menjadi 0.7 hingga 
+0.84. Bounding box yang dihasilkan tampak mengikuti bentuk stomata dengan lebih 
+presisi dan memiliki ukuran yang proporsional terhadap struktur sebenarnya. Pada citra 
+(b), (d), (f), dan (h), terlihat bahwa hampir seluruh stomata dalam bidang pengamatan 
+berhasil terdeteksi dengan posisi yang tepat dan batas yang jelas. 
+Selain peningkatan pada akurasi deteksi, hasil testing dengan Gamma + CLAHE 
+juga memperlihatkan konsistensi yang lebih baik di seluruh area citra. Stomata pada 
+bagian yang sebelumnya sulit terdeteksi kini dapat dikenali dengan jelas, termasuk pada 
+area yang memiliki intensitas cahaya rendah atau tekstur yang halus. Tekstur jaring an 
+epidermis tampak lebih jelas, sementara detail pada pori stomata dan arah sel penjaga 
+terlihat lebih tajam dan kontras. Hal ini menunjukkan bahwa proses praproses mampu 
+mengoptimalkan persepsi visual citra tanpa mengubah struktur asli jaringan. 
+Secara keseluruhan, hasil visualisasi ini menunjukkan bahwa penerapan 
+Gamma Correction dan CLAHE secara bersamaan mampu menghasilkan citra mikrograf 
+yang lebih informatif dan stabil pada tahap testing. Peningkatan pencahayaan dan 
+kontras yang dihasilkan dari kombinasi kedua teknik ini memberikan pengaruh langsung 
+terhadap kualitas deteksi, baik dalam  hal jumlah, kejelasan, maupun ketepatan posisi 
+stomata yang terdeteksi. Hasil ini membuktikan bahwa Gamma + CLAHE merupakan 
+langkah praproses yang efektif untuk meningkatkan kualitas citra mikroskopis sebelum 
+dilakukan analisis lanjutan, karena mampu menampilkan fitur morfologis stomata secara 
+lebih jelas, konsisten, dan mudah dikenali dalam proses pengujian. 
+3.2 Pembahasan 
+Berdasarkan hasil penelitian yang telah dilakukan, penerapan Gamma Correction dan 
+Contrast Limited Adaptive Histogram Equalization  (CLAHE) terbukti memberikan 
+pengaruh signifikan terhadap peningkatan performa sistem deteksi dan klasifikasi 
+mikrograf stomata menggunakan YOLOv11. Tujuan utama penggunaan kedua metode 
+tersebut adalah untuk memperbaiki kualitas pencahayaan dan mempertegas perbedaan 
+kontras antar area pada citra, sehingga struktur morfologis stomata dapat dikenali 
+dengan lebih baik oleh sistem. Hasil pengujian menunjukkan bahwa peningkatan kualitas 
+citra melalui dua teknik ini berdampak langsung terhadap jumlah objek yang berhasil 
+terdeteksi, nilai keakuratan klasifikasi, serta stabilitas hasil deteksi pada berbagai kondisi 
+visual. 
+--- Page 61 ---
+46 
+ 
+ 
+Hasil analisis confusion matrix  memperlihatkan perbedaan yang jelas antara 
+hasil pelatihan model YOLOv11 sebelum dan sesudah dilakukan peningkatan kualitas 
+citra. Pada model awal (tanpa Gamma dan CLAHE), sistem masih menunjukkan 
+keterbatasan dalam mengenali tipe stomata tertentu, khususnya paracytic dan 
+graminoid, yang memiliki tingkat kontras relatif rendah dibandingkan latar belakang 
+jaringan epidermis. Hal ini menyebabkan banyak area stomata tidak terdeteksi atau salah 
+diklasifikasikan, yang tercermin da ri tingginya jumlah false positive dan false negative 
+pada confusion matrix . Sebaliknya, setelah dilakukan penyesuaian pencahayaan dan 
+peningkatan kontras, sistem menunjukkan peningkatan yang signifikan pada seluruh 
+kelas. Jumlah deteksi benar ( true positive) meningkat, sementara kesalahan klasifikasi 
+antar tipe stomata menurun. Secara visual, hasil deteksi pada citra yang telah diperbaiki 
+menampilkan bounding box  yang lebih presisi dengan posisi dan ukuran yang 
+menyesuaikan bentuk nyata stomata. 
+Perbandingan performa kuantitatif yang ditunjukkan pada Tabel 6 semakin 
+memperkuat hasil tersebut. Model YOLOv11 dengan Gamma Correction dan CLAHE 
+menghasilkan nilai precision dan recall rata-rata sebesar 0.84 dan 0.89, serta mAP50 
+sebesar 0.91 dan mAP50-95 sebesar 0.48. Nilai ini sedikit lebih tinggi dibandingkan 
+model awal dengan mAP50-95 sebesar 0.47, menunjukkan peningkatan kemampuan 
+sistem dalam mengenali objek stomata pada berbagai skala dan tingkat pencahayaan. 
+Peningkatan yang paling signifikan terj adi pada tipe Anomocytic, di mana precision 
+mencapai 0.96 dan mAP50 sebesar 0.94, menandakan kemampuan sistem dalam 
+mendeteksi bentuk sel penjaga yang khas dengan kontur jelas. Sementara itu, tipe 
+Graminoid dan Diacytic juga menunjukkan peningkatan nilai recall yang stabil, masing-
+masing mencapai 0.92 dan 0.96, yang berarti sistem semakin andal dalam mendeteksi 
+hampir seluruh objek stomata yang terdapat dalam citra. 
+Peningkatan performa ini dapat dijelaskan secara visual melalui perbandingan 
+hasil deteksi. Citra hasil peningkatan kualitas menampilkan area stomata dengan tepi 
+yang lebih tegas, pencahayaan yang merata, serta kontras yang cukup tinggi untuk 
+membedakan sel penjaga dari jaringan sekitarnya. Nilai confidence score dari deteksi 
+juga meningkat secara konsisten, berada pada kisaran 0.7 –0.84, dibandingkan dengan 
+citra asli yang hanya mencapai 0.3 –0.6. Hal ini menunjukkan bahwa sistem mampu 
+melakukan deteksi deng an tingkat keyakinan yang lebih tinggi terhadap hasil 
+klasifikasinya. Gamma Correction  berperan dalam menormalkan distribusi intensitas 
+cahaya pada citra, mengoreksi area yang terlalu gelap atau terlalu terang, sedangkan 
+CLAHE mempertegas kontras di area lokal sehingga perbedaan antar struktur sel terlihat 
+lebih jelas tanpa menimbulkan efek over-enhancement. 
+Selain meningkatkan akurasi deteksi, penerapan Gamma dan CLAHE juga 
+memberikan dampak positif terhadap konsistensi performa sistem. Model yang 
+menggunakan kedua teknik ini menunjukkan hasil yang lebih stabil di seluruh kelas 
+stomata, dengan tingkat kesalahan yang lebih rendah dan distribusi deteksi yang merata. 
+Hal ini penting terutama pada citra mikrograf yang sering mengalami variasi 
+pencahayaan, ketebalan preparat, dan distribusi pigmen yang tidak seragam. Dengan 
+pencahayaan global yang lebih seimbang dan kontras lokal yang optimal, sistem mampu 
+mempertahankan performa tinggi meskipun kualitas visual antar citra berbeda-beda. 
+--- Page 62 ---
+47 
+ 
+ 
+Secara umum, hasil ini membuktikan bahwa perbaikan pencahayaan dan 
+kontras berperan besar dalam meningkatkan kemampuan sistem deteksi berbasis deep 
+learning. Gamma Correction membantu menormalkan eksposur dan tingkat intensitas 
+cahaya, sementara CLAHE menonjolkan detail penting di area dengan perbedaan 
+intensitas yang kecil. Kombinasi keduanya menghasilkan citra yang lebih informatif dan 
+representatif, sehingga jaringan konvolusi dalam YOLOv11 dapat mengekstraksi fitur 
+morfologis stomata dengan lebih efektif. Hal ini tidak hanya meningkatkan jumlah deteksi 
+yang benar, tetapi juga memperkecil potensi kesalahan akibat kemiripan pola antar tipe 
+stomata. 
+Dengan demikian, dapat disimpulkan bahwa peningkatan kualitas citra melalui 
+Gamma Correction dan CLAHE memberikan kontribusi signifikan terhadap kinerja sistem 
+deteksi mikrograf stomata. Sistem mampu mengenali objek dengan akurasi yang lebih 
+tinggi, bounding box yang lebih presisi, serta klasifikasi yang lebih konsisten di seluruh 
+jenis stomata. Hasil ini menegaskan bahwa peningkatan kualitas citra bukan sekadar 
+memperbaiki tampilan visual, tetapi juga merupakan langkah penting untuk memperkuat 
+proses pembe lajaran sistem berbasis YOLOv11 dalam mengenali pola biologis yang 
+kompleks pada citra mikroskopis. 
+  
+--- Page 63 ---
+48 
+ 
+ 
+BAB IV 
+PENUTUP 
+4.1 Kesimpulan 
+Berdasarkan hasil penelitian yang telah dilakukan mengenai peningkatan klasifikasi 
+mikrograf stomata menggunakan YOLOv11 dengan Gamma Correction  dan CLAHE, 
+dapat disimpulkan bahwa peningkatan kualitas citra memiliki pengaruh signifikan 
+terhadap performa sistem deteksi dan klasifikasi stomata. Hasil pengujian menunjukkan 
+bahwa penerapan Gamma Correction  dan CLAHE secara berurutan mampu 
+menghasilkan citra yang lebih cerah, tajam, dan memiliki kontras yang seimbang, 
+sehingga struktur morfologis stomata dapat dikenali dengan lebih akurat oleh sistem. 
+Model YOLOv11 yang dilatih menggunakan citra hasil peningkatan kualitas 
+menunjukkan performa yang lebih tinggi dibandingkan model awal tanpa perbaikan 
+pencahayaan. Nilai precision dan recall rata-rata meningkat hingga 0.84 dan 0.89, serta 
+mAP50 mencapai 0.92 dan mAP50-90 mencapai 0.48. Hasil ini menunjukkan bahwa 
+sistem mampu mendeteksi lebih banyak objek stomata dengan tingkat kesalahan 
+klasifikasi yang lebih rendah. Peningkatan paling signifikan terlihat pada tipe Anomositik. 
+Gamma Correction terbukti efektif dalam menyeimbangkan pencahayaan global 
+pada citra, terutama untuk mengoreksi area yang terlalu gelap atau terlalu terang. 
+Sementara itu, CLAHE berperan penting dalam meningkatkan kontras lokal di sekitar 
+area stomata sehingga tepi dan pola sel lebih mudah dibedakan dari latar belakang 
+epidermis. Kombinasi kedua metode ini menghasilkan citra yang optimal tanpa 
+menyebabkan efek berlebihan (over-enhancement). 
+Secara keseluruhan, penelitian ini berhasil mencapai tujuannya, yaitu 
+meningkatkan kinerja klasifikasi mikrograf stomata dengan memperbaiki kualitas citra 
+secara komprehensif. Temuan ini membuktikan bahwa peningkatan kualitas visual citra 
+merupakan langkah  strategis yang dapat memperkuat kemampuan sistem deteksi 
+berbasis deep learning, 
+4.2 Saran 
+Berdasarkan hasil penelitian yang telah dilakukan, terdapat beberapa hal yang dapat 
+menjadi arah pengembangan penelitian selanjutnya.  Pertama, dataset citra stomata 
+perlu diperluas dengan menambahkan berbagai spesies tanaman yang memiliki bentuk 
+dan struktur stomata berbeda. Langkah ini bertujuan untuk meningkatkan kemampuan 
+generalisasi sistem deteksi agar tetap akurat ketika diterapkan  pada morfologi stomata 
+yang bervariasi. Kedua, pengujian sistem secara langsung di laboratorium maupun di 
+lapangan ( real-time testing) Ketiga, pengembangan sistem dapat diarahkan pada 
+integrasi mekanisme perhatian (attention mechanism) 
+Dengan ketiga arah pengembangan tersebut, diharapkan penelitian selanjutnya 
+dapat menghasilkan sistem deteksi mikrograf stomata yang lebih adaptif, akurat, dan 
+aplikatif untuk kebutuhan analisis morfologi tumbuhan secara otomatis.  
+--- Page 64 ---
+49 
+ 
+ 
+DAFTAR PUSTAKA 
+Benchabane, A., & Charif, F. (2025). Enhanced COVID-19 Detection Through Combined 
+Image Enhancement and Deep Learning Techniques. Informatica (Slovenia) , 
+49(16), 67–76. https://doi.org/10.31449/inf.v49i16.5869 
+Chang, Y., Jung, C., Ke, P ., Song, H., & Hwang, J. (2018). Automatic Contrast -Limited 
+Adaptive Histogram Equalization with Dual Gamma Correction. IEEE Access, 6, 
+11782–11792. https://doi.org/10.1109/ACCESS.2018.2797872 
+Feng, X., Li, G., Xu, S., Wu, W., Chen, Q., Shao, S., Liu, M., Wang, N., Zhong, C., He, 
+Z., & Shi, S. (2021). Genomic insights into molecular adaptation to intertidal 
+environments in the mangrove Aegiceras corniculatum. New Phytologist, 231(6), 
+2346–2358. https://doi.org/10.1111/nph.17551 
+Gibbs, J. A., Mcausland, L., Robles -Zazueta, C. A., Murchie, E. H., & Burgess, A. J. 
+(2021). A Deep Learning Method for Fully Automatic Stomatal Morphometry and 
+Maximal Conductance Estimation. Frontiers in Plant Science , 12. 
+https://doi.org/10.3389/fpls.2021.780180 
+Gonzalez, R. C., & Woods, R. E. (2022). Digital Image Processing. Pearson. 
+Haworth, M., Marino, G., Materassi, A., Raschi, A., Scutt, C. P., & Centritto, M. (2023). 
+The functional significance of the stomatal size to density relationship: Interaction 
+with atmospheric [CO2] and role in plant physiological behaviour. In Science of the 
+Total Environment  (Vol. 863). Elsevier B.V. 
+https://doi.org/10.1016/j.scitotenv.2022.160908 
+Huang Guo and Xu, L. and C. Q. and Z. X. and M. T. and Q. H. (2021). Research on 
+Image Enhancement Model Based on Variable Order Fractional Differential CLAHE. 
+In K. and W. C. Wu Xi and Wu (Ed.), Quality, Reliability, Security and Robustness 
+in Heterogeneous Systems (pp. 209–226). Springer International Publishing. 
+Jeon, J. J., Park, J. Y., & Eom, I. K. (2024). Low-light image enhancement using gamma 
+correction prior in mixed color spaces. Pattern Recognition , 146. 
+https://doi.org/10.1016/j.patcog.2023.110001 
+Liu, H., Zhao, Z., & She, Q. (2021). Self-supervised ECG pre-training. Biomedical Signal 
+Processing and Control, 70. https://doi.org/10.1016/j.bspc.2021.103010 
+Mohanasundaram, B., Dodds, A., Kukshal, V., Jez, J. M., & Pandey, S. (2022). 
+Distribution and the evolutionary history of G-protein components in plant and algal 
+lineages. Plant Physiology , 189(3), 1519 –1535. 
+https://doi.org/10.1093/plphys/kiac153 
+Murphy, K. M., Ludwig, E., Gutierrez, J., Gehan, M. A., & Danforth, D. (2025). Deep 
+Learning in Image -Based Plant Phenotyping. Annual Review of Plant Biology 
+Downloaded from Www.Annualreviews.Org. Guest , 24, 41. 
+https://doi.org/10.1146/annurev-arplant-070523 
+Nature Research Intelligence. (2023). Advances in stomatal imaging and automation. 
+Nature Methods Insights. 
+Qiu, J., Yang, Y., & Zhang, H. (2022). Automated stomata detection using YOLOv5. 
+Computers and Electronics in Agriculture, 195(106834). 
+Redmon, J., Divvala, S., Girshick, R., & Farhadi, A. (2016). You Only Look Once: Unified, 
+Real-Time Object Detection. http://arxiv.org/abs/1506.02640 
+ŞENGÖZ, N., YİĞİT, T., ÖZMEN, Ö., & ISIK, A. H. (2022). Importance of Preprocessing 
+in Histopathology Image Classification Using Deep Convolutional Neural Network. 
+Advances in Artificial Intelligence Research , 2(1), 1 –6. 
+https://doi.org/10.54569/aair.1016544 
+Sultana, S. N., Park, H., Choi, S. H., Jo, H., Song, J. T., Lee, J. D., & Kang, Y. J. (2021). 
+Optimizing the experimental method for stomata -profiling automation of soybean 
+--- Page 65 ---
+50 
+ 
+ 
+leaves based on deep learning. Plants, 10(12). 
+https://doi.org/10.3390/plants10122714 
+Szeliski, R. (2022). Computer Vision: Algorithms and Applications (2nd ed.). Springer. 
+Tang, X., Sun, Z., Yang, L., Chen, Q., Liu, Z., Wang, P., & Zhang, Y. (2025). YOLOv11 -
+AIU: a lightweight detection model for the grading detection of early blight disease 
+in tomatoes. Plant Methods, 21(1). https://doi.org/10.1186/s13007-025-01435-z 
+Utiarahman, S. A., Indrabayu, & Nurtanio, I. (2025). Performance Evaluation of YOLOv8 
+to YOLOv11 for Accurate Detection and Classification of Stomata in Microscopic 
+Images of Herbal Plants. 2025 Third International Conference on Networks, 
+Multimedia and Information Technology (NMITCON) , 1 –6. 
+https://doi.org/10.1109/NMITCON65824.2025.11188393 
+Wang, W., Yuan, X., Chen, Z., Wu, X., & Gao, Z. (2021). Weak-Light Image Enhancement 
+Method Based on Adaptive Local Gamma Transform and Color Compensation. 
+Journal of Sensors, 2021. https://doi.org/10.1155/2021/5563698 
+Wang, Y., Liu, Z., Liu, J., Xu, S., & Liu, S. (2023). Low-Light Image Enhancement with 
+Illumination-Aware Gamma Correction and Complete Image Modelling Network. 
+Weng, S. -E., Miaou, S. -G., & Christanto, R. (2024). A Lightweight Low -Light Image 
+Enhancement Network via Channel Prior and Gamma Correction . 
+http://arxiv.org/abs/2402.18147 
+Yang, Z., Liao, Y., Chen, Z., Lin, Z., Huang, W., Liu, Y., Liu, Y., Fan, Y., Xu, J., Xu, L., & 
+Mu, J. (2025). StomaYOLO: A Lightweight Maize Phenotypic Stomatal Cell Detector 
+Based on Multi -Task Training. Plants, 14(13). 
+https://doi.org/10.3390/plants14132070 
+Yu, W., Yao, H., Li, D., Li, G., & Shi, H. (2021). Glagc: Adaptive dual-gamma function for 
+image illumination perception and correction in the wavelet domain. Sensors 
+(Switzerland), 21(3), 1–20. https://doi.org/10.3390/s21030845 
+Zhang, F., Ren, F., Li, J., & Zhang, X. (2022). Automatic stomata recognition and 
+measurement based on improved YOLO deep learning model and entropy rate 
+superpixel algorithm. Ecological Informatics , 68. 
+https://doi.org/10.1016/j.ecoinf.2021.101521 
+Zhang, F., Wang, B., Lu, F., & Zhang, X. (2023). Rotating Stomata Measurement Based 
+on Anchor -Free Object Detection and Stomata Conductance Calculation. Plant 
+Phenomics, 5. https://doi.org/10.34133/plantphenomics.0106 
+Zou, Z., Shi, Z., Guo, Y., Ye, J., & Member, S. (n.d.). Object Detection in 20 Years: A 
+Survey. https://doi.org/10.48550/arXiv.1905.05055 
+  
+  
+--- Page 66 ---
+51 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+LAMPIRAN 
+ 
+  
+--- Page 67 ---
+52 
+ 
+ 
+Lampiran 1. Code Gamma Correction and CLAHE 
+ 
+Lampiran 2. Code Training Model 
+ 
+ 
+
+--- Page 68 ---
+53 
+ 
+ 
+Lampiran 3. Code Testing Model 
+ 
+          
+  
+  
+
+--- Page 69 ---
+54 
+ 
+ 
+Lampiran 4. Result Training Model 
+epo
+ch 
+train/box
+_loss 
+train/cls
+_loss 
+train/dfl
+_loss 
+metrics/preci
+sion(B) 
+metrics/re
+call(B) 
+metrics/mA
+P50(B) 
+metrics/m
+AP50-
+95(B) 
+val/box
+_loss 
+val/cls_
+loss 
+val/dfl_
+loss 
+1 2,11475 2,6394 1,45218 0,67296 0,67636 0,73663 0,30391 1,88584 1,79883 1,3467
+7 
+2 1,85662 1,26842 1,28822 0,70035 0,74029 0,76684 0,34899 1,74894 1,38314 1,3429
+8 
+3 1,791 1,16644 1,2816 0,72612 0,83114 0,79235 0,35925 1,78077 1,2717 1,3812
+3 
+4 1,77883 1,11094 1,28166 0,70839 0,78952 0,77281 0,33984 1,79767 1,24898 1,3741
+2 
+5 1,76151 1,05337 1,27671 0,74687 0,82262 0,80426 0,35936 1,80888 1,15151 1,4150
+4 
+6 1,73816 1,0003 1,27728 0,76234 0,86271 0,83227 0,35997 1,93178 1,10544 1,5466
+9 
+7 1,72507 0,96834 1,27878 0,82478 0,86819 0,87625 0,42884 1,80198 0,96986 1,4286
+5 
+8 1,71818 0,94109 1,27172 0,80906 0,79873 0,83819 0,3971 1,7805 1,03417 1,4024
+5 
+9 1,70544 0,91263 1,26307 0,82183 0,87239 0,88993 0,4344 1,75083 0,91474 1,4096
+6 
+10 1,69967 0,90198 1,26458 0,78965 0,8685 0,86705 0,41953 1,74989 1,02426 1,3989
+7 
+11 1,69183 0,87814 1,26072 0,81815 0,85548 0,87245 0,4197 1,7902 0,95573 1,4286
+4 
+12 1,69604 0,87944 1,25157 0,82068 0,88668 0,88752 0,43293 1,72865 0,89667 1,3796
+1 
+13 1,68451 0,86232 1,25257 0,81009 0,89087 0,89072 0,44781 1,69998 0,92304 1,3756
+8 
+14 1,68238 0,85884 1,25409 0,83195 0,89024 0,90745 0,46249 1,68367 0,87058 1,3677
+6 
+--- Page 70 ---
+55 
+ 
+ 
+15 1,67782 0,84249 1,24535 0,82198 0,87626 0,89449 0,44756 1,71609 0,87157 1,3813
+5 
+16 1,66889 0,83102 1,2509 0,82992 0,8676 0,88742 0,42894 1,77296 0,8698 1,4074
+8 
+17 1,66621 0,82274 1,24673 0,84114 0,86856 0,90289 0,45168 1,71689 0,85081 1,3843
+9 
+18 1,6686 0,82 1,247 0,84725 0,88759 0,90932 0,45983 1,74894 0,81762 1,4148
+6 
+19 1,66453 0,8117 1,24053 0,83551 0,87343 0,8962 0,44374 1,73607 0,86305 1,3983
+6 
+20 1,65652 0,79922 1,23049 0,82872 0,87187 0,89396 0,45146 1,74663 0,84566 1,3824
+7 
+21 1,65642 0,8025 1,24157 0,83314 0,87222 0,8983 0,44095 1,79439 0,86317 1,4141
+5 
+22 1,65865 0,795 1,23582 0,83574 0,87649 0,90379 0,45538 1,7546 0,83843 1,4096
+7 
+23 1,6505 0,78378 1,23615 0,84389 0,87057 0,89645 0,44878 1,74372 0,82231 1,3933
+3 
+24 1,6437 0,77663 1,22964 0,84544 0,87414 0,90039 0,45161 1,75066 0,82116 1,3938
+2 
+25 1,63897 0,77519 1,23589 0,83539 0,86334 0,8955 0,43406 1,81789 0,83255 1,4615 
+26 1,64469 0,77326 1,23363 0,82938 0,86314 0,88604 0,42897 1,80951 0,87649 1,4369
+3 
+27 1,64482 0,77247 1,22926 0,84425 0,89074 0,91158 0,4574 1,74828 0,78929 1,3979
+6 
+28 1,63909 0,76306 1,22322 0,84231 0,88068 0,90858 0,45181 1,74616 0,8006 1,3978
+9 
+29 1,62856 0,7555 1,23332 0,82691 0,86402 0,88682 0,42793 1,81123 0,84279 1,4425
+4 
+30 1,63237 0,75171 1,22214 0,84285 0,89257 0,91261 0,45826 1,76392 0,79595 1,4219
+6 
+--- Page 71 ---
+56 
+ 
+ 
+31 1,63409 0,75534 1,23067 0,83508 0,88672 0,90446 0,45618 1,76992 0,79676 1,4204
+4 
+32 1,62539 0,74854 1,22173 0,85055 0,87269 0,91338 0,46237 1,74234 0,7902 1,4048
+9 
+33 1,62858 0,74366 1,22554 0,84833 0,88618 0,91687 0,4774 1,70101 0,77043 1,3874 
+34 1,62335 0,74195 1,22206 0,84036 0,88112 0,90166 0,44524 1,80575 0,79123 1,4678
+5 
+35 1,62002 0,73446 1,21917 0,84989 0,88974 0,91463 0,47418 1,74301 0,77012 1,4124
+4 
+36 1,61442 0,73478 1,22304 0,83887 0,87686 0,90023 0,45041 1,8077 0,80995 1,4529
+6 
+37 1,61356 0,73251 1,22391 0,85366 0,88688 0,91656 0,45721 1,77061 0,76488 1,4246
+1 
+38 1,61511 0,73389 1,2175 0,8485 0,88191 0,91125 0,46789 1,7304 0,7638 1,3991
+1 
+39 1,61592 0,72524 1,22164 0,84 0,88666 0,91252 0,46055 1,74327 0,77615 1,4044
+6 
+40 1,60899 0,7268 1,22219 0,84231 0,88896 0,91522 0,46439 1,73519 0,7634 1,4206
+8 
+41 1,61452 0,72267 1,22166 0,84762 0,87605 0,90401 0,4506 1,80327 0,78959 1,4642
+5 
+42 1,60695 0,7166 1,21501 0,84258 0,89613 0,91875 0,47449 1,72764 0,75204 1,3986
+1 
+43 1,59941 0,71435 1,22239 0,83985 0,88598 0,91716 0,47869 1,73309 0,74816 1,4124
+2 
+44 1,60449 0,71509 1,21966 0,8523 0,87246 0,91383 0,46745 1,75538 0,75679 1,4277
+4 
+45 1,59778 0,71109 1,21232 0,84884 0,87356 0,911 0,46918 1,73505 0,76213 1,4131
+2 
+46 1,59717 0,706 1,22026 0,85184 0,88338 0,91858 0,4731 1,72551 0,74937 1,4189
+5 
+--- Page 72 ---
+57 
+ 
+ 
+47 1,59582 0,70731 1,21683 0,85001 0,87083 0,90246 0,44653 1,80341 0,76048 1,4605
+6 
+48 1,59473 0,70622 1,2182 0,84675 0,88225 0,91366 0,45392 1,79703 0,77015 1,4580
+3 
+49 1,59378 0,70429 1,21762 0,83751 0,88781 0,90809 0,46716 1,75101 0,76011 1,4261
+3 
+50 1,58546 0,69888 1,21008 0,85292 0,88253 0,91514 0,46697 1,7546 0,74517 1,4327
+5 
+51 1,59084 0,69924 1,21184 0,84187 0,89098 0,91469 0,4606 1,78293 0,75944 1,4564
+2 
+52 1,58931 0,696 1,21466 0,84121 0,8915 0,91115 0,47111 1,75369 0,75449 1,4348
+1 
+53 1,58075 0,69131 1,2066 0,84062 0,878 0,90474 0,44844 1,79512 0,75988 1,4558
+2 
+54 1,57721 0,68786 1,20158 0,85382 0,8827 0,91639 0,47185 1,75591 0,73757 1,4378
+6 
+55 1,58227 0,69238 1,207 0,84984 0,87425 0,91107 0,45821 1,77554 0,74435 1,4453
+4 
+56 1,57446 0,68617 1,21028 0,84039 0,89105 0,91265 0,46638 1,76359 0,73863 1,4443
+5 
+57 1,57917 0,68467 1,20469 0,83756 0,89238 0,91493 0,46447 1,79101 0,73378 1,4541
+6 
+58 1,57376 0,68314 1,20271 0,85218 0,88468 0,91923 0,46792 1,75363 0,74218 1,4295
+4 
+59 1,5678 0,67811 1,20218 0,85478 0,87992 0,91279 0,46804 1,76239 0,73871 1,4390
+7 
+60 1,57035 0,67664 1,20157 0,85255 0,8755 0,91256 0,46206 1,80113 0,74901 1,4685
+1 
+61 1,56159 0,67045 1,20287 0,8415 0,89138 0,91472 0,46123 1,77859 0,74334 1,4583
+7 
+62 1,56118 0,67045 1,20186 0,8393 0,88379 0,90617 0,45801 1,8023 0,75162 1,4754
+1 
+--- Page 73 ---
+58 
+ 
+ 
+63 1,56653 0,67355 1,20205 0,84887 0,8887 0,91453 0,46108 1,78252 0,72765 1,4634
+5 
+64 1,5605 0,66764 1,1956 0,85158 0,87364 0,91299 0,45725 1,80029 0,74063 1,4653
+3 
+65 1,5559 0,66991 1,20192 0,84988 0,88557 0,9115 0,45511 1,80287 0,72756 1,4765
+8 
+66 1,55223 0,66281 1,1988 0,85564 0,87173 0,90984 0,45662 1,7957 0,73266 1,4725
+3 
+67 1,55121 0,66357 1,20063 0,85006 0,88189 0,911 0,46328 1,78882 0,73782 1,4744
+9 
+68 1,55118 0,65986 1,19638 0,85255 0,8862 0,92091 0,47602 1,74882 0,73081 1,4362
+1 
+69 1,54695 0,65981 1,19753 0,84678 0,88244 0,91154 0,45698 1,7965 0,74137 1,4762
+7 
+70 1,53932 0,65389 1,19719 0,85616 0,87622 0,91419 0,46447 1,78197 0,73018 1,4658
+3 
+71 1,54151 0,65798 1,20004 0,8431 0,88586 0,91263 0,46209 1,78972 0,73363 1,4648
+3 
+72 1,53617 0,6489 1,19501 0,84354 0,88802 0,91164 0,4646 1,76451 0,72842 1,4495 
+73 1,53732 0,65106 1,18735 0,85316 0,87945 0,91373 0,45475 1,81087 0,73334 1,4782
+5 
+74 1,53515 0,6501 1,19128 0,84311 0,88715 0,91143 0,46283 1,78705 0,73742 1,4619
+3 
+75 1,53216 0,64847 1,19078 0,85982 0,87247 0,90623 0,45019 1,81444 0,72903 1,4844
+2 
+76 1,52833 0,64297 1,19056 0,84044 0,88969 0,90855 0,45761 1,79625 0,73144 1,4737
+9 
+77 1,52673 0,64406 1,19573 0,85669 0,87173 0,90703 0,45497 1,80762 0,72668 1,4852
+4 
+78 1,5205 0,6381 1,18928 0,83811 0,89079 0,90936 0,459 1,79656 0,72966 1,4716 
+79 1,52259 0,63865 1,19221 0,84376 0,88803 0,91273 0,46175 1,78645 0,72407 1,4666
+4 
+--- Page 74 ---
+59 
+ 
+ 
+80 1,5156 0,63633 1,18425 0,84907 0,88336 0,91075 0,45422 1,82168 0,7244 1,4903
+4 
+81 1,51371 0,63509 1,18489 0,84384 0,88616 0,90881 0,45484 1,79713 0,7237 1,4772 
+82 1,51709 0,63333 1,18408 0,83974 0,89227 0,91219 0,46269 1,77887 0,72726 1,4682 
+83 1,5157 0,6345 1,17566 0,84205 0,89299 0,91308 0,46174 1,77687 0,72073 1,4694
+5 
+84 1,50987 0,63142 1,18191 0,84604 0,88744 0,91171 0,4624 1,7832 0,72476 1,4691
+2 
+85 1,5141 0,63381 1,18972 0,84802 0,88572 0,91379 0,4603 1,79555 0,73037 1,4805
+5 
+86 1,50525 0,62998 1,18093 0,84142 0,88476 0,9091 0,45119 1,82391 0,73578 1,5033
+9 
+87 1,50114 0,62819 1,17909 0,84289 0,88342 0,90919 0,4592 1,79472 0,72983 1,4801
+2 
+88 1,49776 0,62575 1,17718 0,84604 0,88375 0,90854 0,45432 1,8144 0,72966 1,5003
+8 
+89 1,49835 0,62404 1,17623 0,84784 0,88514 0,90986 0,45843 1,80241 0,73051 1,4886
+8 
+90 1,49835 0,62494 1,18157 0,84831 0,88948 0,91165 0,46103 1,80075 0,71662 1,4867
+3 
+91 1,50214 0,59597 1,2241 0,8427 0,88815 0,91058 0,45504 1,79068 0,71893 1,4799
+9 
+92 1,47823 0,58056 1,21982 0,84853 0,88243 0,91033 0,45525 1,79193 0,72615 1,4879
+7 
+93 1,47297 0,57718 1,21795 0,84231 0,88667 0,90914 0,46075 1,77833 0,72436 1,4734
+5 
+94 1,46542 0,57506 1,20968 0,83446 0,89774 0,90942 0,4599 1,78447 0,72335 1,4837
+8 
+95 1,46369 0,57323 1,21064 0,84492 0,88376 0,90766 0,4574 1,79414 0,7239 1,4908
+9 
+96 1,45724 0,56937 1,20875 0,84573 0,88547 0,90859 0,45927 1,79247 0,7236 1,4871
+1 
+--- Page 75 ---
+60 
+ 
+ 
+97 1,45389 0,56891 1,20555 0,84722 0,8828 0,90859 0,45986 1,79615 0,72471 1,4889
+3 
+98 1,44865 0,56664 1,2028 0,84596 0,8844 0,90935 0,45962 1,79469 0,724 1,4921
+9 
+99 1,44966 0,56672 1,20472 0,84397 0,88377 0,90796 0,45928 1,79531 0,72417 1,4927
+1 
+100 1,44413 0,56215 1,20366 0,84681 0,88306 0,91015 0,46254 1,78867 0,7228 1,4875
+7 
+ 

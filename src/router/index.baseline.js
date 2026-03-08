@@ -15,7 +15,7 @@
  * - Tight coupling: router "tahu" semua komponen
  * ============================================
  */
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 // ❌ BAD PRACTICE: Semua komponen di-import secara EAGER
 // Semua file ini akan masuk ke bundle utama
@@ -54,7 +54,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes,
 })
 
