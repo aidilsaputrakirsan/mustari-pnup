@@ -1,4 +1,8 @@
-# BAB IV PENUTUP
+import os
+
+filepath = r"c:\laragon\www\Materi-Presentasi\mustari-pnup\laporan_tesis\chapters\BAB_4_PENUTUP.md"
+
+bab_4_content = """# BAB IV PENUTUP
 
 ## 4.1 Kesimpulan
 
@@ -28,3 +32,9 @@ Menyadari keterbatasan cakupan spektrum rekayasa teknis pada lapisan ekosistem k
 
 3. **Komparasi Silang Bersama Kerangka Moderen SSR & Server Edge:**
    Tesis ini membidik murni optimasi piranti pemrosesan sisi klien (*Client-Side Rendering*). Peneliti pascasarjana di ranah selanjutnya ditantang kuat merumuskan desain kajian persilangan metrik reduksi TBT antara taktik *Vite Bundler CSR* jika didebatkan menggunakan mesin hibrida Server Kompilasi Aktual (semacam pendayagunaan kerangka *Nuxt.js* atau pun *Next.js Server-Side Components*). Peleburan ini dipercaya sanggup menuntaskan anomali pengorbanan waktu awal FCP (Karena HTML dikirim utuh/matang dari Peladen), seraya mengunci kesempurnaan TBT di aras terendah (Karena *Hydration JS Chunk* disuntikkan secara terpartisi asinkron perlahan-lahan ke ruang tunggu perangkat klien).
+"""
+
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(bab_4_content)
+    
+print("Bab 4 Penutup berhasil diekspansi secara ekstensif! Kedalaman analisis diperkuat.")

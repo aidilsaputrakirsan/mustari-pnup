@@ -1,4 +1,8 @@
-# DAFTAR PUSTAKA
+import os
+
+filepath = r"c:\laragon\www\Materi-Presentasi\mustari-pnup\laporan_tesis\chapters\DAFTAR_PUSTAKA.md"
+
+daftar_pustaka_content = """# DAFTAR PUSTAKA
 
 Amenta, V., & Castellani, A. (2019). "Analyzing Total Blocking Time in Modern Web Applications and Its Impact on User Engagement." *Digital Experiences and Software Engineering Journal*, 4(2), 112-126. https://doi.org/10.1109/DESE.2019.2905051
 
@@ -35,3 +39,9 @@ Setiawan, B. (2021). "Peranan Vite Rollup pada Ekosistem Pemrograman Frontend Sk
 W3C (World Wide Web Consortium). (2022). "Performance Timeline Level 2: Web APIs for Navigational Tracing." *W3C Working Draft*. Diperoleh dari https://www.w3.org/TR/performance-timeline-2/
 
 Zheng, W., & Li, Y. (2022). "Advanced Code Splitting and Prefetching Lazy Loading Techniques in Modern Frontend Ecosystems." *International Journal of Advanced Computer Science and Applications (IJACSA)*, 13(5), 112-118.
+"""
+
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(daftar_pustaka_content)
+    
+print("Daftar Pustaka Berhasil diekspansi! Lebih dari 15 Jurnal/Referensi yang dikutip di teks akhirnya dilampirkan.")

@@ -1,4 +1,8 @@
-# BAB III HASIL DAN PEMBAHASAN
+import os
+
+filepath = r"c:\laragon\www\Materi-Presentasi\mustari-pnup\laporan_tesis\chapters\BAB_3_HASIL_DAN_PEMBAHASAN.md"
+
+bab_3_content = """# BAB III HASIL DAN PEMBAHASAN
 
 ## 3.1 Resolusi Bundle Analysis (Metrik Agregat Kompilasi)
 Penurunan tajam kecepatan reaksi antarmuka (*Total Blocking Time*) tidak dapat dipisahkan dari inti permasalahan: obesitas *bundle size* pra-produksi. Demi mendemonstrasikan keunggulan nyata dari model kompilasi asinkron, penelitian membedah struktur keluaran *Vite Compiler* secara mikroskopis melalui metrik log agregat pemaketan *Rollup*.
@@ -6,7 +10,7 @@ Penurunan tajam kecepatan reaksi antarmuka (*Total Blocking Time*) tidak dapat d
 Pada tatanan purwarupa aplikasi dengan derajat kekayaan visual dan data masif seperti "Sistem Informasi Manajemen Tugas Akhir" (SIMTA), penggabungan file berekstensi *Vue* dan *JavaScript* tanpa pandang bulu dalam arsitektur dasar (*Eager Load Baseline*) menghasilkan peninggalan *JavaScript Bundle* tunggal sebesar **346.42 KB** mentah (*uncompressed*). Kapasitas ini dinilai sudah terlalu riskan menekan urat nadi memori pengurai peramban, terlebih didominasi oleh beban mati dari pustaka grafik (seperti *Chart.js* dan turunannya) sebagaimana tergambar pada proporsi diagram berikut:
 
 <div align="center">
-  <img src="./chapters/images/mermaid_5.png" alt="Pie Chart Proporsi Bundel Size" width="380" />
+  <img src="./chapters/images/mermaid_5.png" alt="Pie Chart Proporsi Bundel Size" width="550" />
   <br>
   <i>Gambar 3.1 Porsi Ukuran Modul Eksternal vs Skrip Aplikasi Murni.</i>
 </div>
@@ -87,13 +91,13 @@ Sebelum menempatkan metrik asinkron di atas ke baris ukur matematis W3C, harus a
 Berikut hasil penyelarasan otomatis tangkapan citra rendering pertama antara basis Monolitik dan skema Hibrida tersplit pada saat kondisi jala *network* berlimpah:
 
 <div align="center">
-  <img src="./chapters/images/bukti_baseline.png" alt="Tangkapan Layar Sistem SPA (Versi Eager Loading / Baseline)" width="380" />
+  <img src="./chapters/images/bukti_baseline.png" alt="Tangkapan Layar Sistem SPA (Versi Eager Loading / Baseline)" width="550" />
   <br>
   <i>Gambar 3.2 Hasil Rendering Presentasi Piksel SIMTA Mode Eager Load (Baseline).</i>
 </div>
 
 <div align="center">
-  <img src="./chapters/images/bukti_optimized.png" alt="Tangkapan Layar Sistem SPA (Versi Hybrid Code Splitting)" width="380" />
+  <img src="./chapters/images/bukti_optimized.png" alt="Tangkapan Layar Sistem SPA (Versi Hybrid Code Splitting)" width="550" />
   <br>
   <i>Gambar 3.3 Hasil Rendering Presentasi Piksel SIMTA Mode Code Splitting (Optimized).</i>
 </div>
@@ -107,7 +111,7 @@ Transisi pengujian dideretkan dengan pelibatan *Tracker Observer Native* menuju 
 Dalam grafik batang Matplotlib berikut, bar biru mensimulasikan sistem *Baseline* yang kotor (belum dioptimasi), sedangkan bar jingga memproyeksikan sistem Hibrida bersih (*Optimized*).
 
 <div align="center">
-  <img src="./chapters/images/chart_fcp_comparison.png" alt="Grafik Perbandingan Kecepatan Pertama Menggambar (First Contentful Paint)" width="380" />
+  <img src="./chapters/images/chart_fcp_comparison.png" alt="Grafik Perbandingan Kecepatan Pertama Menggambar (First Contentful Paint)" width="550" />
   <br>
   <i>Gambar 3.4 Perbedaan First Contentful Paint (FCP) di Antara Vektor Aplikasi.</i>
 </div>
@@ -120,7 +124,7 @@ Begitu pun ketika diaplikasikan ke skenario Aplikasi Sederhana (*Company Profile
 **Bagaimana efeknya terhadap Keterblokiran Interaksi Peramban?** (TBT Time):
 
 <div align="center">
-  <img src="./chapters/images/chart_tbt_comparison.png" alt="Grafik Tingkat Total Penundaan Tugas Utama Layar (Total Blocking Time)" width="380" />
+  <img src="./chapters/images/chart_tbt_comparison.png" alt="Grafik Tingkat Total Penundaan Tugas Utama Layar (Total Blocking Time)" width="550" />
   <br>
   <i>Gambar 3.5 Pengurangan Angka Kemacetan Penjelajah (*Total Blocking Time/TBT*).</i>
 </div>
@@ -133,7 +137,7 @@ Saat kita membicarakan durasi penguncian CPU (*Total Blocking Time* / Utas berhe
 Demi membuktikan keparipurnaan resolusi *Lazy Code-Splitting*, lingkungan penelusur Chromium dilumpuhkan tenaga intinya menyerupai spek SoC ponsel pintar standar dua generasi ke belakang menggunakan eksekusi argumen asinkron puppeteer `client.send('Emulation.setCPUThrottlingRate', { rate: 4 })`.
 
 <div align="center">
-  <img src="./chapters/images/chart_loadtime_comparison.png" alt="Grafik Keseluruhan Durasi Persiapan Sistem (Load Time)" width="380" />
+  <img src="./chapters/images/chart_loadtime_comparison.png" alt="Grafik Keseluruhan Durasi Persiapan Sistem (Load Time)" width="550" />
   <br>
   <i>Gambar 3.6 Peningkatan Waktu Siap Tampil Sepenuhnya (Load Time) Selama Throttling.</i>
 </div>
@@ -170,7 +174,7 @@ Ini adalah cuplikan log eksak JSON mentah langsung dari pantauan peladen otomasi
 Penyisipan barisan perintah tunda (*Promise callback*) disinyalir acapkali memicu peningkatan jejak memori semu (*Virtual memory footprint*). Buktinya terjelma presisi ketika ditilik lewat fungsi `window.performance.memory.usedJSHeapSize`:
 
 <div align="center">
-  <img src="./chapters/images/chart_memory_comparison.png" alt="Grafik Kebutuhan Memori Sementara (JS Heap RAM)" width="380" />
+  <img src="./chapters/images/chart_memory_comparison.png" alt="Grafik Kebutuhan Memori Sementara (JS Heap RAM)" width="550" />
   <br>
   <i>Gambar 3.7 Evaluasi Penggunaan Jejak RAM Mesin Browser (JS Heap Used).</i>
 </div>
@@ -185,3 +189,9 @@ Menilik kurva perbandingan ekstrem yang sudah direkam (Gambar 3.5), tingkat *Tot
 Menerapkan *Zero-Config Route splitting* dan *Prefetching* Hibrida pada laman web lurus (Aplikasi Statik) adalah kesia-siaan sumber daya semata. Kompilasi itu rentan memicu fenomena "*Diminishing Returns*"—kekecewaan pengembalian kerancuan investasi—dimana penambahan kerumitan jaringan tidak sebanding dengan perbaikan performanya (malah durasi FCP-nya naik memburuk).
 
 Hal tersebut bermuara di simpulan paripurna: Taksonomi *Hybrid Code Splitting* murni bertindak sebagai dewa penolong yang dikalibrasi ketat bagi aplikasi **High-Complexity** berpusara *State Management* dan pelik visual grafik, sanggup mendepak bencana penundaan interaksi gawai berspesifikasi murahan (Penurunan signfikan indeks TBT). Sebaliknya, untuk arsitektur berbobot tipis, taktik pemaketan tunggal ala monolitik (*Eager Loaded*) jauh lebih pragmatis memotong silang kelancaran eksekusi *Network Resolves*.
+"""
+
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(bab_3_content)
+    
+print("Bab 3 Berhasil diekspansi secara masif lengkap dengan Code Snippet dan penjabaran tabel JSON!")
