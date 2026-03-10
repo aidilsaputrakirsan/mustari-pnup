@@ -4,77 +4,50 @@
 Desain metodologis dari tugas akhir riset tesis ini diklasifikasikan sebagai studi komparasi eksperimental (eksperimen semu atau *quasi-experimental*) terapan dalam rumpun keilmuan Rekayasa Perangkat Lunak Web Tingkat Lanjut. Model skema pengujian difokuskan pada perbandingan objektif dari dua *output* algoritma rute kompilasi atas purwarupa (prototipe) aplikasi *Single Page Application* (SPA) yang sama persis dalam hal rekayasa *frontend interface* (Antarmuka Pengguna) serta relasi basis data, namun dirangkai berbeda fondasinya terhadap distribusi *payload*.
 
 Klasifikasi Varian Uji Kompilasi:
-1. **Model Sistem Baseline (Monolithic / Eager Load):** Representasi perangkat lunak dasar menggunakan kompilasi reaktif polos (`vite.config.baseline.js`). Seluruh hierarki pohon komponen UI (halaman tunggal `DashboardView`, `JadwalSeminarView`, dll) dipanggil berserikat dalam *Eager Imports* pada ujung fail perute (*router*). Mesin penggubah akan menerbitkan seonggok fail skrip JavaScript raksasa gabungan (*vendor*+*core*) yang mendominasi sesi panggil perdana situs.
-2. **Model Sistem Optimized (Hybrid Splitting):** Representasi iterasi pembaharuan yang menerapkan algoritma konfigurasi pemecahan biner (`vite.config.optimized.js`). Memanfaatkan fungsi deklaratif *Route-level Lazy Loading* (`() => import(...)`), isolasi ketergantungan paket perpustakaan bervolume berat (*manual chunks* untuk *Vue* dan *Chart.js*), aktivasi kompresi data transfer asetik ganda (*Gzip* & *Brotli*), hingga implantasi strategis agen *Prefetching W3C Callback* secara menyusup (*idle time tracking*).
+1. **Model Sistem Baseline (Monolithic / Eager Load):** Representasi perangkat lunak dasar menggunakan kompilasi reaktif standar (`vite.config.baseline.js`). Seluruh hierarki pohon komponen UI (halaman tunggal `DashboardView`, `JadwalSeminarView`, dll) dipanggil secara terpusat melalui mekanisme *Eager Imports* pada berkas perute (*router*). Kompilator akan menghasilkan sebuah berkas skrip JavaScript gabungan berukuran besar (*vendor*+*core*) yang mendominasi proses pemuatan awal situs.
+2. **Model Sistem Optimized (Hybrid Splitting):** Representasi iterasi pembaharuan yang menerapkan algoritma konfigurasi pemecahan berkas (`vite.config.optimized.js`). Memanfaatkan fungsi deklaratif *Route-level Lazy Loading* (`() => import(...)`), isolasi ketergantungan paket perpustakaan berukuran besar (*manual chunks* untuk *Vue* dan *Chart.js*), aktivasi kompresi data transfer ganda (*Gzip* & *Brotli*), hingga implantasi strategis algoritma *Prefetching W3C Callback* secara asinkron (memanfaatkan *idle time tracking*).
 
 ## 2.2 Tahapan Pelaksanaan Eksperimen
 Rencana riset direkayasa berkesinambungan melewati alur kerja investigatif sebagai berikut:
-1. **Investigasi dan Pemodelan Sistem Berjalan:** Memastikan dan meracik level tingkat kekompleksitasan (*Complexity Density*) pada struktur aplikasi purwarupa pangkalan (Aplikasi Sistem Informasi Manajemen Tugas Akhir / SIMTA) untuk mencapai simulasi keruwetan yang esensial.
-2. **Konstruksi Pengembangan Kode (*Development*):** Melakukan perancangan *Single Page Application* menggunakan kerangka bahasa *TypeScript/Javascript Framework Vue.js v3*, disokong *Vue Router 4* serta eksekusi sentral state pada manajemen penyimpanan memori dalam-klien (*Pinia Store*).
-3. **Rekayasa Formulasi Kompilasi (*Bundling Formulation*):** Membangkitkan dua mode operasi target perakitan ke direktori statis tersendiri (satu versi ke `dist-baseline` dan peracikan ganda ke `dist-optimized`) menggunakan kompilator hibrida *Vite Bundler*. Pada mode *Optimasi*, Vite dipercayakan mengeksploitasi mesin di balik layarnya yakini *Rollup.js* untuk meracik *Module Dependency Graph* (Pohon Grafik Ketergantungan Modul) secara statis sehingga mengizinkan fragmentasi *manual chunks* yang akurat antar rute. Sarananya divalidasi juga memanfaatkan *Plugin Rollup Visualizer*.
-4. **Instalasi dan Pemungutan Observasi (Pengumpulan Data):** Pemasangan log automasi menggunakan integrasi agen pendeteksi performa (*puppeteer* dikawinkan dengan API pelacak peramban asali/ *W3C Native PerformanceObserver*) untuk memperoleh integritas data kelancaran situs yang murni.
-5. **Evaluasi Deskriptif & Komparasi Matriks:** Kegiatan diseminasi konversi olah hitung variabel ukur log jaringan untuk membuktikan kebenaran hipotesa peredaman latensi (*Web Vitals TBT/FCP*).
+1. **Investigasi dan Pemodelan Sistem Berjalan:** Melakukan desain rancang bangun terhadap dua sampel tingkatan (*Complexity Density*) pada struktur aplikasi purwarupa uji. Target utama adalah tingkat *Kompleks* yang diwakili Aplikasi Sistem Informasi Manajemen Tugas Akhir / SIMTA. Target pembanding level *Sederhana* diwakili purwarupa aplikasi *Company Profile* murni.
+2. **Konstruksi Pengembangan Kode (*Development*):** Melakukan perancangan *Single Page Application* menggunakan kerangka bahasa *TypeScript/Javascript Framework Vue.js v3*, disokong *Vue Router 4*. Pada SIMTA, eksekusi menggunakan sistem state manajemen (*Pinia Store*) dan diagram *Chart.js*, sementara pada profil perusahaan tidak memakai gubahan ekstensi tambahan apa pun.
+3. **Rekayasa Formulasi Kompilasi (*Bundling Formulation*):** Mengonstruksi dua mode luaran kompilasi ke direktori statis tersendiri (satu versi ke `dist-baseline` dan peracikan ganda ke `dist-optimized`) menggunakan kompilator hibrida *Vite Bundler*. Pada mode optimasi, Vite distrukturkan menggunakan *Rollup.js* guna membentuk *Module Dependency Graph* (Pohon Grafik Ketergantungan Modul) secara statis sehingga mengizinkan fragmentasi *manual chunks* yang akurat antar rute. Formulasi ini divalidasi memanfaatkan *Plugin Rollup Visualizer*.
+4. **Instalasi dan Pemungutan Observasi (Pengumpulan Data):** Pemasangan instrumen pelacakan otomatis menggunakan integrasi perangkat pengujian (*puppeteer*) yang dikombinasikan dengan API pemantau peramban bawaan (*W3C Native PerformanceObserver*) untuk memperoleh integritas data kinerja situs yang akurat.
+5. **Evaluasi Deskriptif & Komparasi Matriks:** Kegiatan konversi dan olah hitung variabel evaluasi untuk menganalisis hipotesis peredaman latensi (*Web Vitals TBT/FCP*).
 
 ## 2.3 Pemodelan Tingkat Kompleksitas (Sistem SIMTA)
 Landasan urgensi dari peletakan algoritma intervensi *Code Splitting* memerlukan pembenaran atas tingginya kompleksitas muatan bawaan sistem purwarupa. Berbeda totalnya rasio pemuatan komponen pada web portal statis linier, subsistem SIMTA memancarkan keterikatan reaktif padat (interaksi *interlocking state*) seperti tergambar di diagram berikut.
 
 ### 2.3.1 Relasi Basis Data (*Entity Relationship Diagram*)
-Hubungan relasional multidimensi ini merepresentasikan bagaimana objek status mahasiswa, bimbingan, catatan asinkron dari pembimbing, sampai entitas riwayat ujian, terkompilasi ketat di selimut skrip klien sebelum dibongkar via API. Hal inilah yang mendorong mengapa SPA berskala raksasa seperti ini sangat riskan terhadap kelesuan *Render Time* jika masih berformat Monolitik.
+Hubungan relasional multidimensi ini merepresentasikan bagaimana entitas kelolaan seperti status log mahasiswa, presensi bimbingan, notule asinkron, serta berkas laporan, memiliki tautan struktural yang merentang erat pada sisi antarmuka klien. Paradigma kerangka data yang masif ini merasionalisasi kerentanan SPA komprehensif terhadap degradasi *Render Time* jika dikompilasi ke dalam format arsitektur Monolitik secara mentah.
 
-```mermaid
-erDiagram
-    MAHASISWA ||--|| JUDUL : mengajukan
-    DOSEN ||--o{ JUDUL : membimbing
-    JUDUL ||--o{ BIMBINGAN : memiliki
-    BIMBINGAN ||--o{ CHAT : berisi
-    DOSEN ||--o{ SEMINAR : menguji
-    
-    MAHASISWA {
-        string nim_uuid
-        string nama
-        string prodi
-        integer angkatan
-    }
-    JUDUL {
-        uuid id_judul
-        string kalimat_judul
-        string status_approval
-        timestamp tgl_pengajuan
-    }
-```
+<div align="center">
+  <img src="./images/mermaid_1.png" alt="Diagram Relasi Basis Data SIMTA/ERD" width="550" />
+  <br>
+  <i>Gambar 2.1 Entity Relationship Diagram (ERD) dari Modul Bimbingan SIMTA.</i>
+</div>
 
 ### 2.3.2 Pola Sirkulasi Arus Data (*Data Flow Diagram Reaktif*)
 Siklus aliran arsitektur SPA mutakhir ini (menggunakan *Pinia/Vuex* State Management) secara masif mengirimkan sinyal pembaruan (*Reactive Virtual-DOM Patching*) ketika bongkah *Library Chart.Js* atau tabel daftar antrean dimutasi secara langsung oleh respon *asynchronous* dari API.
-```mermaid
-graph TD
-    U[Klien Browser] -- "Intervensi UI" --> St[Penyimpanan Memori Pinia]
-    St -- "Trigger Middleware Mutasi" --> Ser[Layanan Akses Modul API]
-    Ser -- "Permintaan Fetch Promise" --> DB[(Layanan Database Cloud)]
-    DB -- "Respon Objek JSON" --> Ser
-    Ser -- "Sinkronisasi Model Klien" --> St
-    St -- "Trigger Re-Render Patching Virtual" --> U
-```
-Kerumitan beban kerja di siklus DFD asimetris mendemonstrasikan bahwa skrip di belakang layar tidak cukup diringkas, tetapi memang butuh untuk disingkirkan prioritas muatannya dari benang utama peramban *browser* guna menghindari stagnasi respon inisial, yang mana menjadi pembenatan di penelitian ini untuk menyisipkan *Lazy Load*.
+<div align="center">
+  <img src="./images/mermaid_2.png" alt="Diagram Alir Komunikasi State Management Berbasis Pinia" width="550" />
+  <br>
+  <i>Gambar 2.2 Arus Transmisi Data Status Asinkronus pada Aplikasi.</i>
+</div>
+Kerumitan beban perulangan pemanggilan (*payload event*) di siklus DFD asimetris mendemonstrasikan signifikansi prioritas alokasi modul proses peramban. Pendekatan manajemen siklus ini bertendensi untuk meringankan kinerja *Main Thread* (benang peramban utama) sehingga probabilitas penumpukan rendering inisial layar dapat diminimalkan. Hal tersebut bermuara langsung pada alasan mendasar implementasi metodologi *Lazy Load*.
 
 ## 2.4 Instrumen Pengumpulan Data (W3C Algoritma *Tracker*)
-Dalam penelitian ini, kita sengaja menghindari penggunaan ekstensi pihak ketiga seperti Google Lighthouse atau GTMetrix. Mengapa demikian? Alat-alat eksternal seringkali membawa "beban bawaan" (*Observer Effect*). Artinya, ketika ekstensi tersebut digunakan pada perangkat dengan spesifikasi rendah, alat tersebut justru mengonsumsi RAM dan CPU tambahan yang membuat hasil pengukurannya menjadi lebih lambat dari kondisi aslinya.
+Dalam penelitian ini, tidak direkomendasikan penggunaan fitur rekam analitik pihak ketiga semacam piranti Google Lighthouse atau GTMetrix. Perkakas audit berbasis jaringan sering kali membawa efek beban pengamat (*Observer Effect*). Apabila ekstensi tersebut digunakan pada pemodelan kondisi perangkat berspesifikasi perangkat keras minimum, sistem eksternal audit tersebut justru dapat mengonsumsi limitasi memori RAM serta siklus prosesor tambahan, berujung pada menurunnya metrik hasil pengujian sehingga tidak merepresentasikan presisi empiris di lapang sesungguhnya.
 
-Sebagai gantinya, penelitian ini menciptakan sebuah skrip pelacak mandiri (*Tracker*) menggunakan fitur standar bawaan dari peramban (*browser*) itu sendiri, yaitu `PerformanceObserver` berbasis standar W3C. Sederhananya, metode ini mengizinkan peramban mencatat sendiri seberapa cepat ia menampilkan halaman dan di titik mana ia merasa "tersendat", selayaknya seorang atlet yang menekan sendiri *stopwatch*-nya saat berlari tanpa harus direpotkan oleh beban monitor tambahan. 
+Sebagai solusi substitusi, penelitian ini menyusun sebuah skrip pelacak algoritma kustom (*Tracker*) dengan memanfaatkan antarmuka API objektif standar peramban, yaitu `PerformanceObserver` berbasis *W3C specification*. Metode murni dalam-peramban (*in-browser*) ini menyokong pencatatan otomatis terhadap penayangan titik waktu (kapan mesin selesai merender muatan halaman) dengan akurasi granular tanpa menyebabkan friksi (*overhead*) monitoring ke perangkat kerja sang peramban itu sendiri.
 
 Alur kerja instrumen pelacakan ini dapat digambarkan melalui diagram berikut:
 
-```mermaid
-graph TD
-    Start("Aplikasi Web Berjalan") --> Inject("Menyuntikkan Skrip Tracker (PerformanceObserver)")
-    Inject --> Listen("Memantau Aktivitas Rendering di Balik Layar")
-    Listen --> HitungA("Mencatat FCP (Waktu Tampil Pertama)")
-    Listen --> HitungB("Mencatat LCP (Waktu Tampil Utuh)")
-    Listen --> HitungC("Mengakumulasi TBT (Waktu Layar Membeku)")
-    HitungA --> Kumpul("Mengumpulkan Data JSON")
-    HitungB --> Kumpul
-    HitungC --> Kumpul
-    Kumpul --> Cetak("Menyimpan Hasil Kinerja")
-```
+<div align="center">
+  <img src="./images/mermaid_3.png" alt="Alur Eksekusi Instrumen Pelacakan API Peramban" width="550" />
+  <br>
+  <i>Gambar 2.3 Struktur Penangkapan Algoritma Pelacakan Kelambatan Resolusi Layar.</i>
+</div>
 
 Berikut adalah contoh potongan pemograman skrip yang bekerja merekam data di latar belakang:
 ```javascript
@@ -87,28 +60,22 @@ const paintObserver = new PerformanceObserver((list) => {
 });
 paintObserver.observe({ type: 'paint', buffered: true });
 ```
-Skrip otomatis ini ditanamkan di baris paling awal pada sistem SIMTA. Tujuannya agar ia selalu "bangun" lebih dulu dan siap memanen keempat metrik utama (*FCP*, *LCP*, akumulasi kelambatan *TBT*, dan volume Jejak Memori RAM) secara mandiri.
+Skrip observasi ini dieksekusi secara primer pada urutan paling awal sebelum lapisan SPA SIMTA terinisialisasi. Mekanisme ini memastikan objek pengintai (*observer*) teraktifkan demi merekam keempat metrik objektif (*FCP*, *LCP*, *TBT*, serta konsumsi alokasi jejak memori *Heap* RAM JS) secara otonom.
 
 ## 2.5 Perumusan Skenario Pengujian (*Stress-Tests*)
-Untuk melihat seberapa hebat efek dari teknik pemecahan kode ganda (Optimasi SPA) ini, pengujian tidak boleh hanya dilakukan dalam kondisi internet lancar dan komputer perancang yang super cepat. Dampak kemacetan lalu-lintas data (*Bundle Bloat*) justru baru terasa menyiksa ketika aplikasi dibuka pada perangkat keras yang biasa-biasa saja.
+Keterandalan dari evaluasi teknik kompilasi asinkron (Optimasi SPA) sangat bergantung pada disparitas kondisi pengujian. Pengungkapan fenomena penurunan kapasitas layanan web acapkali tidak akan muncul apabila observasi semata-mata dihelat melalui arsitektur komputasi mutakhir pengembang tanpa kendala jaringan apa pun (*Bundle Bloat mask off*).
 
-Oleh karena itu, penelitian ini merancang dua skenario simulasi pengujian secara otomatis dengan menggunakan kepanjangan tangan dari bot peramban otomatis (*Puppeteer Headless Node.js*):
+Atas dasar argumentasi tersebut, kerangka penelitian meramu dua desain komparasi simulasi beban pengujian yang dieksekusi sekuensial dan konsisten menggunakan pustaka otomasi web nir-antarmuka (*Puppeteer Headless Browser Node.js*):
 
-1. **Skenario Optimal (Kondisi Ideal sebagai Acuan Dasar):** Skenario ini diuji murni dari komputer peladen (server) milik pengembang tanpa adanya perlakuan hambatan atau gangguan apapun (skor nol absolut). Skenario ini mengukur batasan laju terbaik yang mampu dicapai arsitektur web bila mesin klien punya spesifikasi kelas atas.
-2. **Skenario Emulasi Perangkat Terbatas (*4x CPU Slowdown*):** Skenario inilah yang menjadi medan pertempuran pembuktian sesungguhnya. Mesin peramban dikontrol secara paksa dari luar untuk memangkas atau "mencekik" kekuatan kinerja prosesornya sehingga menjadi 4 kali lipat lebih melambat dari biasanya. Skenario penderitaan ini sengaja dijatuhkan guna meniru secara nyata nasib mahasiswa reguler yang barangkali mengakses sistem akademik kampus dari gawai (*smartphone*) keluaran lama yang spesifikasinya tertinggal. 
+1. **Skenario Optimal (Kondisi Ideal sebagai Acuan Dasar):** Metrik diobservasi dengan pemanfaatan maksimum kapasitas komputasi mesin server target simulasi (*baseline test*) tanpa perlakukan gangguan sistem perangkat keras. Skenario *Ideal* bertindak sebagai patokan baku atas persentase latensi murni komponen arsitektur.
+2. **Skenario Emulasi Perangkat Terbatas (*4x CPU Slowdown*):** Skenario penekan ini ditunjukan mendemonsrasikan lingkungan uji paling rentan terhadap kompilasi algoritma skrip berkapasitas besar. Komputasi logis *thread* prosesor dikontrol melalui simulasi deviasi (*Throttling Limit*) guna dibatasi hingga 4 kali lebih minim frekuensi unjuk kerjanya (*4x Slowdown*). Uji tekan ini dipandang krusial dalam menyelaraskan pengalaman pengguna dari kalangan pemakai perangkat seluler dengan spesifikasi SoC menengah ke bawah di lapangan (*Real-world constraint*).
 
-Alur simulasi untuk kedua skenario di atas berjalan secara robotik mengikuti diagram *flowchart* berikut:
+Alur simulasi otomasi komputasi terpusat mengekskusi interaksi dengan struktur logis *flowchart* berikut:
 
-```mermaid
-graph TD
-    Persiapan("Pilih Mode Pengujian (Baseline vs Optimized)") --> Skenario{"Tentukan Skenario Lingkungan?"}
-    Skenario -- "Skenario 1 (Kondisi Ideal)" --> Normal("Memacu Mesin Secara Maksimal Tanpa Batasan")
-    Skenario -- "Skenario 2 (CPU Telat 4x)" --> Lemot("Mencekik Kapasitas Prosesor Hingga 4x Lebih Lambat")
-    Normal --> Navigasi("Menjalankan Bot Mandiri Untuk Mengunjungi Web")
-    Lemot --> Navigasi
-    Navigasi --> Rekam("Tracker Mengobservasi Metrik Layar FCP & TBT")
-    Rekam --> Screenshot("Mesin Bot Menekan Tombol Screenshot Otomatis")
-    Screenshot --> Selesai("Arsip Hasil Metrik ke Folder Pengukuran JSON")
-```
+<div align="center">
+  <img src="./images/mermaid_4.png" alt="Alur Logika Pengujian Otomasi dengan Batasan Hardware" width="550" />
+  <br>
+  <i>Gambar 2.4 Alur Diagram Eksekusi Puppeteer dalam Skenario Normal & Throttling Limit.</i>
+</div>
 
-Dengan mengutus bot otomatis ini (*Puppeteer automation*), kita mampu melenyapkan unsur kesalahan atau jeda reaksi (bias gerak) dari sentuhan tangan manusia. Mesin bot dipastikan me-klik tautan pada fraksi waktu milidetik yang presisi sama persis secara berulang-ulang dari skenario satu ke skenario kedua.
+Melimpahkan kendali pengarahan navigasi melalui arsitektur perangkat lunak otomatis (*Puppeteer API*), faktor ketidakakuratan dan rentang deviasi respons akibat anomali reaksi subjek manusiawinya (efek *human-error bias*) dapat dinihilkan sepenuhnya dari rentetan iterasi penelitian. Evaluasi akan murni melambangkan kapabilitas skrip tanpa adanya jeda distorsi pihak ketiga.

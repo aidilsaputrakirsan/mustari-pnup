@@ -1,0 +1,9 @@
+{
+  "Variant": "Company Profile - Optimized",
+  "FCP_ms": 380,
+  "LCP_ms": 380,
+  "TBT_ms": 0,
+  "LoadTime_ms": 49,
+  "MemoryUsed_MB": "1.89",
+  "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+}
