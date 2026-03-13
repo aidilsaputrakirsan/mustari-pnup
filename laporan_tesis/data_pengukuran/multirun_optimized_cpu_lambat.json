@@ -1,0 +1,47 @@
+[
+  {
+    "Variant": "Optimized (Lazy Load + Split)",
+    "FCP_ms": 1212,
+    "LCP_ms": 1212,
+    "TBT_ms": 863,
+    "LoadTime_ms": 1160,
+    "MemoryUsed_MB": "4.78",
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+  },
+  {
+    "Variant": "Optimized (Lazy Load + Split)",
+    "FCP_ms": 1140,
+    "LCP_ms": 1140,
+    "TBT_ms": 721,
+    "LoadTime_ms": 986,
+    "MemoryUsed_MB": "4.97",
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+  },
+  {
+    "Variant": "Optimized (Lazy Load + Split)",
+    "FCP_ms": 1200,
+    "LCP_ms": 1200,
+    "TBT_ms": 805,
+    "LoadTime_ms": 1006,
+    "MemoryUsed_MB": "4.71",
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+  },
+  {
+    "Variant": "Optimized (Lazy Load + Split)",
+    "FCP_ms": 1172,
+    "LCP_ms": 1172,
+    "TBT_ms": 797,
+    "LoadTime_ms": 997,
+    "MemoryUsed_MB": "4.91",
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+  },
+  {
+    "Variant": "Optimized (Lazy Load + Split)",
+    "FCP_ms": 1188,
+    "LCP_ms": 1188,
+    "TBT_ms": 768,
+    "LoadTime_ms": 1010,
+    "MemoryUsed_MB": "5.09",
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+  }
+]
