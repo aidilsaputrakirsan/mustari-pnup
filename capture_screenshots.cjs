@@ -7,6 +7,12 @@ if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
+const PAGES = [
+    { name: 'dashboard',      hash: '#/',               label: 'Dashboard' },
+    { name: 'daftar_judul',   hash: '#/daftar-judul',   label: 'Daftar Judul' },
+    { name: 'jadwal_seminar', hash: '#/jadwal-seminar',  label: 'Jadwal Seminar' },
+];
+
 async function captureScreenshots() {
     console.log("Mulai mengambil screenshot bukti...");
     const browser = await puppeteer.launch({
@@ -17,13 +23,24 @@ async function captureScreenshots() {
     const page = await browser.newPage();
 
     try {
-        await page.goto('http://localhost:4001/index.baseline.html', { waitUntil: 'networkidle2' });
-        await page.screenshot({ path: path.join(OUTPUT_DIR, 'bukti_baseline.png') });
-        console.log("✅ Screenshot Baseline tersimpan.");
+        for (const p of PAGES) {
+            // Baseline
+            await page.goto(`http://localhost:4001/index.baseline.html${p.hash}`, { waitUntil: 'networkidle2' });
+            await page.screenshot({ path: path.join(OUTPUT_DIR, `bukti_baseline_${p.name}.png`) });
+            console.log(`✅ Baseline - ${p.label} tersimpan.`);
 
-        await page.goto('http://localhost:4002/index.optimized.html', { waitUntil: 'networkidle2' });
+            // Optimized
+            await page.goto(`http://localhost:4002/index.optimized.html${p.hash}`, { waitUntil: 'networkidle2' });
+            await page.screenshot({ path: path.join(OUTPUT_DIR, `bukti_optimized_${p.name}.png`) });
+            console.log(`✅ Optimized - ${p.label} tersimpan.`);
+        }
+
+        // Tetap simpan file lama (backward compat untuk gambar 3.2 & 3.3 yang sudah ada)
+        await page.goto('http://localhost:4001/index.baseline.html#/', { waitUntil: 'networkidle2' });
+        await page.screenshot({ path: path.join(OUTPUT_DIR, 'bukti_baseline.png') });
+
+        await page.goto('http://localhost:4002/index.optimized.html#/', { waitUntil: 'networkidle2' });
         await page.screenshot({ path: path.join(OUTPUT_DIR, 'bukti_optimized.png') });
-        console.log("✅ Screenshot Optimized tersimpan.");
 
     } catch (e) {
         console.log("Error mengambil screenshot:", e);
