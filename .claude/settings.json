@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(PYTHONIOENCODING=utf-8 python)",
+      "WebSearch",
+      "WebFetch(domain:ijcem.in)",
+      "WebFetch(domain:ideas.repec.org)",
+      "WebFetch(domain:www.researchgate.net)",
+      "WebFetch(domain:journal.ipm2kpe.or.id)",
+      "WebFetch(domain:www.ijsr.net)",
+      "Bash(PYTHONIOENCODING=utf-8 python -c ' *)"
+    ]
+  }
+}

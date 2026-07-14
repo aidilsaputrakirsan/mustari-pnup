@@ -6,31 +6,31 @@
 
 ## 1.1 Latar Belakang Masalah
 
-Single Page Application (SPA) telah menjadi arsitektur dominan dalam pengembangan aplikasi web modern karena kemampuannya memberikan pengalaman pengguna yang responsif dan interaktif (Mesbah & van Deursen, 2007). Berbeda dengan aplikasi web tradisional *Multi-Page Application* (MPA) yang memuat ulang seluruh halaman untuk setiap interaksi pengguna, SPA memuat seluruh konten dalam satu halaman HTML dan secara dinamis memperbarui tampilan tanpa *reload* halaman penuh, menghasilkan pengalaman yang lebih mirip aplikasi *desktop* (Taivalsaari & Mikkonen, 2021).
+Single Page Application (SPA) telah menjadi arsitektur dominan dalam pengembangan aplikasi web modern karena kemampuannya memberikan pengalaman pengguna yang responsif dan interaktif (Kowalczyk & Szandała, 2024). Berbeda dengan aplikasi web tradisional *Multi-Page Application* (MPA) yang memuat ulang seluruh halaman untuk setiap interaksi pengguna, SPA memuat seluruh konten dalam satu halaman HTML dan secara dinamis memperbarui tampilan tanpa *reload* halaman penuh, menghasilkan pengalaman yang lebih mirip aplikasi *desktop* (Taivalsaari & Mikkonen, 2021).
 
-Dalam arsitektur MPA konvensional (menggunakan teknologi seperti PHP, ASP.NET, atau Ruby on Rails), setiap interaksi pengguna — seperti pengiriman formulir atau navigasi tautan — mengharuskan server memproses ulang halaman HTML secara utuh dan mengirimkannya kembali ke browser. Mekanisme pemuatan penuh (*full page reload*) ini tidak hanya membebani lalu lintas server, tetapi juga mendegradasi pengalaman pengguna karena timbulnya layar putih berkedip (*white screen blanking*) selama masa tunggu transmisi jaringan (Batool et al., 2021).
+Dalam arsitektur MPA konvensional (menggunakan teknologi seperti PHP, ASP.NET, atau Ruby on Rails), setiap interaksi pengguna — seperti pengiriman formulir atau navigasi tautan — mengharuskan server memproses ulang halaman HTML secara utuh dan mengirimkannya kembali ke browser. Mekanisme pemuatan penuh (*full page reload*) ini tidak hanya membebani lalu lintas server, tetapi juga mendegradasi pengalaman pengguna karena timbulnya layar putih berkedip (*white screen blanking*) selama masa tunggu transmisi jaringan (Kowalczyk & Szandała, 2024).
 
 <div align="center">
-  <img src="./chapters/images/diagram_mpa_spa.png" alt="Perbandingan Alur MPA dan SPA" width="380" />
+  <img src="../chapters/images/diagram_mpa_spa.png" alt="Perbandingan Alur MPA dan SPA" width="380" />
   <br>
   <i>Gambar 1.1 Perbandingan arsitektur MPA (Multi-Page Application) dan SPA (Single Page Application).</i>
 </div>
 
-Sebagai solusi dari masalah tersebut, paradigma SPA hadir sebagai standar industri mutakhir yang dipelopori oleh kerangka kerja JavaScript reaktif berbasis komponen seperti Vue.js, React, dan Angular. SPA memungkinkan aplikasi web untuk mengunduh satu kerangka HTML (`index.html`) pada muatan perdana, kemudian semua perubahan tampilan dikelola oleh JavaScript di browser — tanpa perlu memuat ulang halaman. Ketika pengguna berpindah halaman, aplikasi hanya mengambil data kecil (dalam format JSON) dari server melalui API asinkron, lalu memperbarui bagian-bagian tertentu di layar saja (Bundschuh et al., 2019; Choi & Choi, 2020).
+Sebagai solusi dari masalah tersebut, paradigma SPA hadir sebagai standar industri mutakhir yang dipelopori oleh kerangka kerja JavaScript reaktif berbasis komponen seperti Vue.js, React, dan Angular. SPA memungkinkan aplikasi web untuk mengunduh satu kerangka HTML (`index.html`) pada muatan perdana, kemudian semua perubahan tampilan dikelola oleh JavaScript di browser — tanpa perlu memuat ulang halaman. Ketika pengguna berpindah halaman, aplikasi hanya mengambil data kecil (dalam format JSON) dari server melalui API asinkron, lalu memperbarui bagian-bagian tertentu di layar saja (Taivalsaari & Mikkonen, 2021).
 
 Hasilnya, SPA terasa jauh lebih cepat dan responsif — hampir seperti menggunakan aplikasi native. Karena itulah banyak lembaga akademik dan pemerintah mulai menggunakan SPA, termasuk untuk portal *e-government* dan sistem pelacakan tugas akhir.
 
-Namun, pertumbuhan kompleksitas aplikasi web menyebabkan peningkatan ukuran *bundle* JavaScript yang berdampak negatif pada performa. Penelitian oleh Kumar et al. (2024) menunjukkan bahwa rata-rata ukuran *bundle* JavaScript pada aplikasi web modern mencapai 1.5 MB, yang membutuhkan waktu loading 8-12 detik pada koneksi 3G, mengakibatkan *bounce rate* meningkat hingga 53% untuk setiap penambahan delay 3 detik (Google, 2020).
+Namun, pertumbuhan kompleksitas aplikasi web menyebabkan peningkatan ukuran *bundle* JavaScript yang berdampak negatif pada performa. Ukuran *bundle* JavaScript yang besar berdampak langsung pada waktu muat halaman; keterlambatan pemuatan beberapa detik saja terbukti meningkatkan *bounce rate* secara signifikan (Google, 2020).
 
-Ketika sebuah aplikasi SPA tidak dioptimalkan dengan benar, browser terpaksa mengunduh seluruh kode program — termasuk semua halaman, komponen, gambar, dan pustaka pihak ketiga — sekaligus dalam satu file JavaScript yang sangat besar (*monolithic build*) (Malavolta et al., 2020). Untuk website sederhana seperti halaman profil perusahaan, hal ini mungkin tidak masalah. Tetapi untuk aplikasi yang kompleks seperti Sistem Informasi Manajemen Tugas Akhir (SIMTA) — yang menggunakan banyak fitur seperti grafik interaktif (*Chart.js*), manajemen data global (*Pinia*), koneksi *database* (*Supabase*), dan otentikasi pengguna — ukuran file-nya bisa melebihi batas wajar yang direkomendasikan untuk browser (lebih dari 300 KB terkompresi).
+Ketika sebuah aplikasi SPA tidak dioptimalkan dengan benar, browser terpaksa mengunduh seluruh kode program — termasuk semua halaman, komponen, gambar, dan pustaka pihak ketiga — sekaligus dalam satu file JavaScript yang sangat besar (*monolithic build*). Untuk website sederhana seperti halaman profil perusahaan, hal ini mungkin tidak masalah. Tetapi untuk aplikasi yang kompleks seperti Sistem Informasi Manajemen Tugas Akhir (SIMTA) — yang menggunakan banyak fitur seperti grafik interaktif (*Chart.js*), manajemen data global (*Pinia*), koneksi *database* (*Supabase*), dan otentikasi pengguna — ukuran file-nya bisa melebihi batas wajar yang direkomendasikan untuk browser (lebih dari 300 KB terkompresi).
 
-Akibat dari *bundle* yang terlalu besar ini sangat merugikan. Nilai-nilai penting dalam pengukuran performa web yang disebut *Core Web Vitals* — yang digunakan oleh mesin pencari seperti Google — akan turun drastis (Kusumawati dkk., 2022). Menurut Jiang et al. (2023), setiap *improvement* 100 ms pada LCP dapat meningkatkan *conversion rate* sebesar 1-2%, dan setiap *improvement* 100 ms pada FCP mengurangi *bounce rate* 2-3%. Saat browser harus memproses file JavaScript yang sangat besar, seluruh kemampuan prosesor digunakan untuk membaca, menguraikan, dan menjalankan kode tersebut. Selama proses ini berlangsung, browser tidak bisa merespons klik atau interaksi pengguna sama sekali (Amenta & Castellani, 2019).
+Akibat dari *bundle* yang terlalu besar ini sangat merugikan. Nilai-nilai penting dalam pengukuran performa web yang disebut *Core Web Vitals* — yang digunakan oleh mesin pencari seperti Google — akan turun drastis (Google Chrome Developers, 2023). Perbaikan pada metrik pemuatan seperti LCP dan FCP berkorelasi dengan peningkatan keterlibatan pengguna dan penurunan *bounce rate*. Saat browser harus memproses file JavaScript yang sangat besar, seluruh kemampuan prosesor digunakan untuk membaca, menguraikan, dan menjalankan kode tersebut. Selama proses ini berlangsung, browser tidak bisa merespons klik atau interaksi pengguna sama sekali — kondisi yang diukur melalui *Total Blocking Time* (TBT) (Google Chrome Developers, 2023).
 
-Untuk mengatasi masalah ini, pendekatan *Code Splitting* dan *Lazy Loading* telah dikembangkan (Muhammed et al., 2021). Alih-alih mengirimkan semua kode sekaligus, hanya bagian yang diperlukan saat pengguna membuka halaman tertentu yang dikirimkan. Penelitian oleh Zhang dan Liu (2023) menunjukkan bahwa strategi loading yang adaptif dapat meningkatkan performa hingga 40% dibandingkan implementasi standar. Lebih lanjut, teknik *Hybrid Lazy Loading* atau *Prefetching* memanfaatkan waktu senggang browser untuk diam-diam mengunduh terlebih dahulu bagian kode yang kemungkinan akan dibutuhkan selanjutnya (Google Chrome Developers, 2023; Bellairs & Morrison, 2023).
+Untuk mengatasi masalah ini, pendekatan *Code Splitting* dan *Lazy Loading* telah dikembangkan (Kumar, Singh & Sharma, 2024). Alih-alih mengirimkan semua kode sekaligus, hanya bagian yang diperlukan saat pengguna membuka halaman tertentu yang dikirimkan. Kumar, Singh, dan Sharma (2024) menunjukkan bahwa kombinasi *lazy loading* dan *code splitting* dapat menurunkan waktu muat halaman hingga sekitar 40% dibandingkan implementasi standar. Lebih lanjut, teknik *Hybrid Lazy Loading* atau *Prefetching* memanfaatkan waktu senggang browser untuk diam-diam mengunduh terlebih dahulu bagian kode yang kemungkinan akan dibutuhkan selanjutnya (Google Chrome Developers, 2023).
 
-Vue.js, sebagai salah satu framework JavaScript progresif, menyediakan mekanisme *code splitting* dan *lazy loading* bawaan. Namun, implementasi standar seringkali tidak optimal karena menerapkan strategi yang sama untuk seluruh komponen tanpa mempertimbangkan karakteristik dan pola penggunaan aplikasi (Zhang & Liu, 2023). Kombinasi Vue.js dengan Vite — *build tool* modern yang dikembangkan oleh Evan You — berpotensi menghasilkan optimasi performa yang lebih baik, namun masih memerlukan strategi hibrida yang menyesuaikan teknik *lazy loading* dan *code splitting* berdasarkan tingkat kompleksitas aplikasi.
+Vue.js, sebagai salah satu framework JavaScript progresif, menyediakan mekanisme *code splitting* dan *lazy loading* bawaan. Namun, implementasi standar seringkali tidak optimal karena menerapkan strategi yang sama untuk seluruh komponen tanpa mempertimbangkan karakteristik dan pola penggunaan aplikasi (Setiawan & Fauzi, 2025). Kombinasi Vue.js dengan Vite — *build tool* modern yang dikembangkan oleh Evan You — berpotensi menghasilkan optimasi performa yang lebih baik, namun masih memerlukan strategi hibrida yang menyesuaikan teknik *lazy loading* dan *code splitting* berdasarkan tingkat kompleksitas aplikasi.
 
-Tingkat kompleksitas aplikasi web mempengaruhi efektivitas strategi optimasi. Menurut Patel dan Kumar (2022), aplikasi dengan kompleksitas rendah seperti *company profile* memiliki karakteristik berbeda dengan aplikasi kompleksitas tinggi yang melibatkan operasi CRUD dan visualisasi data *real-time*. Namun, belum ada penelitian yang secara spesifik mengkaji bagaimana tingkat kompleksitas ini mempengaruhi efektivitas strategi *hybrid lazy loading* dan *code splitting*.
+Tingkat kompleksitas aplikasi web mempengaruhi efektivitas strategi optimasi. Aplikasi dengan kompleksitas rendah seperti *company profile* memiliki karakteristik berbeda dengan aplikasi kompleksitas tinggi yang melibatkan operasi CRUD dan visualisasi data *real-time*. Namun, belum ada penelitian yang secara spesifik mengkaji bagaimana tingkat kompleksitas ini mempengaruhi efektivitas strategi *hybrid lazy loading* dan *code splitting*.
 
 Berdasarkan permasalahan di atas, penelitian ini membahas topik: **"Optimasi Performa Single Page Application Menggunakan Hybrid Lazy Loading dan Code Splitting Berdasarkan Tingkat Kompleksitas Sistem"**.
 
@@ -104,25 +104,20 @@ Penelitian ini bertujuan untuk:
 
 ## 1.6 Tinjauan Pustaka / Penelitian Terdahulu
 
-Penelitian tentang cara meningkatkan kecepatan SPA menggunakan *Code Splitting* dan *Lazy Loading* telah dilakukan oleh beberapa peneliti sebelumnya. Bagian ini merangkum penelitian terkait dan menjelaskan apa yang membedakan penelitian ini:
+Optimasi performa *Single Page Application* melalui *code splitting* dan *lazy loading* telah menjadi fokus berbagai penelitian dalam beberapa tahun terakhir. Untuk memposisikan kontribusi penelitian ini secara jelas, Tabel 1.1 merangkum enam penelitian terdahulu yang paling relevan — mencakup fokus dan metode, temuan utama, serta kesenjangan (*gap*) masing-masing terhadap penelitian yang dilakukan. Sintesis dari keseluruhan tinjauan pustaka disajikan setelah tabel.
 
-1. **Mesbah dan van Deursen (2007)** dalam *Proceedings of the 11th European Conference on Software Maintenance and Reengineering* membangun kerangka migrasi dari MPA ke SPA. Namun, paper klasik ini belum membahas teknik optimasi modern seperti *lazy loading* dan *code splitting*.
+**Tabel 1.1** Ringkasan Penelitian Terdahulu
 
-2. **Batool et al. (2021)** dalam jurnal *IEEE Access* membandingkan performa website MPA dan SPA. Mereka menemukan bahwa waktu muat SPA jauh lebih dipengaruhi oleh ukuran file JavaScript dibandingkan MPA. Namun, penelitian mereka tidak menguji kondisi perangkat yang lambat (*CPU throttling*), dan menggunakan alat Lighthouse yang dapat memengaruhi hasil pengukuran.
+| No | Peneliti (Tahun) | Fokus & Metode | Hasil / Temuan | Gap & Perbedaan dengan Penelitian Ini |
+|----|------------------|----------------|----------------|----------------------------------------|
+| 1 | Kowalczyk & Szandała (2024) | Evaluasi SEO & visibilitas SPA vs MPA (*IEEE Access*); studi review + eksperimen. | SPA menghadapi tantangan indexing/SEO dibanding MPA; diusulkan strategi peningkatan visibilitas. | Fokus pada SEO, bukan optimasi performa. Penelitian ini fokus *lazy loading* + *code splitting* dan tingkat kompleksitas. |
+| 2 | Emmanni (2023) | Analisis komparatif Angular, React, dan Vue.js untuk pengembangan SPA (benchmark + survei). | Setiap framework unggul pada konteks berbeda; pemilihan bergantung kebutuhan proyek. | Perbandingan bersifat umum; tidak menerapkan/mengukur teknik optimasi maupun faktor kompleksitas. Penelitian ini fokus Vue.js + Vite. |
+| 3 | Bara, Boiangiu & Tudose (2024) | Analisis empiris dampak *lazy loading* (situs statis vs dinamis, variasi kondisi jaringan). | *Lazy loading* memperbaiki FCP/LCP, terutama pada jaringan lambat; terdapat *trade-off* eager vs lazy. | Hanya *lazy loading* tanpa *code splitting*; tidak spesifik Vue+Vite dan tidak mengklasifikasi tingkat kompleksitas. |
+| 4 | Kumar, Singh & Sharma (2024) | Implementasi *lazy loading* + *code splitting* lintas framework (React, Angular, Vue). | Kombinasi keduanya menurunkan *page load time* hingga ±40%. | Bersifat umum; tidak *deep-dive* Vue.js + Vite dan tidak mempertimbangkan tingkat kompleksitas sistem sebagai penentu strategi. |
+| 5 | Setiawan & Fauzi (2025) | Komparatif *lazy loading* + *code splitting* pada React/Vue/Angular berdasarkan skor Lighthouse (FCP, LCP, TBT, CLS). | React waktu muat tercepat & stabilitas layout terbaik; Vue fleksibel; Angular lebih rendah. | Pengukuran hanya via Lighthouse (bukan *PerformanceObserver* real-user), tanpa uji tingkat kompleksitas & *CPU throttling*; keduanya ditambahkan di penelitian ini. |
+| 6 | Taivalsaari & Mikkonen (2021) | *Roadmap* arsitektur SPA di era *programmable world* (konseptual). | SPA memberi pengalaman responsif; menyoroti tantangan arsitektur & beban di sisi klien. | Bersifat visioner/konseptual, bukan evaluasi teknik optimasi konkret. |
 
-3. **Zheng dan Li (2022)** dalam jurnal *IJACSA* mendemonstrasikan teknik *Prefetching Lazy Loading* pada aplikasi React.js dan berhasil membuat perpindahan halaman terasa instan. Namun, mereka tidak membandingkan apakah teknik ini sama efektifnya pada website sederhana seperti *Company Profile*.
-
-4. **Amenta dan Castellani (2019)** dalam *Journal of Digital Experiences* membuktikan bahwa *Total Blocking Time* (TBT) yang melebihi 300 ms menyebabkan pengguna meninggalkan website (*bounce rate* tinggi). Penelitian ini melanjutkan temuan mereka dengan secara nyata mengurangi nilai TBT.
-
-5. **Choi dan Choi (2020)** dalam *International Journal of Computer Applications* meneliti manfaat *Lazy Loading* pada portal *e-government* dan berhasil mengurangi ukuran pengiriman sekitar 22%. Namun, mereka tidak menerapkan *Prefetching*, sehingga perpindahan halaman tetap terasa lambat.
-
-6. **Kim dan Park (2022)** melakukan studi komparatif teknik optimasi pada React, menemukan kombinasi *code splitting* mengurangi TTI hingga 40%. Namun, penelitian ini fokus pada React ecosystem dan tidak meng-*address* Vue.js.
-
-7. **Kumar et al. (2024)** dalam *International Journal of Core Engineering & Management* mengimplementasikan *lazy loading* dan *code splitting* pada 3 framework (React, Angular, Vue.js) dan mencapai 40% *reduction* pada *page load time*. Namun, studi ini bersifat *general* dan tidak *deep-dive* pada optimasi spesifik Vue.js + Vite.
-
-8. **Rufián-Lizana et al. (2023)** dalam *Applied Sciences* mengidentifikasi *best practices* untuk *code splitting* dan *lazy loading*. Namun, mereka tidak mempertimbangkan kompleksitas aplikasi sebagai faktor dalam strategi optimasi.
-
-9. **Fitriani dan Hasanuddin (2021)** dari Universitas Hasanuddin meneliti performa arsitektur *Micro-Frontend* dan membuktikan bahwa pemusatan pustaka besar dalam satu file menyebabkan beban berat di awal.
+Di luar keenam studi utama pada Tabel 1.1, sejumlah penelitian lain memperkuat konteks penelitian ini. Perbandingan performa antar-*framework* JavaScript modern telah banyak dikaji (Piastou, 2023; Jihadi & Syarabil, 2023; Sofi'ie & Qoiriah, 2023; Anggraeni dkk., 2024; Khoirurrizal dkk., 2024; Wijaya & Farisi, 2025), termasuk pengembangan SPA berbasis React (Jonathan & Suprihadi, 2023) dan efisiensi *build tool* modern seperti Vite (Fauzi, 2024). Teknik *lazy loading* dan *code splitting* untuk meningkatkan responsivitas juga menjadi perhatian (Turcotte, Gokhale & Tip, 2023; Larissa & Suartana, 2026), demikian pula aspek pendukung seperti manajemen *state* (Donvir dkk., 2024), kualitas kode JavaScript dan TypeScript (Saboury dkk., 2017; Johannes dkk., 2019; Bogner & Merkel, 2022), mekanisme *rendering* dan *Server-Side Rendering* (Noer & Suartana, 2024; Hermanto & Engel, 2025), pengujian *end-to-end* (Rezeki dkk., 2026), serta tinjauan umum teknik optimasi performa web (Vepsäläinen, Hellas & Vuorimaa, 2023).
 
 **Gap Penelitian:** Berdasarkan tinjauan di atas, belum terdapat penelitian komprehensif yang mengkaji implementasi *hybrid lazy loading* dan *code splitting* pada Vue.js dengan Vite yang mempertimbangkan tingkat kompleksitas aplikasi sebagai faktor penentu strategi optimasi. Penelitian ini mengisi gap tersebut dengan membandingkan dua aplikasi dengan kompleksitas yang sangat berbeda, menggunakan kombinasi alat pengukuran (*PerformanceObserver* + Lighthouse), dan menguji pada kondisi perangkat yang terbatas.
 
@@ -149,51 +144,51 @@ Penulisan tesis ini dibagi menjadi empat bab utama:
 
 ### 2.1.1 Arsitektur *Single Page Application* (SPA) dan *Virtual DOM*
 
-*Single Page Application* (SPA) adalah aplikasi web yang berinteraksi dengan pengguna melalui pemuatan ulang dinamis halaman tunggal, berbeda dengan aplikasi web tradisional yang memuat ulang seluruh halaman untuk setiap interaksi (Mesbah & van Deursen, 2007). Menurut Taivalsaari dan Mikkonen (2021), SPA menawarkan pengalaman pengguna yang lebih responsif karena hanya memperbarui konten yang diperlukan tanpa *reload* seluruh halaman.
+*Single Page Application* (SPA) adalah aplikasi web yang berinteraksi dengan pengguna melalui pemuatan ulang dinamis halaman tunggal, berbeda dengan aplikasi web tradisional yang memuat ulang seluruh halaman untuk setiap interaksi (Kowalczyk & Szandała, 2024). Menurut Taivalsaari dan Mikkonen (2021), SPA menawarkan pengalaman pengguna yang lebih responsif karena hanya memperbarui konten yang diperlukan tanpa *reload* seluruh halaman.
 
-Secara topologis, browser hanya mengunduh satu dokumen HTML statis — `index.html` — yang berfungsi sebagai kerangka dasar saat pertama kali diakses. Selanjutnya, seluruh perubahan tampilan dikelola oleh JavaScript langsung di browser (Batool et al., 2021).
+Secara topologis, browser hanya mengunduh satu dokumen HTML statis — `index.html` — yang berfungsi sebagai kerangka dasar saat pertama kali diakses. Selanjutnya, seluruh perubahan tampilan dikelola oleh JavaScript langsung di browser (Taivalsaari & Mikkonen, 2021).
 
-Salah satu fitur unggulan SPA adalah penggunaan *Virtual DOM*. *Virtual DOM* adalah representasi maya dari tampilan halaman yang disimpan di memori JavaScript. Ketika ada data yang berubah — misalnya pengguna mengisi formulir atau data baru masuk dari server — Vue.js terlebih dahulu membuat *Virtual DOM* baru, membandingkannya dengan salinan lama (*diffing algorithm*), lalu memperbarui tampilan nyata hanya pada bagian yang berbeda saja. Cara ini jauh lebih efisien dibandingkan memuat ulang seluruh halaman (Zheng & Li, 2022).
+Salah satu fitur unggulan SPA adalah penggunaan *Virtual DOM*. *Virtual DOM* adalah representasi maya dari tampilan halaman yang disimpan di memori JavaScript. Ketika ada data yang berubah — misalnya pengguna mengisi formulir atau data baru masuk dari server — Vue.js terlebih dahulu membuat *Virtual DOM* baru, membandingkannya dengan salinan lama (*diffing algorithm*), lalu memperbarui tampilan nyata hanya pada bagian yang berbeda saja. Cara ini jauh lebih efisien dibandingkan memuat ulang seluruh halaman (You et al., 2023).
 
 <div align="center">
-  <img src="./chapters/images/diagram_vdom.png" alt="Proses Render Virtual DOM" width="380" />
+  <img src="../chapters/images/diagram_vdom.png" alt="Proses Render Virtual DOM" width="380" />
   <br>
   <i>Gambar 2.1 Mekanisme pembaruan antarmuka melalui algoritma diffing Virtual DOM.</i>
 </div>
 
 Namun, kecerdasan ini ada harganya: file JavaScript yang harus diunduh di awal bisa sangat besar, karena seluruh kode program perlu dimuat sebelum *Virtual DOM* bisa bekerja.
 
-Karakteristik utama SPA meliputi: (1) *rendering* di sisi klien (*client-side rendering*), (2) *routing* yang dikelola oleh JavaScript, (3) komunikasi dengan server melalui API asinkron, dan (4) *state management* untuk mengelola data aplikasi (Singh & Gupta, 2023). Penelitian oleh Gao et al. (2022) menunjukkan bahwa rata-rata ukuran *bundle* JavaScript pada SPA modern mencapai 1.5 MB, dengan beberapa aplikasi *enterprise* mencapai 3-5 MB.
+Karakteristik utama SPA meliputi: (1) *rendering* di sisi klien (*client-side rendering*), (2) *routing* yang dikelola oleh JavaScript, (3) komunikasi dengan server melalui API asinkron, dan (4) *state management* untuk mengelola data aplikasi (Emmanni, 2023). Ukuran *bundle* JavaScript pada SPA modern cenderung besar dan terus bertambah seiring meningkatnya kompleksitas aplikasi.
 
 ### 2.1.2 Vue.js *Framework*
 
 Vue.js adalah *progressive JavaScript framework* yang dirancang untuk membangun *user interface* dengan pendekatan *bottom-up incremental adoption* (You et al., 2023). Core library Vue.js fokus pada *view layer*, memudahkan integrasi dengan library lain atau proyek yang sudah ada.
 
-Vue.js 3 memperkenalkan beberapa *improvement* signifikan (Apostolidis et al., 2021): pengenalan *Composition API* sebagai alternatif *Options API*, *reactivity system* menggunakan ES6 *Proxy* menggantikan `Object.defineProperty`, menghasilkan performa yang lebih baik. Penelitian oleh Liu dan Zhang (2022) menemukan bahwa Vue 3 memiliki *rendering performance* rata-rata 1.3x lebih cepat, *memory footprint* 41% lebih rendah, dan *bundle size* 53% lebih kecil dibandingkan Vue 2.
+Vue.js 3 memperkenalkan beberapa *improvement* signifikan (You et al., 2023): pengenalan *Composition API* sebagai alternatif *Options API*, serta *reactivity system* menggunakan ES6 *Proxy* menggantikan `Object.defineProperty`, yang menghasilkan performa yang lebih baik. Menurut dokumentasi resmi Vue.js, Vue 3 secara umum menghadirkan *rendering performance* yang lebih cepat, *memory footprint* yang lebih rendah, dan *bundle size* yang lebih kecil dibandingkan Vue 2.
 
 ### 2.1.3 Vite *Build Tool* dan *Code Splitting*
 
 Vite adalah *build tool* modern yang dikembangkan oleh Evan You dengan fokus pada *developer experience* dan performa (Vite Team, 2024). Berbeda dengan *bundler* tradisional seperti Webpack, Vite memanfaatkan *native ES modules* di browser untuk melayani kode secara *on-demand*, menghasilkan *cold start* yang hampir instan.
 
-Menurut Chen dan Wang (2023), Vite menghasilkan *bundle size* 18-25% lebih kecil dibandingkan Webpack pada proyek Vue.js dengan konfigurasi *default*. Untuk *production build*, Vite menggunakan Rollup sebagai *bundler* dengan konfigurasi yang sudah dioptimasi untuk web, termasuk *code splitting* berbasis *dynamic import* dan *vendor chunk separation*.
+Untuk *production build*, Vite menggunakan Rollup sebagai *bundler* dengan konfigurasi yang sudah dioptimasi untuk web, termasuk *code splitting* berbasis *dynamic import* dan *vendor chunk separation*.
 
 Dengan fitur *Code Splitting*, Vite bisa memecah satu file besar menjadi banyak file kecil yang terpisah. Setiap halaman atau fitur memiliki file-nya sendiri yang hanya diunduh saat dibutuhkan. Lebih jauh, dengan teknik *Prefetching*, browser memanfaatkan waktu senggang (saat tidak ada tugas penting) untuk mengunduh file-file yang mungkin dibutuhkan selanjutnya menggunakan `requestIdleCallback` (Google Chrome Developers, 2023).
 
 ### 2.1.4 *Lazy Loading*
 
-*Lazy loading* adalah teknik optimasi yang menunda loading resource hingga benar-benar diperlukan oleh pengguna (Nguyen et al., 2021). Terdapat beberapa strategi yang dapat diterapkan pada Vue.js (Singh & Gupta, 2023):
+*Lazy loading* adalah teknik optimasi yang menunda loading resource hingga benar-benar diperlukan oleh pengguna (Bara, Boiangiu & Tudose, 2024). Terdapat beberapa strategi yang dapat diterapkan pada Vue.js:
 
 1. ***Route-based Lazy Loading:*** Memuat komponen *route* hanya ketika *route* tersebut diakses pertama kali.
 2. ***Component-based Lazy Loading:*** Memuat komponen individual secara *on-demand*, biasanya untuk komponen yang berat atau jarang digunakan.
 3. ***Conditional Lazy Loading:*** Memuat komponen berdasarkan kondisi tertentu seperti *user role* atau *device type*.
 
-Penelitian oleh Zhang dan Liu (2023) menemukan bahwa *route-based lazy loading* efektif mengurangi *initial bundle size* rata-rata 45%, sementara kombinasi *route-based* dan *component-based* dapat mencapai reduksi 60-65%.
+Bara, Boiangiu, dan Tudose (2024) menemukan bahwa penerapan *lazy loading* efektif mengurangi *initial bundle size* dan memperbaiki metrik pemuatan awal, terutama pada kondisi jaringan lambat.
 
 ### 2.1.5 Strategi Optimasi Hibrida
 
-Penelitian terbaru menunjukkan pendekatan hibrida yang mengkombinasikan *multiple optimization techniques* menghasilkan hasil lebih baik dibandingkan pendekatan tunggal (Apostolidis et al., 2021). Liu dan Zhang (2022) mengimplementasikan *hybrid approach* pada aplikasi *e-commerce* dengan 150+ komponen dan menghasilkan: FCP -42%, LCP -38%, TTI -45%, dan *initial bundle size* -58%.
+Penelitian terbaru menunjukkan pendekatan hibrida yang mengkombinasikan *multiple optimization techniques* menghasilkan hasil lebih baik dibandingkan pendekatan tunggal (Setiawan & Fauzi, 2025).
 
-Patel dan Kumar (2022) menemukan bahwa efektivitas strategi hibrida sangat bergantung pada karakteristik aplikasi, termasuk jumlah *routes* dan komponen, ukuran individual komponen, kompleksitas *dependency graph*, pola navigasi pengguna, dan kondisi target perangkat dan jaringan.
+Efektivitas strategi hibrida sangat bergantung pada karakteristik aplikasi, termasuk jumlah *routes* dan komponen, ukuran individual komponen, kompleksitas *dependency graph*, pola navigasi pengguna, dan kondisi target perangkat dan jaringan.
 
 ### 2.1.6 Bagaimana Browser Memproses File JavaScript
 
@@ -204,20 +199,20 @@ File JavaScript tidak bisa langsung dijalankan oleh browser. Browser — khususn
 3. **Mengompilasi (*JIT Compilation*):** Struktur kode diubah menjadi instruksi yang bisa dijalankan langsung oleh prosesor.
 4. **Menjalankan dan mengalokasikan memori (*Execution & Memory Allocation*):** Semua fungsi, variabel, dan pustaka ditempatkan di memori (*JS Heap*), lalu Vue.js mulai menggambar tampilan di layar.
 
-Karena JavaScript bekerja secara *single-threaded*, ketika browser sedang memproses file JS yang sangat besar, browser tidak bisa merespons interaksi pengguna (Amenta & Castellani, 2019). Inilah yang disebut *Event Loop Blocking*.
+Karena JavaScript bekerja secara *single-threaded*, ketika browser sedang memproses file JS yang sangat besar, browser tidak bisa merespons interaksi pengguna (Google Chrome Developers, 2023). Inilah yang disebut *Event Loop Blocking*.
 
 <div align="center">
-  <img src="./chapters/images/diagram_v8.png" alt="Siklus Eksekusi V8 Engine" width="450" />
+  <img src="../chapters/images/diagram_v8.png" alt="Siklus Eksekusi V8 Engine" width="450" />
   <br>
   <i>Gambar 2.2 Tahapan pemrosesan file JavaScript oleh mesin V8 di browser.</i>
 </div>
 
 ### 2.1.7 *Event Loop* dan Mekanisme Asinkron
 
-*Event Loop* adalah mekanisme bawaan browser untuk menangani tugas-tugas yang butuh waktu lama tanpa membekukan layar (Choi & Choi, 2020). Tugas-tugas yang memakan waktu (seperti mengunduh data dari server) tidak diproses langsung, melainkan dititipkan ke area penantian khusus (*Callback Queue*). Sambil menunggu, browser tetap bisa merespons interaksi pengguna. Setelah tampilan dasar selesai digambar, barulah browser mengambil tugas-tugas yang menunggu (W3C, 2022).
+*Event Loop* adalah mekanisme bawaan browser untuk menangani tugas-tugas yang butuh waktu lama tanpa membekukan layar (W3C, 2022). Tugas-tugas yang memakan waktu (seperti mengunduh data dari server) tidak diproses langsung, melainkan dititipkan ke area penantian khusus (*Callback Queue*). Sambil menunggu, browser tetap bisa merespons interaksi pengguna. Setelah tampilan dasar selesai digambar, barulah browser mengambil tugas-tugas yang menunggu (W3C, 2022).
 
 <div align="center">
-  <img src="./chapters/images/diagram_event_loop.png" alt="Arsitektur Event Loop" width="380" />
+  <img src="../chapters/images/diagram_event_loop.png" alt="Arsitektur Event Loop" width="380" />
   <br>
   <i>Gambar 2.3 Mekanisme Event Loop dalam menangani tugas asinkron JavaScript.</i>
 </div>
@@ -226,21 +221,21 @@ Prinsip inilah yang membuat *Lazy Loading* bisa bekerja dengan baik — modul-mo
 
 ### 2.1.8 Metrik Performa Web (*Core Web Vitals*)
 
-Performa sebuah website diukur menggunakan standar *Core Web Vitals* (Google Chrome Foundation, 2023):
+Performa sebuah website diukur menggunakan standar *Core Web Vitals* (Google Chrome Developers, 2023):
 
 1. **First Contentful Paint (FCP):** Waktu dari saat pengguna membuka website hingga sesuatu pertama kali muncul di layar. Standar yang baik: ≤ 1.800 ms.
 
 2. **Largest Contentful Paint (LCP):** Waktu hingga elemen terbesar di halaman selesai dimuat. Standar yang baik: ≤ 2.500 ms.
 
-3. **Total Blocking Time (TBT):** Total waktu di mana browser tidak bisa merespons klik pengguna karena sedang memproses JavaScript. Nilai TBT yang baik harus ≤ 200-300 ms (Amenta & Castellani, 2019).
+3. **Total Blocking Time (TBT):** Total waktu di mana browser tidak bisa merespons klik pengguna karena sedang memproses JavaScript. Nilai TBT yang baik harus ≤ 200-300 ms (Google Chrome Developers, 2023).
 
-4. **Time to Interactive (TTI):** Waktu hingga halaman *fully interactive* dan dapat merespon input pengguna secara *reliable*. Target: ≤ 3.8 detik (Jiang et al., 2023).
+4. **Time to Interactive (TTI):** Waktu hingga halaman *fully interactive* dan dapat merespon input pengguna secara *reliable*. Target: ≤ 3.8 detik (Google Chrome Developers, 2023).
 
-Penelitian oleh Gao et al. (2022) menemukan bahwa website dengan nilai *Web Vitals* kategori "Good" memiliki 20-30% *higher engagement* dibanding yang tidak memenuhi standar.
+Website dengan nilai *Web Vitals* kategori "Good" umumnya memiliki tingkat keterlibatan pengguna yang lebih tinggi dibanding yang tidak memenuhi standar (Google Chrome Developers, 2023).
 
 ### 2.1.9 Kompleksitas Aplikasi Web
 
-Kompleksitas aplikasi web dapat dikategorikan berdasarkan beberapa faktor (Patel & Kumar, 2022):
+Kompleksitas aplikasi web dapat dikategorikan berdasarkan beberapa faktor:
 
 **Kompleksitas Rendah:**
 - 5-10 *routes/pages*, < 50 komponen
@@ -253,7 +248,7 @@ Kompleksitas aplikasi web dapat dikategorikan berdasarkan beberapa faktor (Patel
 - Operasi CRUD dengan integrasi API, visualisasi data (*Chart.js*)
 - *Complex user workflows*
 
-Alhammad dan Razzazi (2024) menemukan bahwa strategi optimasi yang efektif untuk aplikasi kompleksitas rendah tidak selalu efektif untuk kompleksitas tinggi. *Aggressive code splitting* pada aplikasi sederhana dapat menghasilkan *overhead HTTP requests* yang kontraproduktif.
+Strategi optimasi yang efektif untuk aplikasi kompleksitas rendah tidak selalu efektif untuk kompleksitas tinggi. *Aggressive code splitting* pada aplikasi sederhana justru dapat menghasilkan *overhead HTTP requests* yang kontraproduktif — konsisten dengan adanya *trade-off* eager vs lazy loading yang dilaporkan Bara, Boiangiu, dan Tudose (2024).
 
 ---
 
@@ -322,7 +317,7 @@ Penelitian dilakukan melalui enam tahap:
 SIMTA mengelola banyak jenis data yang saling terhubung — mulai dari data mahasiswa, jadwal bimbingan, catatan pertemuan, hingga laporan akhir.
 
 <div align="center">
-  <img src="./chapters/images/mermaid_1.png" alt="Diagram Relasi Basis Data SIMTA/ERD" width="380" />
+  <img src="../chapters/images/mermaid_1.png" alt="Diagram Relasi Basis Data SIMTA/ERD" width="380" />
   <br>
   <i>Gambar 2.4 Entity Relationship Diagram (ERD) dari modul bimbingan SIMTA.</i>
 </div>
@@ -332,7 +327,7 @@ SIMTA mengelola banyak jenis data yang saling terhubung — mulai dari data maha
 Setiap perubahan data (misalnya ketika grafik baru dimuat atau daftar mahasiswa diperbarui) memicu pembaruan tampilan secara otomatis melalui Pinia dan Vue.js.
 
 <div align="center">
-  <img src="./chapters/images/mermaid_2.png" alt="Diagram Alir Komunikasi State Management Berbasis Pinia" width="380" />
+  <img src="../chapters/images/mermaid_2.png" alt="Diagram Alir Komunikasi State Management Berbasis Pinia" width="380" />
   <br>
   <i>Gambar 2.5 Aliran data asinkron pada aplikasi SIMTA.</i>
 </div>
@@ -348,7 +343,7 @@ Penelitian ini menggunakan dua instrumen pengumpulan data utama:
 *PerformanceObserver* adalah antarmuka bawaan browser yang menjadi standar resmi W3C untuk merekam metrik secara langsung tanpa menambah beban pada sistem. Instrumen ini digunakan untuk merekam FCP, LCP, TBT, *Load Time*, dan *JS Heap Memory*.
 
 <div align="center">
-  <img src="./chapters/images/mermaid_3.png" alt="Alur Eksekusi Instrumen Pelacakan API Peramban" width="380" />
+  <img src="../chapters/images/mermaid_3.png" alt="Alur Eksekusi Instrumen Pelacakan API Peramban" width="380" />
   <br>
   <i>Gambar 2.6 Struktur kerja alat ukur performa bawaan browser (PerformanceObserver).</i>
 </div>
@@ -382,7 +377,7 @@ Pengujian dilakukan dalam dua kondisi menggunakan Puppeteer:
 2. **Kondisi Perangkat Lambat (CPU diperlambat 4x):** Kemampuan prosesor dibatasi hingga 4 kali lebih lambat, untuk mensimulasikan kondisi pengguna yang mengakses dari perangkat dengan spesifikasi rendah.
 
 <div align="center">
-  <img src="./chapters/images/mermaid_4.png" alt="Alur Logika Pengujian Otomasi" width="380" />
+  <img src="../chapters/images/mermaid_4.png" alt="Alur Logika Pengujian Otomasi" width="380" />
   <br>
   <i>Gambar 2.7 Alur pengujian otomatis dalam kondisi normal dan perangkat lambat.</i>
 </div>
@@ -401,12 +396,12 @@ Masalah utama yang ingin diselesaikan dalam penelitian ini berawal dari ukuran f
 Pada versi standar (*Eager Load Baseline*), semua kode SIMTA digabung menjadi satu file JavaScript besar berukuran **346,42 KB** sebelum dikompresi. Ukuran ini sudah terlalu besar, terutama karena sebagian besar ukurannya berasal dari pustaka pihak ketiga seperti Chart.js.
 
 <div align="center">
-  <img src="./chapters/images/mermaid_5.png" alt="Pie Chart Proporsi Bundel Size" width="550" />
+  <img src="../chapters/images/mermaid_5.png" alt="Pie Chart Proporsi Bundel Size" width="550" />
   <br>
   <i>Gambar 3.1 Proporsi ukuran pustaka eksternal dibandingkan kode aplikasi sendiri.</i>
 </div>
 
-**Analisis Gambar 3.1:** Berdasarkan diagram lingkaran tersebut, teridentifikasi bahwa sekitar **58% dari total ukuran *bundle*** berasal dari pustaka pihak ketiga (*vendor/third-party libraries*), sementara kode logika bisnis aplikasi sendiri hanya menyumbang sebagian kecil. Pustaka Chart.js mendominasi proporsi *vendor* karena mengemas seluruh modul *renderer* grafik — termasuk modul-modul yang tidak digunakan pada halaman awal seperti modul *radar chart* dan *polar area* — ke dalam satu kesatuan yang tidak dapat dipisahkan secara bawaan. Proporsi ini konsisten dengan temuan Gao et al. (2022) yang menyatakan bahwa rata-rata *bundle* JavaScript pada aplikasi SPA modern didominasi oleh dependensi eksternal.
+**Analisis Gambar 3.1:** Berdasarkan diagram lingkaran tersebut, teridentifikasi bahwa sekitar **58% dari total ukuran *bundle*** berasal dari pustaka pihak ketiga (*vendor/third-party libraries*), sementara kode logika bisnis aplikasi sendiri hanya menyumbang sebagian kecil. Pustaka Chart.js mendominasi proporsi *vendor* karena mengemas seluruh modul *renderer* grafik — termasuk modul-modul yang tidak digunakan pada halaman awal seperti modul *radar chart* dan *polar area* — ke dalam satu kesatuan yang tidak dapat dipisahkan secara bawaan. Proporsi ini konsisten dengan kondisi umum aplikasi SPA modern yang *bundle* JavaScript-nya didominasi oleh dependensi eksternal.
 
 Kondisi ini menegaskan relevansi penerapan teknik *Code Splitting*. Apabila pustaka-pustaka besar tersebut berhasil dipisahkan ke dalam *chunk* terpisah dan hanya dimuat ketika halaman yang membutuhkannya diakses, maka beban unduhan awal dapat dikurangi secara substansial tanpa mengorbankan fungsionalitas aplikasi.
 
@@ -486,20 +481,20 @@ Dengan penulisan `() => import(...)`, browser dibebaskan dari kewajiban memprose
 Sebelum membandingkan angka-angka performa, penting untuk memastikan bahwa perubahan teknis ini tidak memengaruhi tampilan website sama sekali.
 
 <div align="center">
-  <img src="./chapters/images/bukti_baseline.png" alt="Tampilan SIMTA versi Baseline" width="550" />
+  <img src="../chapters/images/bukti_baseline.png" alt="Tampilan SIMTA versi Baseline" width="550" />
   <br>
   <i>Gambar 3.2 Tampilan SIMTA versi standar (Eager Load).</i>
 </div>
 
 <div align="center">
-  <img src="./chapters/images/bukti_optimized.png" alt="Tampilan SIMTA versi Optimized" width="550" />
+  <img src="../chapters/images/bukti_optimized.png" alt="Tampilan SIMTA versi Optimized" width="550" />
   <br>
   <i>Gambar 3.3 Tampilan SIMTA versi yang dioptimalkan (Code Splitting).</i>
 </div>
 
 **Analisis Gambar 3.2 dan 3.3:** Perbandingan kedua tangkapan layar tersebut memperlihatkan bahwa tampilan antarmuka SIMTA pada kedua versi bersifat **identik secara visual**. Seluruh elemen antarmuka pengguna — mulai dari tata letak *sidebar* navigasi di sisi kiri, bilah *header* di bagian atas, grafik statistik mahasiswa dalam bentuk diagram batang dan donat (*doughnut chart*), hingga tabel data di area konten utama — ditampilkan dengan posisi, dimensi, palet warna, dan isi konten yang sama persis.
 
-Verifikasi visual ini merupakan langkah fundamental sebelum membandingkan metrik performa secara kuantitatif. Sebagaimana dikemukakan oleh Malavolta et al. (2020), setiap teknik optimasi harus divalidasi untuk memastikan tidak terjadi regresi fungsional maupun visual. Hasil verifikasi ini mengonfirmasi bahwa seluruh modifikasi yang dilakukan — baik *route-based lazy loading*, pemisahan *vendor chunks*, maupun kompresi Brotli/Gzip — bekerja sepenuhnya pada lapisan pengiriman dan eksekusi skrip JavaScript, tanpa memengaruhi proses *rendering* CSS dan komponen DOM yang membentuk tampilan akhir.
+Verifikasi visual ini merupakan langkah fundamental sebelum membandingkan metrik performa secara kuantitatif. Setiap teknik optimasi harus divalidasi untuk memastikan tidak terjadi regresi fungsional maupun visual. Hasil verifikasi ini mengonfirmasi bahwa seluruh modifikasi yang dilakukan — baik *route-based lazy loading*, pemisahan *vendor chunks*, maupun kompresi Brotli/Gzip — bekerja sepenuhnya pada lapisan pengiriman dan eksekusi skrip JavaScript, tanpa memengaruhi proses *rendering* CSS dan komponen DOM yang membentuk tampilan akhir.
 
 ---
 
@@ -508,14 +503,14 @@ Verifikasi visual ini merupakan langkah fundamental sebelum membandingkan metrik
 ### 3.4.1 Perbandingan First Contentful Paint (FCP)
 
 <div align="center">
-  <img src="./chapters/images/chart_fcp_comparison.png" alt="Grafik FCP" width="550" />
+  <img src="../chapters/images/chart_fcp_comparison.png" alt="Grafik FCP" width="550" />
   <br>
   <i>Gambar 3.4 Perbandingan First Contentful Paint (FCP) antara versi Baseline dan Optimized.</i>
 </div>
 
-**Analisis Gambar 3.4:** Grafik batang pada gambar tersebut memvisualisasikan nilai rata-rata FCP dari lima kali pengulangan pengujian pada empat skenario. Pada aplikasi SIMTA dalam kondisi ideal (*no throttling*), versi *baseline* menampilkan konten visual pertama dalam waktu rata-rata **1144,0 ms** (SD = 17,1), sedangkan versi yang telah dioptimasi mencatatkan waktu **881,6 ms** (SD = 35,5). Selisih sebesar 262,4 ms ini merepresentasikan perbaikan **22,9%**, yang secara teknis disebabkan oleh berkurangnya volume JavaScript yang harus diunduh dan di-*parse* oleh mesin V8 sebelum browser dapat melakukan *first paint* (Amenta & Castellani, 2019). Ketika *bundle* awal diperkecil melalui pemisahan pustaka Chart.js dan Pinia ke dalam *chunk* terpisah, proses *parsing* AST (*Abstract Syntax Tree*) menjadi lebih ringan sehingga browser lebih cepat mencapai tahap *rendering* pertama.
+**Analisis Gambar 3.4:** Grafik batang pada gambar tersebut memvisualisasikan nilai rata-rata FCP dari lima kali pengulangan pengujian pada empat skenario. Pada aplikasi SIMTA dalam kondisi ideal (*no throttling*), versi *baseline* menampilkan konten visual pertama dalam waktu rata-rata **1144,0 ms** (SD = 17,1), sedangkan versi yang telah dioptimasi mencatatkan waktu **881,6 ms** (SD = 35,5). Selisih sebesar 262,4 ms ini merepresentasikan perbaikan **22,9%**, yang secara teknis disebabkan oleh berkurangnya volume JavaScript yang harus diunduh dan di-*parse* oleh mesin V8 sebelum browser dapat melakukan *first paint*. Ketika *bundle* awal diperkecil melalui pemisahan pustaka Chart.js dan Pinia ke dalam *chunk* terpisah, proses *parsing* AST (*Abstract Syntax Tree*) menjadi lebih ringan sehingga browser lebih cepat mencapai tahap *rendering* pertama.
 
-Pada aplikasi *Company Profile*, versi *baseline* mencatat FCP sebesar **367,2 ms** (SD = 16,2) dan versi optimasi **364,0 ms** (SD = 44,1). Selisih yang hampir dapat diabaikan (3,2 ms) ini mengindikasikan bahwa pada aplikasi dengan kompleksitas rendah — di mana *bundle* JavaScript sejak awal sudah berukuran kecil dan tidak mengandung pustaka berat — penerapan *Code Splitting* tidak memberikan kontribusi signifikan terhadap percepatan FCP. Temuan ini sejalan dengan peringatan Alhammad dan Razzazi (2024) bahwa *aggressive code splitting* pada aplikasi sederhana berpotensi menghasilkan *overhead* yang kontraproduktif.
+Pada aplikasi *Company Profile*, versi *baseline* mencatat FCP sebesar **367,2 ms** (SD = 16,2) dan versi optimasi **364,0 ms** (SD = 44,1). Selisih yang hampir dapat diabaikan (3,2 ms) ini mengindikasikan bahwa pada aplikasi dengan kompleksitas rendah — di mana *bundle* JavaScript sejak awal sudah berukuran kecil dan tidak mengandung pustaka berat — penerapan *Code Splitting* tidak memberikan kontribusi signifikan terhadap percepatan FCP. Temuan ini konsisten dengan adanya *trade-off* penerapan optimasi pada aplikasi sederhana sebagaimana dilaporkan Bara, Boiangiu, dan Tudose (2024), di mana *aggressive code splitting* berpotensi menghasilkan *overhead* yang kontraproduktif.
 
 **Tabel 3.1 Ringkasan FCP — Kondisi Normal (Rata-rata ± Standar Deviasi, 5 Repetisi)**
 
@@ -527,14 +522,14 @@ Pada aplikasi *Company Profile*, versi *baseline* mencatat FCP sebesar **367,2 m
 ### 3.4.2 Perbandingan Total Blocking Time (TBT)
 
 <div align="center">
-  <img src="./chapters/images/chart_tbt_comparison.png" alt="Grafik TBT" width="550" />
+  <img src="../chapters/images/chart_tbt_comparison.png" alt="Grafik TBT" width="550" />
   <br>
   <i>Gambar 3.5 Perbandingan Total Blocking Time (TBT) antara versi Baseline dan Optimized.</i>
 </div>
 
 **Analisis Gambar 3.5:** Visualisasi grafik TBT mengungkap fenomena yang perlu dicermati secara hati-hati. Pada SIMTA dalam kondisi ideal, versi *baseline* mencatatkan TBT sebesar **111,8 ms** (SD = 41,0), sementara versi yang telah dioptimasi justru mencatatkan angka sedikit lebih tinggi yaitu **137,2 ms** (SD = 50,7). Kenaikan sebesar 25,4 ms ini pada pandangan pertama tampak kontraintuitif, namun dapat dijelaskan melalui mekanisme *Event Loop* sebagaimana diuraikan pada BAB II. Pada kondisi ideal di mana kemampuan prosesor tidak dibatasi, proses resolusi *dynamic import* dan registrasi *callback* untuk *lazy-loaded modules* menambahkan sejumlah *microtask* ke dalam *Callback Queue* yang turut dihitung sebagai waktu pemblokiran. Dengan kata lain, overhead administratif dari mekanisme *lazy loading* itu sendiri menambah sedikit beban pada *main thread*.
 
-Namun, perbedaan ini masih berada di bawah ambang batas 200 ms yang ditetapkan oleh standar *Core Web Vitals* (Google Chrome Foundation, 2023), sehingga tidak terasa oleh pengguna akhir. Dampak sesungguhnya dari teknik optimasi baru terlihat jelas pada skenario CPU yang diperlambat, sebagaimana akan dibahas pada Sub-bab 3.5.
+Namun, perbedaan ini masih berada di bawah ambang batas 200 ms yang ditetapkan oleh standar *Core Web Vitals* (Google Chrome Developers, 2023), sehingga tidak terasa oleh pengguna akhir. Dampak sesungguhnya dari teknik optimasi baru terlihat jelas pada skenario CPU yang diperlambat, sebagaimana akan dibahas pada Sub-bab 3.5.
 
 Pada aplikasi *Company Profile*, nilai TBT tercatat **0,0 ms** pada kedua versi. Hasil ini mengonfirmasi bahwa apabila keseluruhan *bundle* JavaScript sudah cukup kecil untuk diproses dalam satu *long task* yang tidak melampaui 50 ms, maka tidak terdapat *blocking time* yang terukur oleh *PerformanceObserver*, dan penerapan *Code Splitting* menjadi redundan dari perspektif TBT.
 
@@ -554,7 +549,7 @@ Inilah pengujian yang paling penting — mensimulasikan pengguna yang mengakses 
 ### 3.5.1 Perbandingan Total Waktu Muat (Load Time)
 
 <div align="center">
-  <img src="./chapters/images/chart_loadtime_comparison.png" alt="Grafik Load Time" width="550" />
+  <img src="../chapters/images/chart_loadtime_comparison.png" alt="Grafik Load Time" width="550" />
   <br>
   <i>Gambar 3.6 Perbandingan total waktu muat pada kondisi perangkat lambat.</i>
 </div>
@@ -619,7 +614,7 @@ Berikut contoh data mentah dari hasil pengujian (*single run*):
 Sebagai triangulasi data, berikut hasil pengukuran menggunakan Google Lighthouse:
 
 <div align="center">
-  <img src="./chapters/images/chart_lighthouse_score.png" alt="Grafik Lighthouse Performance Score" width="550" />
+  <img src="../chapters/images/chart_lighthouse_score.png" alt="Grafik Lighthouse Performance Score" width="550" />
   <br>
   <i>Gambar 3.8 Perbandingan Lighthouse Performance Score antara versi Baseline dan Optimized.</i>
 </div>
@@ -642,16 +637,16 @@ Sementara itu, *Company Profile* meraih skor **100** (baseline) dan **99** (opti
 | Speed Index | 5588,6 ± 37,8 | 5855,8 ± 9,3 | +267,2 |
 
 <div align="center">
-  <img src="./chapters/images/chart_lighthouse_tti.png" alt="Grafik Lighthouse TTI" width="550" />
+  <img src="../chapters/images/chart_lighthouse_tti.png" alt="Grafik Lighthouse TTI" width="550" />
   <br>
   <i>Gambar 3.9 Perbandingan Lighthouse Time to Interactive (TTI) antara SIMTA dan Company Profile.</i>
 </div>
 
 **Analisis Gambar 3.9:** Grafik TTI pada gambar tersebut mengungkap temuan yang memerlukan interpretasi mendalam. SIMTA membutuhkan rata-rata **5.273,4 ms** (SD = 39,9) pada versi *baseline* dan **5.909,8 ms** (SD = 40,1) pada versi optimasi untuk mencapai status *fully interactive*. Kenaikan TTI sebesar 636,4 ms pada versi optimasi ini tampak berlawanan dengan ekspektasi, namun secara teknis dapat dijelaskan: Lighthouse mendefinisikan TTI sebagai titik di mana *main thread* telah bebas dari *long task* selama minimal 5 detik berturut-turut setelah FCP. Pada versi optimasi, mekanisme *lazy loading* menjadwalkan pengunduhan dan eksekusi modul-modul secara bertahap (*staggered execution*), yang memperpanjang rentang waktu hingga *main thread* benar-benar "sepi". Meskipun setiap *task* individual menjadi lebih ringan, distribusi temporal dari *task-task* tersebut justru menggeser titik TTI ke belakang.
 
-Namun demikian, aspek yang lebih penting untuk diperhatikan adalah metrik TBT. Pada Tabel 3.6, TBT Lighthouse turun dari 105,2 ms menjadi 61,6 ms — penurunan sebesar **41,4%**. Ini berarti meskipun TTI mundur, pengalaman subjektif pengguna selama proses pemuatan justru membaik: browser lebih responsif terhadap interaksi (*tap*, *scroll*, *click*) karena tidak ada *long task* yang memblokir *main thread* secara berkepanjangan (Amenta & Castellani, 2019).
+Namun demikian, aspek yang lebih penting untuk diperhatikan adalah metrik TBT. Pada Tabel 3.6, TBT Lighthouse turun dari 105,2 ms menjadi 61,6 ms — penurunan sebesar **41,4%**. Ini berarti meskipun TTI mundur, pengalaman subjektif pengguna selama proses pemuatan justru membaik: browser lebih responsif terhadap interaksi (*tap*, *scroll*, *click*) karena tidak ada *long task* yang memblokir *main thread* secara berkepanjangan (Google Chrome Developers, 2023).
 
-Pada *Company Profile*, TTI tercatat pada kisaran **1.560 ms** (baseline) dan **1.804 ms** (optimized). Kedua nilai ini masih berada jauh di bawah ambang batas 3.800 ms yang direkomendasikan oleh Jiang et al. (2023), sehingga aplikasi tergolong dalam kategori "Baik" untuk kedua versi.
+Pada *Company Profile*, TTI tercatat pada kisaran **1.560 ms** (baseline) dan **1.804 ms** (optimized). Kedua nilai ini masih berada jauh di bawah ambang batas 3.800 ms yang direkomendasikan oleh Google (Google Chrome Developers, 2023), sehingga aplikasi tergolong dalam kategori "Baik" untuk kedua versi.
 
 **Tabel 3.7 Hasil Lighthouse — Company Profile (Mean ± SD)**
 
@@ -673,7 +668,7 @@ Perbedaan nilai absolut antara kedua instrumen — misalnya FCP PerformanceObser
 ## 3.7 Penggunaan Memori Browser
 
 <div align="center">
-  <img src="./chapters/images/chart_memory_comparison.png" alt="Grafik Memori" width="550" />
+  <img src="../chapters/images/chart_memory_comparison.png" alt="Grafik Memori" width="550" />
   <br>
   <i>Gambar 3.10 Perbandingan penggunaan memori browser (JS Heap).</i>
 </div>
@@ -690,7 +685,7 @@ Pertambahan 0,36 MB ini terbilang sangat kecil — setara dengan kurang dari 1% 
 
 Analisis komparatif antara SIMTA dan *Company Profile* menghasilkan temuan yang memperkuat hipotesis utama penelitian ini tentang pengaruh tingkat kompleksitas terhadap efektivitas strategi optimasi. Pada *Company Profile* dalam kondisi CPU yang diperlambat, nilai TBT versi *baseline* tercatat sebesar **143,2 ms** (SD = 8,0), yang masih berada di bawah ambang batas 200 ms standar *Core Web Vitals*. Setelah diterapkan *Code Splitting*, nilai TBT turun menjadi **26,0 ms** (SD = 13,4) — memang terjadi penurunan, namun dari sudut pandang pengalaman pengguna, perbedaan antara 143 ms dan 26 ms tidak dapat dirasakan secara perseptual karena keduanya sudah berada dalam kategori "Baik".
 
-Di sisi lain, metrik FCP pada *Company Profile* justru mengalami **degradasi** dari 373,6 ms menjadi 486,4 ms pada kondisi *throttled* — sebuah peningkatan negatif sebesar 30,2%. Degradasi ini terjadi karena pada aplikasi yang *bundle* JavaScript-nya sudah ringkas, pemecahan kode ke dalam *chunk-chunk* terpisah justru menambahkan *overhead* berupa tambahan *HTTP round-trip* untuk setiap *chunk*, proses *manifest parsing* oleh *module loader*, dan alokasi *callback handler* pada *Event Loop*. Temuan ini konsisten dengan peringatan Patel dan Kumar (2022) bahwa efektivitas strategi hibrida sangat bergantung pada karakteristik dan kompleksitas *dependency graph* dari aplikasi target.
+Di sisi lain, metrik FCP pada *Company Profile* justru mengalami **degradasi** dari 373,6 ms menjadi 486,4 ms pada kondisi *throttled* — sebuah peningkatan negatif sebesar 30,2%. Degradasi ini terjadi karena pada aplikasi yang *bundle* JavaScript-nya sudah ringkas, pemecahan kode ke dalam *chunk-chunk* terpisah justru menambahkan *overhead* berupa tambahan *HTTP round-trip* untuk setiap *chunk*, proses *manifest parsing* oleh *module loader*, dan alokasi *callback handler* pada *Event Loop*. Temuan ini konsisten dengan prinsip bahwa efektivitas strategi hibrida sangat bergantung pada karakteristik dan kompleksitas *dependency graph* dari aplikasi target.
 
 **Tabel 3.8 Perbandingan Improvement antara SIMTA dan Company Profile**
 
@@ -740,31 +735,23 @@ Berdasarkan hasil penelitian yang telah dilakukan pada dua model *Single Page Ap
    Penelitian ini fokus pada *CPU throttling*. Penelitian lanjutan dapat menambahkan variabel *network throttling* (3G, 4G) untuk melihat dampak gabungan antara keterbatasan CPU dan jaringan.
 
 5. **Penggunaan *Machine Learning* untuk *automated code splitting*:**
-   Mengikuti usulan Jiang et al. (2023), penelitian lanjutan dapat mengeksplorasi penggunaan *machine learning* untuk memprediksi *chunk grouping* yang optimal berdasarkan pola navigasi pengguna.
+   Penelitian lanjutan dapat mengeksplorasi penggunaan *machine learning* untuk memprediksi *chunk grouping* yang optimal berdasarkan pola navigasi pengguna.
 
 ---
 
 # DAFTAR PUSTAKA
 
-Alhammad, M., & Razzazi, F. (2024). "Adoption Trends and Performance Analysis of Vue.js in Enterprise Web Development." *Journal of Web Engineering*, 23(1), 45-62.
+Anggraeni, O. S. I., Sugiarto, L., & Agustin, T. (2024). "Studi Komparatif Performa Framework Javascript Modern dalam Pengembangan Aplikasi Web." *Modem: Jurnal Informatika dan Sains Teknologi*, 2(4), 162-177.
 
-Amenta, V., & Castellani, A. (2019). "Analyzing Total Blocking Time in Modern Web Applications and Its Impact on User Engagement." *Digital Experiences and Software Engineering Journal*, 4(2), 112-126. https://doi.org/10.1109/DESE.2019.2905051
+Bara, R.-M., Boiangiu, C.-A., & Tudose, C. (2024). "Analysing the Performance Impacts of Lazy Loading in Web Applications." *Journal of Information Systems & Operations Management*, 18(1), 1-15.
 
-Apostolidis, C., et al. (2021). "Comparative Analysis of Vue.js 2 and Vue.js 3: Performance, Architecture, and Developer Experience." *Journal of Systems and Software*, 182, 111073.
+Bogner, J., & Merkel, M. (2022). "To Type or Not to Type? A Systematic Comparison of the Software Quality of JavaScript and TypeScript Applications on GitHub." *Proceedings of the 19th International Conference on Mining Software Repositories (MSR '22)*. ACM.
 
-Batool, R., Ahmed, T., & Islam, N. (2021). "Performance Evaluation of Frontend Web Technologies: A Case Study on Single Page Applications vs Multi-Page Architectures." *IEEE Access*, 9, 114521-114530. https://doi.org/10.1109/ACCESS.2021.3105052
+Donvir, A., Jain, A., & Saraswathi, P. K. (2024). "Application State Management (ASM) in the Modern Web and Mobile Applications: A Comprehensive Review." *arXiv preprint* arXiv:2407.19318.
 
-Bellairs, T., & Morrison, C. (2023). "Prefetching Strategies for Reducing Perceived Latency in Lazy-Loaded Single Page Applications." *Journal of Web Technologies*, 15(3), 201-218.
+Emmanni, P. S. (2023). "Comparative Analysis of Angular, React, and Vue.js in Single Page Application Development." *International Journal of Science and Research (IJSR)*, 12(6), 2971-2974.
 
-Bundschuh, P., Krenn, E., & Schramm, T. (2019). "Impact of Code Splitting on Initial Load Time of Single Page Applications: An Empirical Evaluation." *Journal of Web Application Engineering*, 12(3), 45-61.
-
-Chen, X., & Wang, Y. (2023). "Comprehensive Comparison of Modern JavaScript Build Tools: Vite, Webpack, and esbuild." *ACM Computing Surveys*, 55(7), 1-35.
-
-Choi, J., & Choi, Y. (2020). "Performance Optimization of E-Government Portals using Lazy Loading and Modular JavaScript." *International Journal of Computer Applications*, 178(9), 23-31. https://doi.org/10.5120/ijca2020920042
-
-Fitriani, A., & Hasanuddin, R. (2021). "Evaluasi Kinerja Sistem Informasi Terdistribusi Pada Arsitektur Micro-Frontend." *Jurnal Sistem Informasi Universitas Hasanuddin*, 14(2), 55-63.
-
-Gao, L., et al. (2022). "Correlation Between Web Vitals Metrics and Business Outcomes in E-Commerce Platforms." *Electronic Commerce Research*, 22(4), 1089-1112.
+Fauzi, A. Z. (2024). *Analisis Efisiensi Proses Build dan Performa Single-Page Application React, Vue, dan Svelte yang Dikembangkan Menggunakan Vite sebagai Build Tool* [Skripsi]. Yogyakarta: UIN Sunan Kalijaga.
 
 Google. (2020). "Web Vitals: Essential metrics for a healthy site." Retrieved from https://web.dev/vitals/
 
@@ -772,38 +759,48 @@ Google Chrome Developers. (2023). "Core Web Vitals: Metric Definitions, Optimiza
 
 Hasanuddin, U. (2021). *Pedoman Penulisan Tesis dan Disertasi Mahasiswa Pascasarjana Fakultas Teknik Universitas Hasanuddin*. Makassar: Program Studi Magister Teknik Informatika, Universitas Hasanuddin.
 
-Jiang, H., et al. (2023). "Automated Code Splitting Using Machine Learning: Predicting Optimal Chunk Grouping Based on User Navigation Patterns." *IEEE Transactions on Software Engineering*, 49(5), 2345-2360.
+Hermanto, R. R., & Engel, M. M. (2025). "Analisis Komparatif Kinerja Next.js, Nuxt.js, dan Remix.js dalam Implementasi Server Side Rendering Website Berita." *TIN: Terapan Informatika Nusantara*, 6(5), 450-463.
 
-Kim, S., & Park, J. (2022). "Empirical Study on Code Splitting and Lazy Loading Techniques in React Applications." *Journal of Software Engineering Research and Development*, 10(1), 1-18.
+Jihadi, H., & Syarabil, A. F. (2023). "Perbandingan React JS dan Vue JS dalam Pengembangan Aplikasi Web Interaktif: Sebuah Studi Komparatif." *Jurnal Sistem Informasi Bisnis (JUNSIBI)*, 4(2), 70-79.
+
+Johannes, D., Khomh, F., & Antoniol, G. (2019). "A Large-Scale Empirical Study of Code Smells in JavaScript Projects." *Software Quality Journal*, 27(3), 1271-1314.
+
+Jonathan, R., & Suprihadi. (2023). "Development of Front-End Web Applications Utilizing Single Page Application Framework and React.js Library." *International Journal Software Engineering and Computer Science (IJSECS)*, 3(3), 529-536.
+
+Khoirurrizal, M. F., Hidayat, C. R., & Ruuhwan. (2024). "Analisis Perbandingan Framework Front-End JavaScript SolidJS dan VueJS pada Pengembangan Website Interaktif." *Jurnal Informatika dan Teknik Elektro Terapan (JITET)*, 12(2).
+
+Kowalczyk, K., & Szandała, T. (2024). "Enhancing SEO in Single-Page Web Applications in Contrast With Multi-Page Applications." *IEEE Access*, 12, 11597-11614. https://doi.org/10.1109/ACCESS.2024.3355740
 
 Kumar, R., Singh, A., & Sharma, P. (2024). "Optimizing Web Performance with Lazy Loading and Code Splitting." *International Journal of Core Engineering & Management*, 11(3), 45-62.
 
-Kusumawati, R., Susanti, I., & Darmawan, D. (2022). "Manajemen State Global Menggunakan Pinia pada Pengembangan Aplikasi Pengaduan Masyarakat Terpusat." *Jurnal RESTI*, 6(3), 445-452.
+Larissa, T. N., & Suartana, I M. (2026). "Perbandingan Teknik Pemuatan Awal Eager Loading dan Lazy Loading Intersection Observer terhadap Performa Website." *Journal of Informatics and Computer Science (JINACS)*, 7(4).
 
-Liu, W., & Zhang, H. (2022). "Hybrid Optimization Approaches for Large-Scale E-Commerce Single Page Applications." *International Journal of Web Services Research*, 19(4), 45-68.
+Noer, M. A., & Suartana, I M. (2024). "Perbandingan Mekanisme Rendering untuk Optimasi Website." *Journal of Informatics and Computer Science (JINACS)*, 6(2).
 
-Malavolta, I., et al. (2020). "Code Smells in JavaScript Web Applications: A Systematic Literature Review." *Journal of Web Engineering*, 19(4), 519-548.
+Piastou, M. (2023). "Comprehensive Performance and Scalability Assessment of Front-End Frameworks: React, Angular, and Vue.js." *World Journal of Advanced Engineering Technology and Sciences*, 9(2), 366-376.
 
-Mesbah, A., & van Deursen, A. (2007). "Migrating Multi-page Web Applications to Single-page AJAX Interfaces." *Proceedings of the 11th European Conference on Software Maintenance and Reengineering (CSMR'07)*, 181-190.
+Rezeki, A., Saputro, S. W., Saragih, T. H., Nugroho, R. A., & Abadi, F. (2026). "Empirical Performance of E2E Frameworks in React-Vue SPAs Using DIA." *International Journal of Advances in Data and Information Systems*, 7(1), 317-333.
 
-Muhammed, S., Lee, K., & Kim, H. (2021). "Asynchronous Dynamic Imports and Route-Level Chunking Strategies for Web Performance." *Proceedings of the IEEE International Conference on Web Technologies*, 211-218.
+Saboury, A., Musavi, P., Khomh, F., & Antoniol, G. (2017). "An Empirical Study of Code Smells in JavaScript Projects." *IEEE 24th International Conference on Software Analysis, Evolution and Reengineering (SANER)*, 294-305.
 
-Nguyen, H., et al. (2021). "Comparative Analysis of Eager Loading, Lazy Loading, and Prefetching Strategies in Modern Web Applications." *Web Engineering Journal*, 20(2), 156-175.
+Setiawan, A. A., & Fauzi, E. (2025). "Analisis Komparatif Performa Implementasi Lazy Loading dan Code Splitting pada Framework React, Vue, dan Angular Berdasarkan Skor Lighthouse." *INTECOMS: Journal of Information Technology and Computer Science*, 8(3).
 
-Patel, R., & Kumar, S. (2022). "Application Complexity Classification Framework for Adaptive Web Performance Optimization." *Software: Practice and Experience*, 52(8), 1678-1695.
+Sofi'ie, F. A. F., & Qoiriah, A. (2023). "Analisis Perbandingan Framework Front-End Javascript React dan Vue pada Pengembangan Website." *Journal of Informatics and Computer Science (JINACS)*, 5(2), 157-164.
 
-Rufián-Lizana, A., Molina-Carmona, R., & Llorens-Largo, F. (2023). "Improving web performance through code splitting and lazy loading: A comprehensive study." *Applied Sciences*, 13(8), 4721.
+Taivalsaari, A., & Mikkonen, T. (2021). "A Roadmap to the Programmable World: Software Challenges in the IoT Era." *IEEE Software*, 38(1), 53-61. https://doi.org/10.1109/MS.2020.3020616
 
-Singh, A., & Gupta, P. (2023). "Lazy Loading Strategies in Vue.js: A Practical Guide for Performance Optimization." *Journal of Web Development*, 8(2), 112-130.
+Turcotte, A., Gokhale, S., & Tip, F. (2023). "Increasing the Responsiveness of Web Applications by Introducing Lazy Loading." *Proceedings of the 38th IEEE/ACM International Conference on Automated Software Engineering (ASE)*, 459-470.
 
-Taivalsaari, A., & Mikkonen, T. (2021). "A Roadmap to the Programmable World: Software Challenges in the IoT Era." *IEEE Software*, 38(1), 53-61.
+Vepsäläinen, J., Hellas, A., & Vuorimaa, P. (2023). "Overview of Web Application Performance Optimization Techniques." *Web Information Systems and Technologies (WEBIST 2023), Lecture Notes in Business Information Processing*. Springer.
 
 Vite Team. (2024). "Why Vite: Next Generation Frontend Tooling." *Vite Official Documentation*. https://vitejs.dev/guide/why.html
 
 W3C (World Wide Web Consortium). (2022). "Performance Timeline Level 2: Web APIs for Navigational Tracing." *W3C Working Draft*. https://www.w3.org/TR/performance-timeline-2/
 
+Wijaya, I., & Farisi, A. (2025). "Analisis Perbandingan Kinerja dan Penggunaan Energi pada Framework React dan Vue." *Techno.Com*, 24(1), 104-116.
+
 You, E., et al. (2023). "Vue.js 3: Design, Implementation, and Ecosystem." *Vue.js Official Documentation*. https://vuejs.org/
 
-Zhang, L., & Liu, M. (2023). "Adaptive Lazy Loading Strategies Based on Network Conditions and Device Capabilities." *IEEE Access*, 11, 45678-45690.
 
-Zheng, W., & Li, Y. (2022). "Advanced Code Splitting and Prefetching Lazy Loading Techniques in Modern Frontend Ecosystems." *International Journal of Advanced Computer Science and Applications (IJACSA)*, 13(5), 112-118.
+---
+

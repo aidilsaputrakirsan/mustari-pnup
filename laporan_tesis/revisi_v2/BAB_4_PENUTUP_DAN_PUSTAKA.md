@@ -31,31 +31,23 @@ Berdasarkan hasil penelitian yang telah dilakukan pada dua model *Single Page Ap
    Penelitian ini fokus pada *CPU throttling*. Penelitian lanjutan dapat menambahkan variabel *network throttling* (3G, 4G) untuk melihat dampak gabungan antara keterbatasan CPU dan jaringan.
 
 5. **Penggunaan *Machine Learning* untuk *automated code splitting*:**
-   Mengikuti usulan Jiang et al. (2023), penelitian lanjutan dapat mengeksplorasi penggunaan *machine learning* untuk memprediksi *chunk grouping* yang optimal berdasarkan pola navigasi pengguna.
+   Penelitian lanjutan dapat mengeksplorasi penggunaan *machine learning* untuk memprediksi *chunk grouping* yang optimal berdasarkan pola navigasi pengguna.
 
 ---
 
 # DAFTAR PUSTAKA
 
-Alhammad, M., & Razzazi, F. (2024). "Adoption Trends and Performance Analysis of Vue.js in Enterprise Web Development." *Journal of Web Engineering*, 23(1), 45-62.
+Anggraeni, O. S. I., Sugiarto, L., & Agustin, T. (2024). "Studi Komparatif Performa Framework Javascript Modern dalam Pengembangan Aplikasi Web." *Modem: Jurnal Informatika dan Sains Teknologi*, 2(4), 162-177.
 
-Amenta, V., & Castellani, A. (2019). "Analyzing Total Blocking Time in Modern Web Applications and Its Impact on User Engagement." *Digital Experiences and Software Engineering Journal*, 4(2), 112-126. https://doi.org/10.1109/DESE.2019.2905051
+Bara, R.-M., Boiangiu, C.-A., & Tudose, C. (2024). "Analysing the Performance Impacts of Lazy Loading in Web Applications." *Journal of Information Systems & Operations Management*, 18(1), 1-15.
 
-Apostolidis, C., et al. (2021). "Comparative Analysis of Vue.js 2 and Vue.js 3: Performance, Architecture, and Developer Experience." *Journal of Systems and Software*, 182, 111073.
+Bogner, J., & Merkel, M. (2022). "To Type or Not to Type? A Systematic Comparison of the Software Quality of JavaScript and TypeScript Applications on GitHub." *Proceedings of the 19th International Conference on Mining Software Repositories (MSR '22)*. ACM.
 
-Batool, R., Ahmed, T., & Islam, N. (2021). "Performance Evaluation of Frontend Web Technologies: A Case Study on Single Page Applications vs Multi-Page Architectures." *IEEE Access*, 9, 114521-114530. https://doi.org/10.1109/ACCESS.2021.3105052
+Donvir, A., Jain, A., & Saraswathi, P. K. (2024). "Application State Management (ASM) in the Modern Web and Mobile Applications: A Comprehensive Review." *arXiv preprint* arXiv:2407.19318.
 
-Bellairs, T., & Morrison, C. (2023). "Prefetching Strategies for Reducing Perceived Latency in Lazy-Loaded Single Page Applications." *Journal of Web Technologies*, 15(3), 201-218.
+Emmanni, P. S. (2023). "Comparative Analysis of Angular, React, and Vue.js in Single Page Application Development." *International Journal of Science and Research (IJSR)*, 12(6), 2971-2974.
 
-Bundschuh, P., Krenn, E., & Schramm, T. (2019). "Impact of Code Splitting on Initial Load Time of Single Page Applications: An Empirical Evaluation." *Journal of Web Application Engineering*, 12(3), 45-61.
-
-Chen, X., & Wang, Y. (2023). "Comprehensive Comparison of Modern JavaScript Build Tools: Vite, Webpack, and esbuild." *ACM Computing Surveys*, 55(7), 1-35.
-
-Choi, J., & Choi, Y. (2020). "Performance Optimization of E-Government Portals using Lazy Loading and Modular JavaScript." *International Journal of Computer Applications*, 178(9), 23-31. https://doi.org/10.5120/ijca2020920042
-
-Fitriani, A., & Hasanuddin, R. (2021). "Evaluasi Kinerja Sistem Informasi Terdistribusi Pada Arsitektur Micro-Frontend." *Jurnal Sistem Informasi Universitas Hasanuddin*, 14(2), 55-63.
-
-Gao, L., et al. (2022). "Correlation Between Web Vitals Metrics and Business Outcomes in E-Commerce Platforms." *Electronic Commerce Research*, 22(4), 1089-1112.
+Fauzi, A. Z. (2024). *Analisis Efisiensi Proses Build dan Performa Single-Page Application React, Vue, dan Svelte yang Dikembangkan Menggunakan Vite sebagai Build Tool* [Skripsi]. Yogyakarta: UIN Sunan Kalijaga.
 
 Google. (2020). "Web Vitals: Essential metrics for a healthy site." Retrieved from https://web.dev/vitals/
 
@@ -63,38 +55,44 @@ Google Chrome Developers. (2023). "Core Web Vitals: Metric Definitions, Optimiza
 
 Hasanuddin, U. (2021). *Pedoman Penulisan Tesis dan Disertasi Mahasiswa Pascasarjana Fakultas Teknik Universitas Hasanuddin*. Makassar: Program Studi Magister Teknik Informatika, Universitas Hasanuddin.
 
-Jiang, H., et al. (2023). "Automated Code Splitting Using Machine Learning: Predicting Optimal Chunk Grouping Based on User Navigation Patterns." *IEEE Transactions on Software Engineering*, 49(5), 2345-2360.
+Hermanto, R. R., & Engel, M. M. (2025). "Analisis Komparatif Kinerja Next.js, Nuxt.js, dan Remix.js dalam Implementasi Server Side Rendering Website Berita." *TIN: Terapan Informatika Nusantara*, 6(5), 450-463.
 
-Kim, S., & Park, J. (2022). "Empirical Study on Code Splitting and Lazy Loading Techniques in React Applications." *Journal of Software Engineering Research and Development*, 10(1), 1-18.
+Jihadi, H., & Syarabil, A. F. (2023). "Perbandingan React JS dan Vue JS dalam Pengembangan Aplikasi Web Interaktif: Sebuah Studi Komparatif." *Jurnal Sistem Informasi Bisnis (JUNSIBI)*, 4(2), 70-79.
+
+Johannes, D., Khomh, F., & Antoniol, G. (2019). "A Large-Scale Empirical Study of Code Smells in JavaScript Projects." *Software Quality Journal*, 27(3), 1271-1314.
+
+Jonathan, R., & Suprihadi. (2023). "Development of Front-End Web Applications Utilizing Single Page Application Framework and React.js Library." *International Journal Software Engineering and Computer Science (IJSECS)*, 3(3), 529-536.
+
+Khoirurrizal, M. F., Hidayat, C. R., & Ruuhwan. (2024). "Analisis Perbandingan Framework Front-End JavaScript SolidJS dan VueJS pada Pengembangan Website Interaktif." *Jurnal Informatika dan Teknik Elektro Terapan (JITET)*, 12(2).
+
+Kowalczyk, K., & Szandała, T. (2024). "Enhancing SEO in Single-Page Web Applications in Contrast With Multi-Page Applications." *IEEE Access*, 12, 11597-11614. https://doi.org/10.1109/ACCESS.2024.3355740
 
 Kumar, R., Singh, A., & Sharma, P. (2024). "Optimizing Web Performance with Lazy Loading and Code Splitting." *International Journal of Core Engineering & Management*, 11(3), 45-62.
 
-Kusumawati, R., Susanti, I., & Darmawan, D. (2022). "Manajemen State Global Menggunakan Pinia pada Pengembangan Aplikasi Pengaduan Masyarakat Terpusat." *Jurnal RESTI*, 6(3), 445-452.
+Larissa, T. N., & Suartana, I M. (2026). "Perbandingan Teknik Pemuatan Awal Eager Loading dan Lazy Loading Intersection Observer terhadap Performa Website." *Journal of Informatics and Computer Science (JINACS)*, 7(4).
 
-Liu, W., & Zhang, H. (2022). "Hybrid Optimization Approaches for Large-Scale E-Commerce Single Page Applications." *International Journal of Web Services Research*, 19(4), 45-68.
+Noer, M. A., & Suartana, I M. (2024). "Perbandingan Mekanisme Rendering untuk Optimasi Website." *Journal of Informatics and Computer Science (JINACS)*, 6(2).
 
-Malavolta, I., et al. (2020). "Code Smells in JavaScript Web Applications: A Systematic Literature Review." *Journal of Web Engineering*, 19(4), 519-548.
+Piastou, M. (2023). "Comprehensive Performance and Scalability Assessment of Front-End Frameworks: React, Angular, and Vue.js." *World Journal of Advanced Engineering Technology and Sciences*, 9(2), 366-376.
 
-Mesbah, A., & van Deursen, A. (2007). "Migrating Multi-page Web Applications to Single-page AJAX Interfaces." *Proceedings of the 11th European Conference on Software Maintenance and Reengineering (CSMR'07)*, 181-190.
+Rezeki, A., Saputro, S. W., Saragih, T. H., Nugroho, R. A., & Abadi, F. (2026). "Empirical Performance of E2E Frameworks in React-Vue SPAs Using DIA." *International Journal of Advances in Data and Information Systems*, 7(1), 317-333.
 
-Muhammed, S., Lee, K., & Kim, H. (2021). "Asynchronous Dynamic Imports and Route-Level Chunking Strategies for Web Performance." *Proceedings of the IEEE International Conference on Web Technologies*, 211-218.
+Saboury, A., Musavi, P., Khomh, F., & Antoniol, G. (2017). "An Empirical Study of Code Smells in JavaScript Projects." *IEEE 24th International Conference on Software Analysis, Evolution and Reengineering (SANER)*, 294-305.
 
-Nguyen, H., et al. (2021). "Comparative Analysis of Eager Loading, Lazy Loading, and Prefetching Strategies in Modern Web Applications." *Web Engineering Journal*, 20(2), 156-175.
+Setiawan, A. A., & Fauzi, E. (2025). "Analisis Komparatif Performa Implementasi Lazy Loading dan Code Splitting pada Framework React, Vue, dan Angular Berdasarkan Skor Lighthouse." *INTECOMS: Journal of Information Technology and Computer Science*, 8(3).
 
-Patel, R., & Kumar, S. (2022). "Application Complexity Classification Framework for Adaptive Web Performance Optimization." *Software: Practice and Experience*, 52(8), 1678-1695.
+Sofi'ie, F. A. F., & Qoiriah, A. (2023). "Analisis Perbandingan Framework Front-End Javascript React dan Vue pada Pengembangan Website." *Journal of Informatics and Computer Science (JINACS)*, 5(2), 157-164.
 
-Rufián-Lizana, A., Molina-Carmona, R., & Llorens-Largo, F. (2023). "Improving web performance through code splitting and lazy loading: A comprehensive study." *Applied Sciences*, 13(8), 4721.
+Taivalsaari, A., & Mikkonen, T. (2021). "A Roadmap to the Programmable World: Software Challenges in the IoT Era." *IEEE Software*, 38(1), 53-61. https://doi.org/10.1109/MS.2020.3020616
 
-Singh, A., & Gupta, P. (2023). "Lazy Loading Strategies in Vue.js: A Practical Guide for Performance Optimization." *Journal of Web Development*, 8(2), 112-130.
+Turcotte, A., Gokhale, S., & Tip, F. (2023). "Increasing the Responsiveness of Web Applications by Introducing Lazy Loading." *Proceedings of the 38th IEEE/ACM International Conference on Automated Software Engineering (ASE)*, 459-470.
 
-Taivalsaari, A., & Mikkonen, T. (2021). "A Roadmap to the Programmable World: Software Challenges in the IoT Era." *IEEE Software*, 38(1), 53-61.
+Vepsäläinen, J., Hellas, A., & Vuorimaa, P. (2023). "Overview of Web Application Performance Optimization Techniques." *Web Information Systems and Technologies (WEBIST 2023), Lecture Notes in Business Information Processing*. Springer.
 
 Vite Team. (2024). "Why Vite: Next Generation Frontend Tooling." *Vite Official Documentation*. https://vitejs.dev/guide/why.html
 
 W3C (World Wide Web Consortium). (2022). "Performance Timeline Level 2: Web APIs for Navigational Tracing." *W3C Working Draft*. https://www.w3.org/TR/performance-timeline-2/
 
+Wijaya, I., & Farisi, A. (2025). "Analisis Perbandingan Kinerja dan Penggunaan Energi pada Framework React dan Vue." *Techno.Com*, 24(1), 104-116.
+
 You, E., et al. (2023). "Vue.js 3: Design, Implementation, and Ecosystem." *Vue.js Official Documentation*. https://vuejs.org/
-
-Zhang, L., & Liu, M. (2023). "Adaptive Lazy Loading Strategies Based on Network Conditions and Device Capabilities." *IEEE Access*, 11, 45678-45690.
-
-Zheng, W., & Li, Y. (2022). "Advanced Code Splitting and Prefetching Lazy Loading Techniques in Modern Frontend Ecosystems." *International Journal of Advanced Computer Science and Applications (IJACSA)*, 13(5), 112-118.

@@ -4,11 +4,11 @@
 
 ### 2.1.1 Arsitektur *Single Page Application* (SPA) dan *Virtual DOM*
 
-*Single Page Application* (SPA) adalah aplikasi web yang berinteraksi dengan pengguna melalui pemuatan ulang dinamis halaman tunggal, berbeda dengan aplikasi web tradisional yang memuat ulang seluruh halaman untuk setiap interaksi (Mesbah & van Deursen, 2007). Menurut Taivalsaari dan Mikkonen (2021), SPA menawarkan pengalaman pengguna yang lebih responsif karena hanya memperbarui konten yang diperlukan tanpa *reload* seluruh halaman.
+*Single Page Application* (SPA) adalah aplikasi web yang berinteraksi dengan pengguna melalui pemuatan ulang dinamis halaman tunggal, berbeda dengan aplikasi web tradisional yang memuat ulang seluruh halaman untuk setiap interaksi (Kowalczyk & Szandała, 2024). Menurut Taivalsaari dan Mikkonen (2021), SPA menawarkan pengalaman pengguna yang lebih responsif karena hanya memperbarui konten yang diperlukan tanpa *reload* seluruh halaman.
 
-Secara topologis, browser hanya mengunduh satu dokumen HTML statis — `index.html` — yang berfungsi sebagai kerangka dasar saat pertama kali diakses. Selanjutnya, seluruh perubahan tampilan dikelola oleh JavaScript langsung di browser (Batool et al., 2021).
+Secara topologis, browser hanya mengunduh satu dokumen HTML statis — `index.html` — yang berfungsi sebagai kerangka dasar saat pertama kali diakses. Selanjutnya, seluruh perubahan tampilan dikelola oleh JavaScript langsung di browser (Taivalsaari & Mikkonen, 2021).
 
-Salah satu fitur unggulan SPA adalah penggunaan *Virtual DOM*. *Virtual DOM* adalah representasi maya dari tampilan halaman yang disimpan di memori JavaScript. Ketika ada data yang berubah — misalnya pengguna mengisi formulir atau data baru masuk dari server — Vue.js terlebih dahulu membuat *Virtual DOM* baru, membandingkannya dengan salinan lama (*diffing algorithm*), lalu memperbarui tampilan nyata hanya pada bagian yang berbeda saja. Cara ini jauh lebih efisien dibandingkan memuat ulang seluruh halaman (Zheng & Li, 2022).
+Salah satu fitur unggulan SPA adalah penggunaan *Virtual DOM*. *Virtual DOM* adalah representasi maya dari tampilan halaman yang disimpan di memori JavaScript. Ketika ada data yang berubah — misalnya pengguna mengisi formulir atau data baru masuk dari server — Vue.js terlebih dahulu membuat *Virtual DOM* baru, membandingkannya dengan salinan lama (*diffing algorithm*), lalu memperbarui tampilan nyata hanya pada bagian yang berbeda saja. Cara ini jauh lebih efisien dibandingkan memuat ulang seluruh halaman (You et al., 2023).
 
 <div align="center">
   <img src="../chapters/images/diagram_vdom.png" alt="Proses Render Virtual DOM" width="380" />
@@ -18,37 +18,37 @@ Salah satu fitur unggulan SPA adalah penggunaan *Virtual DOM*. *Virtual DOM* ada
 
 Namun, kecerdasan ini ada harganya: file JavaScript yang harus diunduh di awal bisa sangat besar, karena seluruh kode program perlu dimuat sebelum *Virtual DOM* bisa bekerja.
 
-Karakteristik utama SPA meliputi: (1) *rendering* di sisi klien (*client-side rendering*), (2) *routing* yang dikelola oleh JavaScript, (3) komunikasi dengan server melalui API asinkron, dan (4) *state management* untuk mengelola data aplikasi (Singh & Gupta, 2023). Penelitian oleh Gao et al. (2022) menunjukkan bahwa rata-rata ukuran *bundle* JavaScript pada SPA modern mencapai 1.5 MB, dengan beberapa aplikasi *enterprise* mencapai 3-5 MB.
+Karakteristik utama SPA meliputi: (1) *rendering* di sisi klien (*client-side rendering*), (2) *routing* yang dikelola oleh JavaScript, (3) komunikasi dengan server melalui API asinkron, dan (4) *state management* untuk mengelola data aplikasi (Emmanni, 2023). Ukuran *bundle* JavaScript pada SPA modern cenderung besar dan terus bertambah seiring meningkatnya kompleksitas aplikasi.
 
 ### 2.1.2 Vue.js *Framework*
 
 Vue.js adalah *progressive JavaScript framework* yang dirancang untuk membangun *user interface* dengan pendekatan *bottom-up incremental adoption* (You et al., 2023). Core library Vue.js fokus pada *view layer*, memudahkan integrasi dengan library lain atau proyek yang sudah ada.
 
-Vue.js 3 memperkenalkan beberapa *improvement* signifikan (Apostolidis et al., 2021): pengenalan *Composition API* sebagai alternatif *Options API*, *reactivity system* menggunakan ES6 *Proxy* menggantikan `Object.defineProperty`, menghasilkan performa yang lebih baik. Penelitian oleh Liu dan Zhang (2022) menemukan bahwa Vue 3 memiliki *rendering performance* rata-rata 1.3x lebih cepat, *memory footprint* 41% lebih rendah, dan *bundle size* 53% lebih kecil dibandingkan Vue 2.
+Vue.js 3 memperkenalkan beberapa *improvement* signifikan (You et al., 2023): pengenalan *Composition API* sebagai alternatif *Options API*, serta *reactivity system* menggunakan ES6 *Proxy* menggantikan `Object.defineProperty`, yang menghasilkan performa yang lebih baik. Menurut dokumentasi resmi Vue.js, Vue 3 secara umum menghadirkan *rendering performance* yang lebih cepat, *memory footprint* yang lebih rendah, dan *bundle size* yang lebih kecil dibandingkan Vue 2.
 
 ### 2.1.3 Vite *Build Tool* dan *Code Splitting*
 
 Vite adalah *build tool* modern yang dikembangkan oleh Evan You dengan fokus pada *developer experience* dan performa (Vite Team, 2024). Berbeda dengan *bundler* tradisional seperti Webpack, Vite memanfaatkan *native ES modules* di browser untuk melayani kode secara *on-demand*, menghasilkan *cold start* yang hampir instan.
 
-Menurut Chen dan Wang (2023), Vite menghasilkan *bundle size* 18-25% lebih kecil dibandingkan Webpack pada proyek Vue.js dengan konfigurasi *default*. Untuk *production build*, Vite menggunakan Rollup sebagai *bundler* dengan konfigurasi yang sudah dioptimasi untuk web, termasuk *code splitting* berbasis *dynamic import* dan *vendor chunk separation*.
+Untuk *production build*, Vite menggunakan Rollup sebagai *bundler* dengan konfigurasi yang sudah dioptimasi untuk web, termasuk *code splitting* berbasis *dynamic import* dan *vendor chunk separation*.
 
 Dengan fitur *Code Splitting*, Vite bisa memecah satu file besar menjadi banyak file kecil yang terpisah. Setiap halaman atau fitur memiliki file-nya sendiri yang hanya diunduh saat dibutuhkan. Lebih jauh, dengan teknik *Prefetching*, browser memanfaatkan waktu senggang (saat tidak ada tugas penting) untuk mengunduh file-file yang mungkin dibutuhkan selanjutnya menggunakan `requestIdleCallback` (Google Chrome Developers, 2023).
 
 ### 2.1.4 *Lazy Loading*
 
-*Lazy loading* adalah teknik optimasi yang menunda loading resource hingga benar-benar diperlukan oleh pengguna (Nguyen et al., 2021). Terdapat beberapa strategi yang dapat diterapkan pada Vue.js (Singh & Gupta, 2023):
+*Lazy loading* adalah teknik optimasi yang menunda loading resource hingga benar-benar diperlukan oleh pengguna (Bara, Boiangiu & Tudose, 2024). Terdapat beberapa strategi yang dapat diterapkan pada Vue.js:
 
 1. ***Route-based Lazy Loading:*** Memuat komponen *route* hanya ketika *route* tersebut diakses pertama kali.
 2. ***Component-based Lazy Loading:*** Memuat komponen individual secara *on-demand*, biasanya untuk komponen yang berat atau jarang digunakan.
 3. ***Conditional Lazy Loading:*** Memuat komponen berdasarkan kondisi tertentu seperti *user role* atau *device type*.
 
-Penelitian oleh Zhang dan Liu (2023) menemukan bahwa *route-based lazy loading* efektif mengurangi *initial bundle size* rata-rata 45%, sementara kombinasi *route-based* dan *component-based* dapat mencapai reduksi 60-65%.
+Bara, Boiangiu, dan Tudose (2024) menemukan bahwa penerapan *lazy loading* efektif mengurangi *initial bundle size* dan memperbaiki metrik pemuatan awal, terutama pada kondisi jaringan lambat.
 
 ### 2.1.5 Strategi Optimasi Hibrida
 
-Penelitian terbaru menunjukkan pendekatan hibrida yang mengkombinasikan *multiple optimization techniques* menghasilkan hasil lebih baik dibandingkan pendekatan tunggal (Apostolidis et al., 2021). Liu dan Zhang (2022) mengimplementasikan *hybrid approach* pada aplikasi *e-commerce* dengan 150+ komponen dan menghasilkan: FCP -42%, LCP -38%, TTI -45%, dan *initial bundle size* -58%.
+Penelitian terbaru menunjukkan pendekatan hibrida yang mengkombinasikan *multiple optimization techniques* menghasilkan hasil lebih baik dibandingkan pendekatan tunggal (Setiawan & Fauzi, 2025).
 
-Patel dan Kumar (2022) menemukan bahwa efektivitas strategi hibrida sangat bergantung pada karakteristik aplikasi, termasuk jumlah *routes* dan komponen, ukuran individual komponen, kompleksitas *dependency graph*, pola navigasi pengguna, dan kondisi target perangkat dan jaringan.
+Efektivitas strategi hibrida sangat bergantung pada karakteristik aplikasi, termasuk jumlah *routes* dan komponen, ukuran individual komponen, kompleksitas *dependency graph*, pola navigasi pengguna, dan kondisi target perangkat dan jaringan.
 
 ### 2.1.6 Bagaimana Browser Memproses File JavaScript
 
@@ -59,7 +59,7 @@ File JavaScript tidak bisa langsung dijalankan oleh browser. Browser — khususn
 3. **Mengompilasi (*JIT Compilation*):** Struktur kode diubah menjadi instruksi yang bisa dijalankan langsung oleh prosesor.
 4. **Menjalankan dan mengalokasikan memori (*Execution & Memory Allocation*):** Semua fungsi, variabel, dan pustaka ditempatkan di memori (*JS Heap*), lalu Vue.js mulai menggambar tampilan di layar.
 
-Karena JavaScript bekerja secara *single-threaded*, ketika browser sedang memproses file JS yang sangat besar, browser tidak bisa merespons interaksi pengguna (Amenta & Castellani, 2019). Inilah yang disebut *Event Loop Blocking*.
+Karena JavaScript bekerja secara *single-threaded*, ketika browser sedang memproses file JS yang sangat besar, browser tidak bisa merespons interaksi pengguna (Google Chrome Developers, 2023). Inilah yang disebut *Event Loop Blocking*.
 
 <div align="center">
   <img src="../chapters/images/diagram_v8.png" alt="Siklus Eksekusi V8 Engine" width="450" />
@@ -69,7 +69,7 @@ Karena JavaScript bekerja secara *single-threaded*, ketika browser sedang mempro
 
 ### 2.1.7 *Event Loop* dan Mekanisme Asinkron
 
-*Event Loop* adalah mekanisme bawaan browser untuk menangani tugas-tugas yang butuh waktu lama tanpa membekukan layar (Choi & Choi, 2020). Tugas-tugas yang memakan waktu (seperti mengunduh data dari server) tidak diproses langsung, melainkan dititipkan ke area penantian khusus (*Callback Queue*). Sambil menunggu, browser tetap bisa merespons interaksi pengguna. Setelah tampilan dasar selesai digambar, barulah browser mengambil tugas-tugas yang menunggu (W3C, 2022).
+*Event Loop* adalah mekanisme bawaan browser untuk menangani tugas-tugas yang butuh waktu lama tanpa membekukan layar (W3C, 2022). Tugas-tugas yang memakan waktu (seperti mengunduh data dari server) tidak diproses langsung, melainkan dititipkan ke area penantian khusus (*Callback Queue*). Sambil menunggu, browser tetap bisa merespons interaksi pengguna. Setelah tampilan dasar selesai digambar, barulah browser mengambil tugas-tugas yang menunggu (W3C, 2022).
 
 <div align="center">
   <img src="../chapters/images/diagram_event_loop.png" alt="Arsitektur Event Loop" width="380" />
@@ -81,21 +81,21 @@ Prinsip inilah yang membuat *Lazy Loading* bisa bekerja dengan baik — modul-mo
 
 ### 2.1.8 Metrik Performa Web (*Core Web Vitals*)
 
-Performa sebuah website diukur menggunakan standar *Core Web Vitals* (Google Chrome Foundation, 2023):
+Performa sebuah website diukur menggunakan standar *Core Web Vitals* (Google Chrome Developers, 2023):
 
 1. **First Contentful Paint (FCP):** Waktu dari saat pengguna membuka website hingga sesuatu pertama kali muncul di layar. Standar yang baik: ≤ 1.800 ms.
 
 2. **Largest Contentful Paint (LCP):** Waktu hingga elemen terbesar di halaman selesai dimuat. Standar yang baik: ≤ 2.500 ms.
 
-3. **Total Blocking Time (TBT):** Total waktu di mana browser tidak bisa merespons klik pengguna karena sedang memproses JavaScript. Nilai TBT yang baik harus ≤ 200-300 ms (Amenta & Castellani, 2019).
+3. **Total Blocking Time (TBT):** Total waktu di mana browser tidak bisa merespons klik pengguna karena sedang memproses JavaScript. Nilai TBT yang baik harus ≤ 200-300 ms (Google Chrome Developers, 2023).
 
-4. **Time to Interactive (TTI):** Waktu hingga halaman *fully interactive* dan dapat merespon input pengguna secara *reliable*. Target: ≤ 3.8 detik (Jiang et al., 2023).
+4. **Time to Interactive (TTI):** Waktu hingga halaman *fully interactive* dan dapat merespon input pengguna secara *reliable*. Target: ≤ 3.8 detik (Google Chrome Developers, 2023).
 
-Penelitian oleh Gao et al. (2022) menemukan bahwa website dengan nilai *Web Vitals* kategori "Good" memiliki 20-30% *higher engagement* dibanding yang tidak memenuhi standar.
+Website dengan nilai *Web Vitals* kategori "Good" umumnya memiliki tingkat keterlibatan pengguna yang lebih tinggi dibanding yang tidak memenuhi standar (Google Chrome Developers, 2023).
 
 ### 2.1.9 Kompleksitas Aplikasi Web
 
-Kompleksitas aplikasi web dapat dikategorikan berdasarkan beberapa faktor (Patel & Kumar, 2022):
+Kompleksitas aplikasi web dapat dikategorikan berdasarkan beberapa faktor:
 
 **Kompleksitas Rendah:**
 - 5-10 *routes/pages*, < 50 komponen
@@ -108,7 +108,7 @@ Kompleksitas aplikasi web dapat dikategorikan berdasarkan beberapa faktor (Patel
 - Operasi CRUD dengan integrasi API, visualisasi data (*Chart.js*)
 - *Complex user workflows*
 
-Alhammad dan Razzazi (2024) menemukan bahwa strategi optimasi yang efektif untuk aplikasi kompleksitas rendah tidak selalu efektif untuk kompleksitas tinggi. *Aggressive code splitting* pada aplikasi sederhana dapat menghasilkan *overhead HTTP requests* yang kontraproduktif.
+Strategi optimasi yang efektif untuk aplikasi kompleksitas rendah tidak selalu efektif untuk kompleksitas tinggi. *Aggressive code splitting* pada aplikasi sederhana justru dapat menghasilkan *overhead HTTP requests* yang kontraproduktif — konsisten dengan adanya *trade-off* eager vs lazy loading yang dilaporkan Bara, Boiangiu, dan Tudose (2024).
 
 ---
 
