@@ -2,33 +2,33 @@
 
 ## 4.1 Kesimpulan
 
-Berdasarkan hasil penelitian yang telah dilakukan pada dua model *Single Page Application* (SPA) — Sistem Informasi Manajemen Tugas Akhir (SIMTA) dan *Company Profile* — dengan menggunakan kombinasi instrumen pengukuran *W3C PerformanceObserver* dan Google Lighthouse, penelitian ini mengerucut pada kesimpulan berikut:
+Berdasarkan hasil penelitian yang telah dilakukan pada dua model *Single Page Application* (SPA) — Sistem Informasi Manajemen Tugas Akhir (SIMTA) sebagai aplikasi kompleksitas tinggi, dan *Company Profile* sebagai aplikasi kompleksitas rendah — dengan menggunakan kombinasi instrumen pengukuran *W3C PerformanceObserver* dan Google Lighthouse, penelitian ini mengerucut pada kesimpulan berikut:
 
-1. **Efektivitas *Code Splitting* dalam mengurangi ukuran *bundle* awal.**
+1. **Efektivitas *Code Splitting* dalam mengurangi ukuran *bundle* awal (SIMTA).**
    Dengan memisahkan pustaka-pustaka besar (seperti Chart.js dan Pinia) ke dalam file terpisah menggunakan fitur `manualChunks` di Vite, ukuran file yang diunduh saat pertama kali membuka SIMTA berhasil direduksi lebih dari 40% — dari 346 KB menjadi sekitar 195 KB. Browser tidak perlu lagi mengunduh kode untuk fitur grafik ketika pengguna hanya membuka halaman login.
 
 2. ***Hybrid Lazy Loading* efektif mengurangi *Total Blocking Time* (TBT).**
-   Meskipun waktu tampil pertama (FCP) sedikit bertambah karena *overhead* pencarian rute dinamis, manfaat nyata terlihat pada nilai TBT yang berkurang secara signifikan dalam kondisi normal. Hasil dari Lighthouse mengkonfirmasi temuan ini dengan menunjukkan penurunan TBT sebesar 41,4% pada SIMTA.
+   Meskipun beberapa metrik berbasis *loading* (FCP, LCP) sedikit bertambah pada Lighthouse karena *overhead* resolusi rute dinamis, manfaat nyata terlihat pada TBT yang berkurang signifikan: turun 22,7% pada kondisi CPU normal (*PerformanceObserver*) dan 41,4% menurut simulasi Lighthouse. Ini berarti browser lebih responsif terhadap interaksi pengguna meskipun konten muncul sedikit lebih lambat. *Trade-off* ini menguntungkan pengguna karena responsivitas sering dirasakan lebih penting dari kecepatan kemunculan konten pertama.
 
 3. **Manfaat terbesar terlihat pada perangkat dengan spesifikasi rendah.**
-   Ketika diuji pada kondisi CPU diperlambat 4x (mensimulasikan perangkat lawas), teknik *Code Splitting* berhasil menurunkan nilai TBT dari angka berbahaya yang melampaui batas toleransi Google Web Vitals menjadi angka yang lebih aman. Lighthouse *Performance Score* menunjukkan peningkatan dari skor tetap stabil di angka 64-66 meskipun dengan konten dinamis yang berat.
+   Ketika diuji pada kondisi CPU diperlambat 4x, TBT SIMTA yang awalnya 1023,0 ms (melampaui batas toleransi 300 ms secara drastis) berhasil diturunkan menjadi 790,8 ms — perbaikan 22,7%. Ini berarti pengguna dengan perangkat lama yang mengakses SIMTA mengalami periode browser tidak responsif yang jauh lebih singkat.
 
 4. **Teknik ini tidak cocok untuk semua jenis website (*Diminishing Returns*).**
-   Pada *Company Profile* (website sederhana), penerapan *Code Splitting* tidak memberikan manfaat performa yang berarti karena tidak ada pustaka besar yang perlu dipecah. Sebaliknya, teknik ini justru bisa sedikit memperlambat FCP karena tambahan permintaan file yang tidak perlu. Penelitian ini membuktikan bahwa strategi optimasi harus mempertimbangkan tingkat kompleksitas aplikasi sebagai faktor penentu.
+   Pada *Company Profile* (website sederhana), FCP justru mengalami degradasi 30,2% pada kondisi CPU lambat karena *overhead HTTP request* tambahan dari *chunk-chunk* yang dipecah. Penelitian ini membuktikan bahwa strategi optimasi harus mempertimbangkan tingkat kompleksitas aplikasi sebagai faktor penentu. Panduan praktis: terapkan *code splitting* hanya jika *bundle* awal sudah melebihi 200 KB terkompresi dan terdapat pustaka berat yang tidak digunakan di halaman pertama.
 
 ## 4.2 Saran untuk Penelitian Selanjutnya
 
 1. **Integrasi dengan teknologi *Progressive Web App* (PWA):**
-   File-file yang sudah diunduh bisa disimpan secara permanen di *cache* browser menggunakan *Service Workers*. Sehingga pengguna yang membuka kembali website tidak perlu mengunduh file apa pun.
+   File-file yang sudah diunduh bisa disimpan secara permanen di *cache* browser menggunakan *Service Workers*, sehingga pengguna yang membuka kembali website tidak perlu mengunduh file apa pun.
 
-2. **Penanganan animasi yang berjalan terus-menerus:**
-   Teknik `requestIdleCallback` yang digunakan untuk *prefetching* mungkin tidak bekerja optimal ketika halaman menampilkan animasi konstan. Penelitian lanjutan perlu mengembangkan mekanisme yang lebih cerdas untuk mendeteksi kapan browser benar-benar sedang tidak sibuk.
+2. **Pengujian dengan *network throttling*:**
+   Penelitian ini fokus pada *CPU throttling*. Penelitian lanjutan dapat menambahkan variabel *network throttling* (3G, 4G) untuk melihat dampak gabungan antara keterbatasan CPU dan jaringan, sesuai dengan rencana awal yang tercantum dalam proposal.
 
 3. **Perbandingan dengan *Server-Side Rendering* (SSR):**
    Penelitian berikutnya bisa membandingkan apakah kerangka kerja SSR seperti Nuxt.js menghasilkan nilai FCP dan TBT yang lebih baik, karena HTML dikirimkan sudah matang dari server.
 
-4. **Pengujian pada kondisi jaringan yang bervariasi:**
-   Penelitian ini fokus pada *CPU throttling*. Penelitian lanjutan dapat menambahkan variabel *network throttling* (3G, 4G) untuk melihat dampak gabungan antara keterbatasan CPU dan jaringan.
+4. **Penanganan animasi yang berjalan terus-menerus:**
+   Teknik `requestIdleCallback` yang digunakan untuk *prefetching* mungkin tidak bekerja optimal ketika halaman menampilkan animasi konstan. Penelitian lanjutan perlu mengembangkan mekanisme yang lebih cerdas.
 
 5. **Penggunaan *Machine Learning* untuk *automated code splitting*:**
    Penelitian lanjutan dapat mengeksplorasi penggunaan *machine learning* untuk memprediksi *chunk grouping* yang optimal berdasarkan pola navigasi pengguna.

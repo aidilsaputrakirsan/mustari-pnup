@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Berkas cadangan naskah/slide — jangan ikut dipublikasikan
+*.BACKUP.*
+*SEBELUM-PERBAIKAN*
+~$*
+
+# Output bundle visualizer (dapat dibangkitkan ulang via `npm run analyze`)
+stats.html
