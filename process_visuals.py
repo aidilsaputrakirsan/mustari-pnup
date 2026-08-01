@@ -6,7 +6,7 @@ import requests
 import matplotlib.pyplot as plt
 import numpy as np
 
-base_dir = r"c:\laragon\www\Materi-Presentasi\mustari-pnup\laporan_tesis"
+base_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "laporan_tesis")
 data_dir = os.path.join(base_dir, "data_pengukuran")
 img_dir = os.path.join(base_dir, "chapters", "images")
 os.makedirs(img_dir, exist_ok=True)

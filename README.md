@@ -63,30 +63,91 @@ laporan_tesis/                Naskah tesis, slide presentasi, dan data pengukura
 
 ## Cara Menjalankan Ulang Pengujian
 
-Prasyarat: Node.js LTS (v18/v20) dan Python 3.
+### Prasyarat
+
+| Kebutuhan | Versi | Catatan |
+|-----------|-------|---------|
+| Node.js | v20 atau v22 | diuji pada v22.12.0 |
+| Python | 3.9+ | diuji pada 3.11.6 |
+| Paket Python | `numpy`, `matplotlib` | `pip install numpy matplotlib` |
+| Koneksi internet | saat `npm install` saja | Puppeteer mengunduh Chromium (~150 MB) |
+
+Puppeteer, Lighthouse, dan http-server sudah terdaftar di `devDependencies`, sehingga
+`npm install` cukup — tidak ada unduhan tambahan saat pengukuran berjalan.
+
+### Verifikasi cepat (satu perintah)
 
 ```bash
-# 1. Pasang dependensi
 npm install
-
-# 2. Kompilasi kedua versi aplikasi
-npx vite build --config vite.config.baseline.js
-npx vite build --config vite.config.optimized.js
-
-# 3. Pengukuran PerformanceObserver (5 repetisi per skenario,
-#    kondisi normal dan CPU throttled 4x)
-node ukur_multirun.cjs
-node ukur_multirun_cp.cjs
-
-# 4. Audit Lighthouse
-node ukur_lighthouse.cjs
-
-# 5. Hitung statistik dan bangkitkan grafik
-python analisis_statistik.py
-python create_final_charts.py
+npm run verifikasi
 ```
 
-Hasil pengukuran tersimpan sebagai JSON di `laporan_tesis/data_pengukuran/`.
+Perintah `verifikasi` menjalankan seluruh rantai: build 4 varian → pengukuran
+PerformanceObserver → audit Lighthouse → analisis statistik → pembangkitan grafik.
+Total durasi ± 25–35 menit.
+
+> **Peringatan.** Menjalankan pengukuran akan **menimpa** berkas JSON di
+> `laporan_tesis/data_pengukuran/` — yaitu data mentah yang dilaporkan pada naskah
+> tesis. Untuk membandingkan hasil baru dengan data asli tanpa kehilangan apa pun,
+> cadangkan lebih dulu atau pulihkan dengan `git checkout -- laporan_tesis/data_pengukuran/`.
+
+### Verifikasi bertahap
+
+```bash
+# 1. Pasang dependensi (Node + Python)
+npm install
+pip install numpy matplotlib
+
+# 2. Kompilasi keempat varian aplikasi
+npm run build:baseline        # SIMTA baseline      -> dist-baseline/
+npm run build:optimized       # SIMTA optimized     -> dist-optimized/
+npm run build:cp:baseline     # Company Profile baseline  -> dist-cp-baseline/
+npm run build:cp:optimized    # Company Profile optimized -> dist-cp-optimized/
+# atau sekaligus:  npm run build:all
+
+# 3. Pengukuran PerformanceObserver
+#    (5 repetisi x 2 skenario: normal dan CPU throttled 4x)
+npm run ukur:simta            # ± 8 menit,  port 4001/4002
+npm run ukur:cp               # ± 2 menit,  port 4005/4006
+
+# 4. Audit Lighthouse (5 repetisi x 4 target)
+npm run ukur:lighthouse       # ± 15 menit, port 4001/4002/4005/4006
+
+# 5. Hitung statistik dan bangkitkan grafik
+python analisis_statistik.py  # -> data_pengukuran/summary_stats.json
+python create_final_charts.py # -> chapters/images/chart_*.png
+```
+
+Setiap skrip menyalakan server statisnya sendiri lalu mematikannya kembali; tidak perlu
+menjalankan server secara manual. Pastikan port 4001, 4002, 4005, dan 4006 tidak terpakai
+sebelum memulai.
+
+### Cara membaca hasilnya
+
+| Berkas | Isi |
+|--------|-----|
+| `laporan_tesis/data_pengukuran/multirun_*.json` | Data mentah per-repetisi: FCP, LCP, TBT, LoadTime, Memory |
+| `laporan_tesis/data_pengukuran/lighthouse_*.json` | Data mentah Lighthouse: Score, FCP, LCP, TTI, TBT, Speed Index |
+| `laporan_tesis/data_pengukuran/summary_stats.json` | Rerata dan simpangan baku seluruh metrik |
+| Keluaran konsol `analisis_statistik.py` | Tabel `mean ± SD` + persentase perbaikan SIMTA |
+| `laporan_tesis/chapters/images/chart_*.png` | Grafik perbandingan yang dipakai pada BAB III |
+
+Angka pada BAB III berasal dari `summary_stats.json`. Sebagai contoh, klaim
+"FCP SIMTA turun 22,9% pada kondisi normal" dapat dilacak ke baris
+`FCP_ms Improvement` pada keluaran `analisis_statistik.py`, yang dihitung dari
+`multirun_baseline_ideal.json` dan `multirun_optimized_ideal.json`.
+
+Ukuran *bundle* yang dilaporkan dapat diperiksa langsung dari keluaran `npm run build:*`
+atau dari isi folder `dist-*` yang disertakan.
+
+### Catatan reproduktibilitas
+
+Nilai absolut (mis. FCP dalam milidetik) **akan berbeda** antar mesin karena bergantung
+pada kecepatan CPU penguji. Yang harus tetap konsisten adalah **arah dan besaran relatif**
+perbandingan baseline vs optimized, yaitu kesimpulan penelitian ini. Versi Node.js,
+Chromium bawaan Puppeteer, dan Lighthouse juga memengaruhi nilai absolut, sehingga
+versi paket dikunci pada `package-lock.json` — gunakan `npm ci` alih-alih `npm install`
+bila ingin lingkungan yang identik.
 
 ## Catatan Metodologis
 

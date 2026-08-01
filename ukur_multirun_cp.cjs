@@ -57,8 +57,9 @@ async function runMeasurement(target, scenario) {
 async function start() {
     const { exec } = require('child_process');
     console.log("Starting CP servers on ports 4005 and 4006...");
-    const server1 = exec('npx.cmd http-server dist-cp-baseline -p 4005 -c-1', { cwd: __dirname });
-    const server2 = exec('npx.cmd http-server dist-cp-optimized -p 4006 -c-1', { cwd: __dirname });
+    const HTTP_SERVER = path.join(__dirname, 'node_modules', 'http-server', 'bin', 'http-server');
+    const server1 = exec(`node "${HTTP_SERVER}" dist-cp-baseline -p 4005 -c-1`, { cwd: __dirname });
+    const server2 = exec(`node "${HTTP_SERVER}" dist-cp-optimized -p 4006 -c-1`, { cwd: __dirname });
     await new Promise(r => setTimeout(r, 3000));
 
     for (const target of TARGETS) {
@@ -86,6 +87,7 @@ async function start() {
     server1.kill();
     server2.kill();
     console.log("All Company Profile multi-run measurements complete!");
+    process.exit(0); // pastikan proses berhenti walau server anak masih memegang handle
 }
 
 start();
