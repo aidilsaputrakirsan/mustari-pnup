@@ -33,3 +33,5 @@ stats.html
 
 # Output build untuk Netlify (dibangkitkan ulang saat deploy)
 dist-netlify-*
+
+dist-demo

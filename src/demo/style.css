@@ -1,0 +1,188 @@
+/* ============================================
+   SIMTA DEMO - GAYA GLOBAL
+   ============================================
+   Tema TERANG sebagai bawaan. Mode gelap opsional
+   lewat kelas .app-dark pada elemen <html>.
+   ============================================ */
+
+@layer theme, base, primevue;
+
+:root {
+    --simta-radius: 12px;
+    --simta-shell: #f1f5f9;
+    --simta-permukaan: #ffffff;
+    --simta-garis: #e2e8f0;
+    --simta-teks: #0f172a;
+    --simta-teks-lembut: #64748b;
+    --simta-sidebar: #ffffff;
+    --simta-bayang: 0 1px 2px rgba(15, 23, 42, .04), 0 1px 3px rgba(15, 23, 42, .06);
+    --simta-bayang-naik: 0 4px 6px -1px rgba(15, 23, 42, .07), 0 2px 4px -2px rgba(15, 23, 42, .05);
+    color-scheme: light;
+}
+
+html.app-dark {
+    --simta-shell: #020617;
+    --simta-permukaan: #0f172a;
+    --simta-garis: #1e293b;
+    --simta-teks: #e2e8f0;
+    --simta-teks-lembut: #94a3b8;
+    --simta-sidebar: #0f172a;
+    --simta-bayang: 0 1px 3px rgba(0, 0, 0, .4);
+    --simta-bayang-naik: 0 4px 12px rgba(0, 0, 0, .45);
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: var(--simta-shell);
+    color: var(--simta-teks);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+}
+
+/* Angka pada tabel & KPI dibaca sebagai kolom rata */
+.angka-tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+}
+
+/* Scrollbar yang tidak berisik */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+    border: 3px solid var(--simta-shell);
+}
+
+html.app-dark ::-webkit-scrollbar-thumb {
+    background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ============================================
+   KARTU / PANEL
+   ============================================ */
+.panel {
+    background: var(--simta-permukaan);
+    border: 1px solid var(--simta-garis);
+    border-radius: var(--simta-radius);
+    box-shadow: var(--simta-bayang);
+}
+
+.panel-judul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--simta-garis);
+}
+
+.panel-judul h3 {
+    font-size: .9375rem;
+    font-weight: 600;
+    letter-spacing: -.01em;
+}
+
+.panel-judul p {
+    font-size: .75rem;
+    color: var(--simta-teks-lembut);
+    margin-top: 2px;
+}
+
+/* ============================================
+   PENYESUAIAN PRIMEVUE
+   ============================================ */
+@layer primevue {
+
+    /* Tabel padat tapi tetap lapang dibaca */
+    .p-datatable-table-container {
+        border-radius: 0 0 var(--simta-radius) var(--simta-radius);
+    }
+
+    .p-datatable-thead>tr>th {
+        background: var(--simta-permukaan);
+        font-size: .75rem;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        font-weight: 600;
+        color: var(--simta-teks-lembut);
+        white-space: nowrap;
+    }
+
+    .p-datatable-tbody>tr>td {
+        font-size: .8125rem;
+        padding-top: .625rem;
+        padding-bottom: .625rem;
+    }
+
+    .p-tag {
+        font-size: .6875rem;
+        font-weight: 600;
+        letter-spacing: .01em;
+    }
+
+    .p-progressbar {
+        border-radius: 999px;
+    }
+}
+
+/* ============================================
+   TRANSISI HALAMAN
+   ============================================ */
+.halaman-enter-active {
+    transition: opacity .18s ease, transform .18s ease;
+}
+
+.halaman-leave-active {
+    transition: opacity .12s ease;
+}
+
+.halaman-enter-from {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.halaman-leave-to {
+    opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .halaman-enter-active,
+    .halaman-leave-active {
+        transition: none;
+    }
+}

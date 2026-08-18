@@ -23,12 +23,17 @@
     "ukur:lighthouse": "node ukur_lighthouse.cjs",
     "ukur:all": "npm run ukur:simta && npm run ukur:cp && npm run ukur:lighthouse",
     "verifikasi": "npm run build:all && npm run ukur:all && python analisis_statistik.py && python create_final_charts.py",
-    "build:netlify:simta": "vite build --config vite.config.optimized.js && node scripts/build-netlify.mjs simta",
-    "build:netlify:cp": "vite build --config vite.config.cp.optimized.js && node scripts/build-netlify.mjs cp"
+    "build:netlify:simta": "vite build --config vite.config.demo.js && node scripts/build-netlify.mjs simta",
+    "build:netlify:cp": "vite build --config vite.config.cp.optimized.js && node scripts/build-netlify.mjs cp",
+    "dev:demo": "vite --config vite.config.demo.js",
+    "build:demo": "vite build --config vite.config.demo.js"
   },
   "dependencies": {
+    "@primevue/themes": "^4.5.4",
     "chart.js": "^4.5.1",
     "pinia": "^3.0.4",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.5.5",
     "vue": "^3.5.25",
     "vue-chartjs": "^5.3.3",
     "vue-router": "^4.6.4"

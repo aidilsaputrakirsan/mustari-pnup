@@ -16,8 +16,8 @@ import { existsSync } from 'node:fs'
 
 const TARGET = {
     simta: {
-        sumber: 'dist-optimized',
-        entri: 'index.optimized.html',
+        sumber: 'dist-demo',
+        entri: 'index.demo.html',
         publish: 'dist-netlify-simta',
     },
     cp: {
