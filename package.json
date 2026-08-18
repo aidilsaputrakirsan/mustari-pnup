@@ -22,7 +22,9 @@
     "ukur:cp": "node ukur_multirun_cp.cjs",
     "ukur:lighthouse": "node ukur_lighthouse.cjs",
     "ukur:all": "npm run ukur:simta && npm run ukur:cp && npm run ukur:lighthouse",
-    "verifikasi": "npm run build:all && npm run ukur:all && python analisis_statistik.py && python create_final_charts.py"
+    "verifikasi": "npm run build:all && npm run ukur:all && python analisis_statistik.py && python create_final_charts.py",
+    "build:netlify:simta": "vite build --config vite.config.optimized.js && node scripts/build-netlify.mjs simta",
+    "build:netlify:cp": "vite build --config vite.config.cp.optimized.js && node scripts/build-netlify.mjs cp"
   },
   "dependencies": {
     "chart.js": "^4.5.1",

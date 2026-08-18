@@ -30,3 +30,6 @@ dist-ssr
 
 # Output bundle visualizer (dapat dibangkitkan ulang via `npm run analyze`)
 stats.html
+
+# Output build untuk Netlify (dibangkitkan ulang saat deploy)
+dist-netlify-*
