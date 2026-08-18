@@ -3,7 +3,8 @@ import os
 import numpy as np
 from glob import glob
 
-data_dir = r"c:\laragon\www\Materi-Presentasi\mustari-pnup\laporan_tesis\data_pengukuran"
+base_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(base_dir, "laporan_tesis", "data_pengukuran")
 
 def calculate_stats(data_list, keys):
     stats = {}
@@ -54,7 +55,7 @@ def print_summary(perf, lh):
     summary = {"performance": perf, "lighthouse": lh}
     with open(os.path.join(data_dir, "summary_stats.json"), 'w') as f:
         json.dump(summary, f, indent=2)
-    print(f"✅ Summary saved to summary_stats.json\n")
+    print("[OK] Summary saved to summary_stats.json\n")
 
     print("## 1. PerformanceObserver Metrics (5 Runs Mean ± SD)")
     for target, stats in perf.items():

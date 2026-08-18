@@ -52,8 +52,9 @@ async function runMeasurement(target, scenario) {
 async function start() {
     const { exec } = require('child_process');
     console.log("Starting servers on ports 4001 and 4002...");
-    const server1 = exec('npx.cmd http-server dist-baseline -p 4001 -c-1', { cwd: __dirname });
-    const server2 = exec('npx.cmd http-server dist-optimized -p 4002 -c-1', { cwd: __dirname });
+    const HTTP_SERVER = path.join(__dirname, 'node_modules', 'http-server', 'bin', 'http-server');
+    const server1 = exec(`node "${HTTP_SERVER}" dist-baseline -p 4001 -c-1`, { cwd: __dirname });
+    const server2 = exec(`node "${HTTP_SERVER}" dist-optimized -p 4002 -c-1`, { cwd: __dirname });
     await new Promise(r => setTimeout(r, 3000));
 
     for (const target of TARGETS) {
@@ -81,6 +82,7 @@ async function start() {
     server1.kill();
     server2.kill();
     console.log("All SIMTA multi-run measurements complete!");
+    process.exit(0); // pastikan proses berhenti walau server anak masih memegang handle
 }
 
 start();

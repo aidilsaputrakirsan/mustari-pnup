@@ -14,7 +14,15 @@
     "dev:optimized": "vite --config vite.config.optimized.js",
     "build:optimized": "vite build --config vite.config.optimized.js",
     "preview:optimized": "vite preview --config vite.config.optimized.js",
-    "analyze": "vite build --config vite.config.optimized.js && echo 'Buka stats.html di browser untuk melihat visualisasi bundle'"
+    "analyze": "vite build --config vite.config.optimized.js && echo 'Buka stats.html di browser untuk melihat visualisasi bundle'",
+    "build:cp:baseline": "vite build --config vite.config.cp.baseline.js",
+    "build:cp:optimized": "vite build --config vite.config.cp.optimized.js",
+    "build:all": "npm run build:baseline && npm run build:optimized && npm run build:cp:baseline && npm run build:cp:optimized",
+    "ukur:simta": "node ukur_multirun.cjs",
+    "ukur:cp": "node ukur_multirun_cp.cjs",
+    "ukur:lighthouse": "node ukur_lighthouse.cjs",
+    "ukur:all": "npm run ukur:simta && npm run ukur:cp && npm run ukur:lighthouse",
+    "verifikasi": "npm run build:all && npm run ukur:all && python analisis_statistik.py && python create_final_charts.py"
   },
   "dependencies": {
     "chart.js": "^4.5.1",
@@ -26,6 +34,9 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "@vitejs/plugin-vue": "^6.0.2",
+    "http-server": "^14.1.1",
+    "lighthouse": "^12.8.2",
+    "puppeteer": "^24.43.1",
     "rollup-plugin-visualizer": "^6.0.5",
     "tailwindcss": "^4.1.18",
     "vite": "^8.0.0-beta.13",

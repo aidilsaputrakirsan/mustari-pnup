@@ -22,7 +22,8 @@ const TARGETS = [
 
 function runLighthouse(url) {
     return new Promise((resolve, reject) => {
-        const cmd = `npx.cmd lighthouse "${url}" --output=json --chrome-flags="--headless=new --no-sandbox" --only-categories=performance --quiet`;
+        const LIGHTHOUSE_CLI = path.join(__dirname, 'node_modules', 'lighthouse', 'cli', 'index.js');
+        const cmd = `node "${LIGHTHOUSE_CLI}" "${url}" --output=json --chrome-flags="--headless --no-sandbox" --only-categories=performance --quiet`;
         exec(cmd, { maxBuffer: 10 * 1024 * 1024, cwd: __dirname }, (err, stdout, stderr) => {
             if (err) {
                 console.error(`Lighthouse error: ${err.message}`);
@@ -55,7 +56,8 @@ async function start() {
     console.log("Starting all servers...");
     const servers = [];
     for (const t of TARGETS) {
-        const s = exec(`npx.cmd http-server ${t.server.dir} -p ${t.server.port} -c-1`, { cwd: __dirname });
+        const HTTP_SERVER = path.join(__dirname, 'node_modules', 'http-server', 'bin', 'http-server');
+        const s = exec(`node "${HTTP_SERVER}" ${t.server.dir} -p ${t.server.port} -c-1`, { cwd: __dirname });
         servers.push(s);
     }
     await new Promise(r => setTimeout(r, 3000));
@@ -84,6 +86,7 @@ async function start() {
     // Kill all servers
     servers.forEach(s => s.kill());
     console.log("All Lighthouse measurements complete!");
+    process.exit(0); // pastikan proses berhenti walau server anak masih memegang handle
 }
 
 start();
