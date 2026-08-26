@@ -53,8 +53,8 @@ async function start() {
     const { exec } = require('child_process');
     console.log("Starting servers on ports 4001 and 4002...");
     const HTTP_SERVER = path.join(__dirname, 'node_modules', 'http-server', 'bin', 'http-server');
-    const server1 = exec(`node "${HTTP_SERVER}" dist-baseline -p 4001 -c-1`, { cwd: __dirname });
-    const server2 = exec(`node "${HTTP_SERVER}" dist-optimized -p 4002 -c-1`, { cwd: __dirname });
+    const server1 = exec(`node "${HTTP_SERVER}" dist-baseline -p 4001 -c-1 -g -b`, { cwd: __dirname });
+    const server2 = exec(`node "${HTTP_SERVER}" dist-optimized -p 4002 -c-1 -g -b`, { cwd: __dirname });
     await new Promise(r => setTimeout(r, 3000));
 
     for (const target of TARGETS) {

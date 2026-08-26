@@ -7,6 +7,14 @@ const { exec, execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
+// Paksa Lighthouse memakai Chrome yang sama dengan yang dikelola Puppeteer
+// (bukan Chrome sistem yang terdeteksi otomatis oleh chrome-launcher).
+// Tanpa ini, chrome-launcher bisa memilih Chrome asli pengguna (dengan profil,
+// ekstensi, dan prompt sign-in/default-browser) yang menyebabkan Lighthouse
+// gagal dengan error interstitial, serta membuat hasil pengukuran tidak
+// reproducible di komputer lain.
+process.env.CHROME_PATH = require('puppeteer').executablePath();
+
 const OUTPUT_DIR = path.join(__dirname, 'laporan_tesis', 'data_pengukuran');
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -57,7 +65,7 @@ async function start() {
     const servers = [];
     for (const t of TARGETS) {
         const HTTP_SERVER = path.join(__dirname, 'node_modules', 'http-server', 'bin', 'http-server');
-        const s = exec(`node "${HTTP_SERVER}" ${t.server.dir} -p ${t.server.port} -c-1`, { cwd: __dirname });
+        const s = exec(`node "${HTTP_SERVER}" ${t.server.dir} -p ${t.server.port} -c-1 -g -b`, { cwd: __dirname });
         servers.push(s);
     }
     await new Promise(r => setTimeout(r, 3000));

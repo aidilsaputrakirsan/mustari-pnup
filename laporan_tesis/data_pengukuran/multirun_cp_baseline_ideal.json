@@ -1,47 +1,47 @@
 [
   {
     "Variant": "Company Profile - Baseline",
-    "FCP_ms": 388,
-    "LCP_ms": 388,
+    "FCP_ms": 464,
+    "LCP_ms": 464,
     "TBT_ms": 0,
-    "LoadTime_ms": 51,
+    "LoadTime_ms": 59,
     "MemoryUsed_MB": "1.87",
-    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
   },
   {
     "Variant": "Company Profile - Baseline",
-    "FCP_ms": 348,
-    "LCP_ms": 348,
+    "FCP_ms": 564,
+    "LCP_ms": 564,
     "TBT_ms": 0,
-    "LoadTime_ms": 42,
+    "LoadTime_ms": 55,
     "MemoryUsed_MB": "1.87",
-    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
   },
   {
     "Variant": "Company Profile - Baseline",
-    "FCP_ms": 364,
-    "LCP_ms": 364,
+    "FCP_ms": 508,
+    "LCP_ms": 508,
     "TBT_ms": 0,
-    "LoadTime_ms": 42,
-    "MemoryUsed_MB": "1.93",
-    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+    "LoadTime_ms": 71,
+    "MemoryUsed_MB": "1.87",
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
   },
   {
     "Variant": "Company Profile - Baseline",
-    "FCP_ms": 352,
-    "LCP_ms": 352,
+    "FCP_ms": 508,
+    "LCP_ms": 508,
     "TBT_ms": 0,
-    "LoadTime_ms": 43,
+    "LoadTime_ms": 61,
     "MemoryUsed_MB": "1.87",
-    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
   },
   {
     "Variant": "Company Profile - Baseline",
-    "FCP_ms": 384,
-    "LCP_ms": 384,
+    "FCP_ms": 512,
+    "LCP_ms": 512,
     "TBT_ms": 0,
-    "LoadTime_ms": 42,
+    "LoadTime_ms": 48,
     "MemoryUsed_MB": "1.87",
-    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"
+    "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36"
   }
 ]

@@ -22,12 +22,12 @@ Masing-masing dikompilasi dalam dua versi — **baseline** (*monolithic / eager 
 
 | Temuan | SIMTA (kompleksitas tinggi) | Company Profile (kompleksitas rendah) |
 |--------|------------------------------|----------------------------------------|
-| Ukuran *bundle* awal | 346 KB → ~195 KB (**turun >40%**) | sudah kecil sejak awal |
-| FCP (kondisi normal) | 1144,0 → 881,6 ms (**−22,9%**) | 367,2 → 364,0 ms (tidak berarti) |
-| TBT (CPU 4x) | 1023,0 → 790,8 ms (**−22,7%**) | 143,2 → 26,0 ms |
-| FCP (CPU 4x) | membaik | **memburuk 30,2%** |
+| Lighthouse Performance Score | 56,8 → 75,0 (**naik 32,0%**) | 100,0 → 99,0 (nyaris tidak berubah) |
+| FCP — PerformanceObserver (kondisi normal) | 1103,2 → 842,4 ms (**−23,6%**) | 511,2 → 483,2 ms (−5,5%) |
+| FCP — Lighthouse | 4960,4 → 3250,2 ms (**−34,5%**) | 1361,4 → 1578,2 ms (memburuk 15,9%) |
+| TBT — PerformanceObserver (CPU 4x) | 710,4 → 579,0 ms (**−18,5%**) | 66,6 → 7,6 ms (−88,6%) |
 
-**Kesimpulan:** *code splitting* sangat efektif pada aplikasi kompleks dengan pustaka berat, tetapi kontraproduktif pada aplikasi sederhana. Ambang praktis yang direkomendasikan: terapkan hanya bila *bundle* awal melebihi 200 KB terkompresi dan terdapat pustaka berat yang tidak dibutuhkan di halaman pertama.
+**Kesimpulan:** *code splitting* + *lazy loading* + kompresi Brotli/Gzip sangat efektif pada aplikasi kompleks dengan pustaka berat (naik di semua metrik), tetapi manfaatnya tipis — dan pada metrik Lighthouse yang stabil justru sedikit negatif di FCP/LCP — pada aplikasi sederhana. Ambang praktis yang direkomendasikan: terapkan hanya bila *bundle* awal melebihi 200 KB terkompresi dan terdapat pustaka berat yang tidak dibutuhkan di halaman pertama. Lihat catatan metodologis di `laporan_tesis/revisi_v2/BAB_3_HASIL_PEMBAHASAN.md` Sub-bab 3.8 mengenai satu klaim (degradasi FCP Company Profile) dari pengukuran awal yang tidak *reproducible* dan telah dikoreksi.
 
 ---
 
@@ -133,7 +133,7 @@ sebelum memulai.
 | `laporan_tesis/chapters/images/chart_*.png` | Grafik perbandingan yang dipakai pada BAB III |
 
 Angka pada BAB III berasal dari `summary_stats.json`. Sebagai contoh, klaim
-"FCP SIMTA turun 22,9% pada kondisi normal" dapat dilacak ke baris
+"FCP SIMTA turun 23,6% pada kondisi normal" dapat dilacak ke baris
 `FCP_ms Improvement` pada keluaran `analisis_statistik.py`, yang dihitung dari
 `multirun_baseline_ideal.json` dan `multirun_optimized_ideal.json`.
 
@@ -148,6 +148,27 @@ perbandingan baseline vs optimized, yaitu kesimpulan penelitian ini. Versi Node.
 Chromium bawaan Puppeteer, dan Lighthouse juga memengaruhi nilai absolut, sehingga
 versi paket dikunci pada `package-lock.json` — gunakan `npm ci` alih-alih `npm install`
 bila ingin lingkungan yang identik.
+
+Dua perbaikan penting pada skrip pengukuran, ditemukan saat audit reproduktibilitas:
+
+- `ukur_lighthouse.cjs` kini memaksa Lighthouse memakai Chrome yang sama dengan
+  yang dikelola Puppeteer (`process.env.CHROME_PATH`), bukan Chrome sistem yang
+  terdeteksi otomatis oleh `chrome-launcher` — Chrome sistem (dengan profil dan
+  ekstensi pengguna) dapat menampilkan *interstitial* yang menggagalkan seluruh
+  audit.
+- `ukur_multirun.cjs`, `ukur_multirun_cp.cjs`, dan `ukur_lighthouse.cjs` kini
+  menjalankan `http-server` dengan *flag* `-g -b` agar varian `.gz`/`.br` hasil
+  `vite.config.optimized.js` benar-benar tersaji ke peramban sesuai
+  `Accept-Encoding` — tanpa ini, manfaat kompresi Brotli/Gzip tidak pernah
+  benar-benar terukur meski berkasnya ada di `dist-optimized/`.
+
+Selain itu, aplikasi *Company Profile* memuat halaman dalam skala ratusan
+milidetik, sehingga metrik `PerformanceObserver`-nya (khususnya FCP pada
+kondisi CPU diperlambat) terbukti cukup sensitif terhadap variasi kondisi
+mesin antar-sesi pengukuran, meski dijalankan pada mesin yang sama. Gunakan
+data Lighthouse (simpangan baku jauh lebih kecil) sebagai rujukan utama untuk
+klaim persentase pada aplikasi ini — lihat catatan metodologis di
+Sub-bab 3.8 naskah tesis.
 
 ## Catatan Metodologis
 

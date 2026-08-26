@@ -1,47 +1,47 @@
 [
   {
-    "PerformanceScore": 66,
-    "FCP_ms": 5042,
-    "LCP_ms": 5151,
-    "TTI_ms": 5229,
-    "TBT_ms": 112,
-    "SpeedIndex": 5640,
+    "PerformanceScore": 60,
+    "FCP_ms": 5023,
+    "LCP_ms": 5234,
+    "TTI_ms": 5433,
+    "TBT_ms": 333,
+    "SpeedIndex": 5023,
     "CLS": 0
   },
   {
-    "PerformanceScore": 66,
-    "FCP_ms": 5153,
-    "LCP_ms": 5260,
-    "TTI_ms": 5337,
-    "TBT_ms": 110,
-    "SpeedIndex": 5610,
+    "PerformanceScore": 55,
+    "FCP_ms": 4881,
+    "LCP_ms": 5187,
+    "TTI_ms": 5569,
+    "TBT_ms": 510,
+    "SpeedIndex": 4881,
     "CLS": 0
   },
   {
-    "PerformanceScore": 67,
-    "FCP_ms": 5066,
-    "LCP_ms": 5168,
-    "TTI_ms": 5240,
-    "TBT_ms": 98,
-    "SpeedIndex": 5536,
-    "CLS": 0
-  },
-  {
-    "PerformanceScore": 66,
-    "FCP_ms": 5071,
+    "PerformanceScore": 62,
+    "FCP_ms": 4973,
     "LCP_ms": 5182,
-    "TTI_ms": 5261,
-    "TBT_ms": 113,
-    "SpeedIndex": 5555,
+    "TTI_ms": 5416,
+    "TBT_ms": 283,
+    "SpeedIndex": 4973,
     "CLS": 0
   },
   {
-    "PerformanceScore": 66,
-    "FCP_ms": 5133,
-    "LCP_ms": 5231,
-    "TTI_ms": 5300,
-    "TBT_ms": 93,
-    "SpeedIndex": 5602,
+    "PerformanceScore": 57,
+    "FCP_ms": 4910,
+    "LCP_ms": 5195,
+    "TTI_ms": 5502,
+    "TBT_ms": 433,
+    "SpeedIndex": 4910,
+    "CLS": 0
+  },
+  {
+    "PerformanceScore": 50,
+    "FCP_ms": 5015,
+    "LCP_ms": 5344,
+    "TTI_ms": 5914,
+    "TBT_ms": 715,
+    "SpeedIndex": 5015,
     "CLS": 0
   }
 ]
