@@ -13,7 +13,10 @@ Berdasarkan hasil penelitian yang telah dilakukan pada dua model *Single Page Ap
 3. **Manfaat terbesar terlihat pada perangkat dengan spesifikasi rendah.**
    Ketika diuji pada kondisi CPU diperlambat 4x, TBT SIMTA yang awalnya 710,4 ms (melampaui batas toleransi 300 ms) berhasil diturunkan menjadi 579,0 ms — perbaikan 18,5%. Ini berarti pengguna dengan perangkat lama yang mengakses SIMTA mengalami periode browser tidak responsif yang lebih singkat.
 
-4. **Teknik ini tidak cocok untuk semua jenis website (*Diminishing Returns*).**
+4. **_Prefetching_ diperlukan untuk menutup kelemahan bawaan _lazy loading_.**
+   *Code splitting* dan *lazy loading* berhasil memperkecil beban muat awal, tetapi memindahkan sebagian biayanya ke waktu navigasi: setiap kali pengguna berpindah halaman, *chunk* halaman tersebut baru mulai diunduh saat itu juga. Untuk itu penelitian ini melengkapinya dengan *prefetching* berbasis `requestIdleCallback`, yang mengunduh halaman yang kemungkinan besar dituju berikutnya pada saat *main thread* sedang senggang. Dengan demikian keunggulan *bundle* awal yang kecil tetap dipertahankan tanpa memindahkan beban jeda ke pengalaman navigasi pengguna.
+
+5. **Teknik ini tidak cocok untuk semua jenis website (*Diminishing Returns*).**
    Pada *Company Profile* (website sederhana), data Lighthouse yang stabil (simpangan baku mendekati nol, konsisten pada dua kali pengukuran terpisah) menunjukkan FCP dan LCP sedikit memburuk (masing-masing sekitar 16% dan 18%) pada versi *optimized*, akibat *overhead* beberapa *request* HTTP tambahan untuk *chunk* yang terpisah — biaya yang tidak sebanding pada aplikasi tanpa pustaka berat. (Pengukuran awal sempat mencatat degradasi FCP hingga 30,2% lewat *PerformanceObserver*; pengukuran ulang menunjukkan angka tersebut tidak *reproducible* pada instrumen itu — lihat catatan metodologis di Sub-bab 3.8 — sehingga kesimpulan ini disandarkan pada bukti Lighthouse yang terbukti stabil.) Penelitian ini membuktikan bahwa strategi optimasi harus mempertimbangkan tingkat kompleksitas aplikasi sebagai faktor penentu. Panduan praktis: terapkan *code splitting* hanya jika *bundle* awal sudah melebihi 200 KB terkompresi dan terdapat pustaka berat yang tidak digunakan di halaman pertama.
 
 ## 4.2 Saran untuk Penelitian Selanjutnya

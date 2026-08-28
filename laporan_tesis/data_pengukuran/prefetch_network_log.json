@@ -1,0 +1,152 @@
+[
+  [
+    {
+      "file": "index.optimized-D2fOstCx.js",
+      "waktu_ms": 0
+    },
+    {
+      "file": "vendor-chart-BMD3DpH8.js",
+      "waktu_ms": 1
+    },
+    {
+      "file": "vendor-vue-DnDrZ0q-.js",
+      "waktu_ms": 2
+    },
+    {
+      "file": "DashboardView-BWUr9tt7.js",
+      "waktu_ms": 203
+    },
+    {
+      "file": "supabase-CelTQgPn.js",
+      "waktu_ms": 204
+    },
+    {
+      "file": "DaftarJudulView-DN6x9mS-.js",
+      "waktu_ms": 417
+    },
+    {
+      "file": "DetailBimbinganView-2UUF4BJp.js",
+      "waktu_ms": 419
+    }
+  ],
+  [
+    {
+      "file": "index.optimized-D2fOstCx.js",
+      "waktu_ms": 0
+    },
+    {
+      "file": "vendor-chart-BMD3DpH8.js",
+      "waktu_ms": 2
+    },
+    {
+      "file": "vendor-vue-DnDrZ0q-.js",
+      "waktu_ms": 3
+    },
+    {
+      "file": "DashboardView-BWUr9tt7.js",
+      "waktu_ms": 109
+    },
+    {
+      "file": "supabase-CelTQgPn.js",
+      "waktu_ms": 110
+    },
+    {
+      "file": "DaftarJudulView-DN6x9mS-.js",
+      "waktu_ms": 351
+    },
+    {
+      "file": "DetailBimbinganView-2UUF4BJp.js",
+      "waktu_ms": 352
+    }
+  ],
+  [
+    {
+      "file": "index.optimized-D2fOstCx.js",
+      "waktu_ms": 0
+    },
+    {
+      "file": "vendor-chart-BMD3DpH8.js",
+      "waktu_ms": 1
+    },
+    {
+      "file": "vendor-vue-DnDrZ0q-.js",
+      "waktu_ms": 1
+    },
+    {
+      "file": "DashboardView-BWUr9tt7.js",
+      "waktu_ms": 116
+    },
+    {
+      "file": "supabase-CelTQgPn.js",
+      "waktu_ms": 117
+    },
+    {
+      "file": "DaftarJudulView-DN6x9mS-.js",
+      "waktu_ms": 327
+    },
+    {
+      "file": "DetailBimbinganView-2UUF4BJp.js",
+      "waktu_ms": 327
+    }
+  ],
+  [
+    {
+      "file": "index.optimized-D2fOstCx.js",
+      "waktu_ms": 0
+    },
+    {
+      "file": "vendor-chart-BMD3DpH8.js",
+      "waktu_ms": 2
+    },
+    {
+      "file": "vendor-vue-DnDrZ0q-.js",
+      "waktu_ms": 2
+    },
+    {
+      "file": "DashboardView-BWUr9tt7.js",
+      "waktu_ms": 105
+    },
+    {
+      "file": "supabase-CelTQgPn.js",
+      "waktu_ms": 107
+    },
+    {
+      "file": "DaftarJudulView-DN6x9mS-.js",
+      "waktu_ms": 330
+    },
+    {
+      "file": "DetailBimbinganView-2UUF4BJp.js",
+      "waktu_ms": 331
+    }
+  ],
+  [
+    {
+      "file": "index.optimized-D2fOstCx.js",
+      "waktu_ms": 0
+    },
+    {
+      "file": "vendor-chart-BMD3DpH8.js",
+      "waktu_ms": 0
+    },
+    {
+      "file": "vendor-vue-DnDrZ0q-.js",
+      "waktu_ms": 1
+    },
+    {
+      "file": "DashboardView-BWUr9tt7.js",
+      "waktu_ms": 113
+    },
+    {
+      "file": "supabase-CelTQgPn.js",
+      "waktu_ms": 114
+    },
+    {
+      "file": "DaftarJudulView-DN6x9mS-.js",
+      "waktu_ms": 332
+    },
+    {
+      "file": "DetailBimbinganView-2UUF4BJp.js",
+      "waktu_ms": 333
+    }
+  ]
+]

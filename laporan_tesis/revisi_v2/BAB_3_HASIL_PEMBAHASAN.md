@@ -2,7 +2,7 @@
 
 ## 3.1 Perbandingan Ukuran File Setelah Dikompilasi
 
-Masalah utama yang ingin diselesaikan dalam penelitian ini berawal dari ukuran file yang terlalu besar. Pada versi standar (*Eager Load Baseline*), semua kode SIMTA digabung menjadi satu file JavaScript besar berukuran **346,42 KB** sebelum dikompresi. Sekitar **58% dari total ukuran *bundle*** berasal dari pustaka pihak ketiga (*vendor/third-party libraries*), dengan Chart.js mendominasi karena mengemas seluruh modul *renderer* grafik — termasuk modul yang tidak digunakan pada halaman awal — ke dalam satu kesatuan.
+Masalah utama yang ingin diselesaikan dalam penelitian ini berawal dari ukuran file yang terlalu besar. Pada versi standar (*Eager Load Baseline*), semua kode SIMTA digabung menjadi satu file JavaScript besar berukuran **346,53 KB** sebelum dikompresi. Sekitar **58% dari total ukuran *bundle*** berasal dari pustaka pihak ketiga (*vendor/third-party libraries*), dengan Chart.js mendominasi karena mengemas seluruh modul *renderer* grafik — termasuk modul yang tidak digunakan pada halaman awal — ke dalam satu kesatuan.
 
 Kondisi ini menegaskan relevansi penerapan teknik *Code Splitting*. Apabila pustaka-pustaka besar tersebut berhasil dipisahkan ke dalam *chunk* terpisah dan hanya dimuat ketika halaman yang membutuhkannya diakses, beban unduhan awal dapat dikurangi secara substansial tanpa mengorbankan fungsionalitas aplikasi.
 
@@ -78,7 +78,9 @@ const routes = [
 
 Dengan penulisan `() => import(...)`, browser dibebaskan dari kewajiban memproses semua halaman di awal. Halaman hanya akan dimuat ketika pengguna membutuhkannya.
 
-**Prefetching.** Sebagai pelengkap *lazy loading*, router versi *optimized* juga menerapkan *prefetching*: setelah navigasi ke Dashboard selesai, `router.afterEach` menjadwalkan pengunduhan `DaftarJudulView.vue` dan `DetailBimbinganView.vue` di latar belakang melalui `requestIdleCallback` (dengan `setTimeout` sebagai *fallback*).
+**Kelemahan yang muncul dari lazy loading.** Meskipun berhasil menekan ukuran *bundle* awal, pendekatan ini memunculkan konsekuensi baru yang perlu diantisipasi. Pada *lazy loading* murni, berkas JavaScript sebuah halaman baru mulai diunduh tepat pada saat pengguna menekan menu navigasi. Akibatnya, beban yang semula ditanggung sekali di awal kini terpecah menjadi jeda-jeda kecil pada setiap perpindahan halaman: pengguna menekan menu, lalu menunggu *chunk* halaman tersebut selesai diunduh dan dieksekusi sebelum antarmuka benar-benar berganti. Pada jaringan lambat maupun perangkat berspesifikasi rendah, jeda ini dapat cukup terasa dan justru mengurangi kesan responsif yang ingin dicapai. Dengan kata lain, *code splitting* dan *lazy loading* berhasil memperkecil beban muat awal, tetapi memindahkan sebagian biaya tersebut ke waktu navigasi antar-halaman.
+
+**Prefetching sebagai penutup celah jeda navigasi.** Untuk mengatasi kelemahan tersebut, router versi *optimized* tidak berhenti pada *lazy loading*, melainkan melengkapinya dengan strategi *prefetching*. Prinsipnya sederhana: alih-alih menunggu pengguna menekan menu, aplikasi memanfaatkan waktu senggang peramban untuk mengunduh lebih awal halaman yang kemungkinan besar dituju berikutnya. Pada SIMTA, setelah navigasi ke Dashboard selesai, `router.afterEach` menjadwalkan pengunduhan `DaftarJudulView.vue` dan `DetailBimbinganView.vue` di latar belakang melalui `requestIdleCallback` (dengan `setTimeout` sebagai *fallback*).
 
 ```javascript
 router.afterEach((to) => {
@@ -93,7 +95,8 @@ router.afterEach((to) => {
 })
 ```
 
-Teknik ini memanfaatkan waktu jeda (*idle time*) peramban — saat *main thread* tidak sedang sibuk — untuk mengunduh halaman yang kemungkinan besar dituju berikutnya, tanpa menunda konten yang sedang ditampilkan. Karena dijadwalkan lewat `requestIdleCallback`, proses ini berjalan bersamaan dengan jendela pengukuran `PerformanceObserver` pada sub-bab berikutnya, sehingga *overhead*-nya (jika ada) sudah ikut terekam dalam angka TBT dan penggunaan memori yang dilaporkan — bukan biaya tersembunyi yang luput dari pengukuran.
+Dengan cara ini, ketika pengguna benar-benar menekan menu Daftar Judul, berkasnya sudah tersedia di *cache* peramban sehingga perpindahan halaman terasa seketika — jeda yang menjadi kelemahan *lazy loading* murni dapat ditekan tanpa mengorbankan keunggulan *bundle* awal yang kecil. Karena dijadwalkan lewat `requestIdleCallback`, pengunduhan ini hanya berjalan saat *main thread* sedang senggang, sehingga tidak menunda konten yang sedang ditampilkan. Bukti bahwa mekanisme ini benar-benar berjalan pada aplikasi yang diuji disajikan pada Sub-bab 3.9.
+
 
 ---
 
@@ -298,3 +301,33 @@ Bukti yang lebih dapat diandalkan datang dari Lighthouse (Tabel 3.7), yang simpa
 | LH Score | Lighthouse | +32,0% | -1,0% | SIMTA naik besar; CP nyaris tidak berubah |
 
 Kesimpulan dari tabel ini: **teknik *hybrid code splitting* + *lazy loading* + kompresi sangat efektif untuk aplikasi yang kompleks dan banyak menggunakan pustaka besar** (naik di semua metrik, termasuk Lighthouse Score +32,0%), **tetapi manfaatnya tipis — dan pada metrik Lighthouse yang stabil justru sedikit negatif pada FCP/LCP — untuk aplikasi sederhana** seperti *Company Profile*. Rekomendasi strategis tidak berubah: terapkan *code splitting* dan *lazy loading* hanya ketika *bundle* awal sudah melebihi 200 KB terkompresi dan terdapat pustaka berat yang tidak dibutuhkan di halaman utama; untuk aplikasi yang *bundle*-nya sudah kecil, biaya tambahan berupa beberapa kali *request* HTTP per *chunk* tidak sebanding dengan manfaatnya.
+
+---
+
+## 3.9 Verifikasi Mekanisme Prefetching
+
+Sub-bab 3.2 menjelaskan bahwa *prefetching* ditambahkan untuk menutup kelemahan *lazy loading*, yaitu munculnya jeda pada setiap perpindahan halaman. Bagian ini menyajikan bukti bahwa mekanisme tersebut benar-benar berjalan pada aplikasi yang diuji, mulai dari perbandingan konsep, struktur *chunk* hasil *build*, hingga rekaman permintaan berkas yang sesungguhnya terjadi di peramban.
+
+<div align="center">
+  <img src="../chapters/images/diagram_strategi_pemuatan.png" alt="Perbandingan tiga strategi pemuatan" width="620" />
+  <br>
+  <i>Gambar 3.10 Perbandingan konseptual tiga strategi pemuatan modul.</i>
+</div>
+
+Gambar 3.10 di atas membandingkan tiga strategi secara berdampingan. Pada *eager loading*, seluruh kode diunduh sekaligus di awal sehingga perpindahan halaman memang terasa instan, tetapi beban pemuatan awal menjadi besar. Pada *lazy loading* murni, beban awal berhasil diperkecil, namun setiap klik menu memunculkan jeda karena *chunk* halaman baru diunduh pada saat itu juga. Strategi ketiga, yaitu *lazy loading* yang dilengkapi *prefetching*, mempertahankan *bundle* awal yang kecil sekaligus menghilangkan jeda tersebut dengan memindahkan pengunduhan ke waktu senggang peramban.
+
+<div align="center">
+  <img src="../chapters/images/diagram_arsitektur_chunk.png" alt="Peta chunk hasil build" width="620" />
+  <br>
+  <i>Gambar 3.11 Peta chunk hasil build SIMTA versi optimized beserta waktu pemuatannya.</i>
+</div>
+
+Gambar 3.11 di atas memetakan sembilan *chunk* hasil *build* ke dalam tiga kelompok berdasarkan kapan masing-masing diunduh. Kelompok pertama berisi berkas yang dibutuhkan halaman pertama dengan total **120,1 KB** setelah dikompresi. Kelompok kedua berisi dua *chunk* yang dijadwalkan melalui *prefetching*, hanya **5,4 KB** terkompresi — biaya yang sangat kecil dibanding beban pemuatan awal. Kelompok ketiga berisi *chunk* yang sengaja tidak di-*prefetch* dan baru diunduh apabila rutenya benar-benar diakses, sehingga *prefetching* tetap bersifat selektif dan tidak mengembalikan aplikasi ke pola *eager loading*.
+
+<div align="center">
+  <img src="../chapters/images/chart_prefetch_network.png" alt="Rekaman permintaan berkas JavaScript" width="620" />
+  <br>
+  <i>Gambar 3.12 Rekaman permintaan berkas JavaScript pada versi optimized tanpa interaksi klik (rata-rata 5 repetisi).</i>
+</div>
+
+Gambar 3.12 di atas merupakan rekaman permintaan berkas yang sesungguhnya terjadi ketika aplikasi dibuka lalu dibiarkan tanpa satu pun klik. Terlihat tiga tahap yang berurutan: berkas *entry* beserta `vendor-vue.js` dan `vendor-chart.js` diminta pada milidetik-milidetik pertama, `DashboardView.js` sebagai rute pembuka menyusul pada sekitar 129 ms, kemudian `DaftarJudulView.js` dan `DetailBimbinganView.js` diunduh pada sekitar 351 ms. Dua berkas terakhir inilah buktinya: keduanya masuk ke *cache* peramban meskipun menunya tidak pernah ditekan. Sebaliknya, `JadwalSeminarView.js` dan `PengaturanView.js` sama sekali tidak diminta, yang menunjukkan bahwa *prefetching* bekerja secara terarah pada rute yang diprediksi paling sering dituju, bukan mengunduh seluruh halaman tanpa pandang bulu. Rekaman ini dihasilkan oleh skrip `ukur_prefetch.cjs` dan datanya tersimpan pada `data_pengukuran/prefetch_network_log.json`.
