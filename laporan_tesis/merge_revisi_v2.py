@@ -7,6 +7,7 @@ out = os.path.join(base, 'Revisi-v2-LaporanTesis.md')
 title = '<h1 align="center">Optimasi Performa Single Page Application Menggunakan Hybrid Lazy Loading dan Code Splitting Berdasarkan Tingkat Kompleksitas Sistem</h1>\n\n---\n\n'
 
 files = [
+    'ABSTRAK.md',
     'BAB_1_PENDAHULUAN.md',
     'BAB_2_METODE_DAN_TEORI.md',
     'BAB_3_HASIL_PEMBAHASAN.md',

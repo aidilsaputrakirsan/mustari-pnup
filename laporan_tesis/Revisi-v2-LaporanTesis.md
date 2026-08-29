@@ -2,6 +2,20 @@
 
 ---
 
+# ABSTRAK
+
+Single Page Application (SPA) menghadapi permasalahan ukuran bundle JavaScript yang besar sehingga memperlambat pemuatan awal, khususnya pada perangkat berspesifikasi rendah. Penelitian ini menguji apakah efektivitas kombinasi hybrid lazy loading dan code splitting pada SPA berbasis Vue.js dan Vite dipengaruhi oleh tingkat kompleksitas aplikasi. Dua aplikasi dengan tingkat kompleksitas berbeda dibandingkan, yaitu Sistem Informasi Manajemen Tugas Akhir (SIMTA) yang memuat pustaka berat Chart.js, Pinia, dan Vue Router, serta sebuah Company Profile berkonten dominan statis. Masing-masing dikompilasi dalam dua versi, yaitu baseline dengan eager loading monolitik dan optimized yang menerapkan code splitting melalui manualChunks, lazy loading berbasis dynamic import, prefetching melalui requestIdleCallback, serta kompresi Brotli dan Gzip. Pengukuran dilakukan menggunakan W3C PerformanceObserver dan Google Lighthouse melalui Puppeteer sebanyak lima repetisi pada kondisi normal dan kondisi CPU diperlambat empat kali. Hasil penelitian menunjukkan bahwa pada SIMTA seluruh metrik membaik, yaitu skor Lighthouse naik 32,0% dari 56,8 menjadi 75,0, First Contentful Paint turun 34,5%, Largest Contentful Paint turun 27,5%, dan Total Blocking Time turun 30,6%. Sebaliknya pada Company Profile manfaatnya tidak signifikan, bahkan First Contentful Paint dan Largest Contentful Paint sedikit memburuk masing-masing sebesar 15,9% dan 18,0% akibat tambahan permintaan HTTP untuk setiap chunk. Penelitian ini menyimpulkan bahwa tingkat kompleksitas aplikasi merupakan faktor penentu efektivitas strategi optimasi, dengan ambang praktis penerapan pada bundle awal yang melebihi 200 KB terkompresi dan memuat pustaka berat yang tidak dibutuhkan pada halaman pertama.
+
+***Kata kunci:*** single page application, code splitting, lazy loading, prefetching, Vue.js, optimasi performa web
+
+# ABSTRACT
+
+Single Page Applications (SPA) suffer from large JavaScript bundle sizes that slow down initial loading, particularly on low-specification devices. This study examines whether the effectiveness of combined hybrid lazy loading and code splitting in Vue.js and Vite-based SPAs is influenced by the level of application complexity. Two applications of differing complexity were compared: a Final Project Management Information System (SIMTA) that relies on heavy libraries including Chart.js, Pinia, and Vue Router, and a Company Profile dominated by static content. Each was compiled into two versions: a baseline using monolithic eager loading, and an optimized version applying code splitting through manualChunks, lazy loading via dynamic imports, prefetching through requestIdleCallback, and Brotli and Gzip compression. Measurements were conducted using the W3C PerformanceObserver and Google Lighthouse through Puppeteer across five repetitions under normal conditions and under fourfold CPU throttling. The results show that all metrics improved for SIMTA: the Lighthouse performance score increased by 32.0% from 56.8 to 75.0, First Contentful Paint decreased by 34.5%, Largest Contentful Paint by 27.5%, and Total Blocking Time by 30.6%. In contrast, the Company Profile gained no significant benefit, with First Contentful Paint and Largest Contentful Paint slightly deteriorating by 15.9% and 18.0% respectively due to the additional HTTP requests required for each chunk. This study concludes that application complexity is a determining factor in the effectiveness of the optimization strategy, with a practical adoption threshold at initial bundles exceeding 200 KB compressed that contain heavy libraries not required on the first page.
+
+***Keywords:*** single page application, code splitting, lazy loading, prefetching, Vue.js, web performance optimization
+
+---
+
 # BAB I PENDAHULUAN
 
 ## 1.1 Latar Belakang Masalah
