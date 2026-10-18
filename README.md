@@ -5,6 +5,157 @@ Repositori ini berisi kode program, konfigurasi *build*, skrip pengukuran, dan d
 **Peneliti:** Mustari Muhiddin (D082241013)
 **Program Studi:** Magister Teknik Informatika, Fakultas Teknik, Universitas Hasanuddin
 
+> **Baru pertama kali?** Kalau Anda hanya ingin membuka web-nya di laptop sendiri,
+> langsung ke [Panduan Pemula: dari Nol sampai Web Terbuka](#panduan-pemula-dari-nol-sampai-web-terbuka).
+> Tidak perlu memahami isi penelitian lebih dulu.
+
+---
+
+## Panduan Pemula: dari Nol sampai Web Terbuka
+
+Panduan ini ditulis untuk yang **belum pernah memakai Git, Node.js, maupun terminal**.
+Ikuti langkahnya berurutan. Contoh perintah ditulis untuk **Windows**; pengguna Mac/Linux
+cukup memakai aplikasi **Terminal** dengan perintah yang sama persis.
+
+Waktu yang dibutuhkan: ± 15–20 menit (sebagian besar untuk mengunduh).
+
+### Langkah 1 — Pasang Git
+
+Git adalah aplikasi untuk mengunduh (*clone*) kode dari GitHub.
+
+1. Buka <https://git-scm.com/downloads>, pilih **Windows**, lalu unduh *installer*-nya.
+2. Jalankan *installer*. Biarkan semua pilihan bawaan, cukup klik **Next** terus sampai **Install**, lalu **Finish**.
+
+### Langkah 2 — Pasang Node.js
+
+Node.js dibutuhkan untuk memasang pustaka dan menjalankan web ini.
+
+1. Buka <https://nodejs.org>, unduh versi **LTS** (versi 22 atau lebih baru).
+2. Jalankan *installer*, klik **Next** terus sampai selesai (pilihan bawaan sudah benar).
+
+> Versi minimum: **Node.js 20.19** atau **22.12**. Versi yang lebih lama akan gagal
+> saat menjalankan web (lihat bagian *Kalau Ada Masalah* di bawah).
+
+### Langkah 3 — Buka terminal dan periksa pemasangan
+
+1. Tekan tombol **Windows**, ketik **cmd**, lalu buka **Command Prompt**.
+   (Kalau terminal sudah terbuka sebelum Langkah 1–2, **tutup lalu buka lagi** agar Git dan Node terdeteksi.)
+2. Ketik perintah berikut satu per satu, tekan **Enter** setelah tiap baris:
+
+   ```bash
+   git --version
+   node -v
+   npm -v
+   ```
+
+3. Bila muncul nomor versi (misalnya `git version 2.47.0`, `v22.12.0`, `10.9.0`), pemasangan berhasil.
+   Bila muncul pesan *"is not recognized"*, ulangi Langkah 1 atau 2.
+
+### Langkah 4 — Unduh (clone) kode dari GitHub
+
+Masih di terminal yang sama, ketik:
+
+```bash
+cd %USERPROFILE%
+git clone https://github.com/aidilsaputrakirsan/mustari-pnup.git
+cd mustari-pnup
+```
+
+Penjelasan:
+
+- Baris 1 pindah ke folder pengguna, yaitu `C:\Users\<nama-anda>` (di Mac/Linux: `cd ~`).
+- Baris 2 mengunduh seluruh kode (± 30 MB) ke folder baru bernama `mustari-pnup`.
+- Baris 3 masuk ke folder tersebut. **Semua perintah berikutnya harus dijalankan dari dalam folder ini.**
+
+> **Alternatif tanpa Git:** di halaman GitHub repositori ini, klik tombol hijau **Code → Download ZIP**,
+> ekstrak, lalu buka terminal di folder hasil ekstrak. Cara ini tidak bisa memperbarui kode
+> dengan `git pull`, jadi cara *clone* tetap disarankan.
+
+### Langkah 5 — Pasang pustaka (cukup sekali)
+
+```bash
+npm install
+```
+
+- Butuh koneksi internet, ± 1–3 menit. Tunggu sampai muncul lagi baris tempat mengetik perintah.
+- Proses ini juga mengunduh peramban Chromium (± 150 MB) yang dipakai skrip pengukuran tesis.
+- Pesan seperti `38 vulnerabilities` **normal dan boleh diabaikan**. Jangan jalankan
+  `npm audit fix --force` karena dapat mengubah versi pustaka yang dipakai penelitian.
+
+### Langkah 6 — Jalankan web
+
+Ada dua pilihan. Untuk sekadar melihat-lihat, **Pilihan B (demo)** paling lengkap tampilannya.
+
+**Pilihan A — Aplikasi yang diuji dalam penelitian**
+
+```bash
+npm run dev
+```
+
+Setelah muncul tulisan `Local: http://localhost:3000/`, buka peramban (Chrome/Edge/Firefox)
+lalu kunjungi alamat berikut:
+
+| Alamat | Yang tampil |
+|--------|-------------|
+| <http://localhost:3000/> | SIMTA versi *optimized* (dengan *lazy loading*) |
+| <http://localhost:3000/index.baseline.html> | SIMTA versi *baseline* (tanpa optimasi) |
+| <http://localhost:3000/index.cp.optimized.html> | Company Profile versi *optimized* |
+| <http://localhost:3000/index.cp.baseline.html> | Company Profile versi *baseline* |
+
+Keempatnya tidak memerlukan login.
+
+**Pilihan B — SIMTA versi demo (dengan halaman login)**
+
+```bash
+npm run dev:demo
+```
+
+Buka <http://localhost:3100/> lalu masuk dengan akun demo berikut (juga tertera di halaman login):
+
+| Email | Kata sandi |
+|-------|------------|
+| `koorpro@poliupg.ac.id` | `simta2026` |
+
+Semua data di aplikasi adalah data simulasi; tidak ada server atau basis data yang perlu dipasang.
+
+### Langkah 7 — Menghentikan web
+
+Kembali ke jendela terminal, tekan **Ctrl + C**. Bila muncul pertanyaan
+`Terminate batch job (Y/N)?`, ketik **Y** lalu **Enter**.
+
+> **Penting:** jendela terminal harus tetap terbuka selama web dipakai.
+> Menutup terminal sama dengan mematikan web-nya.
+
+### Menjalankan lagi di lain waktu
+
+Langkah 1–5 tidak perlu diulang. Cukup buka terminal, lalu:
+
+```bash
+cd %USERPROFILE%\mustari-pnup
+git pull
+npm install
+npm run dev
+```
+
+`git pull` mengambil pembaruan kode terbaru dari GitHub, dan `npm install` memasang pustaka
+baru bila ada (cepat bila tidak ada perubahan).
+
+### Kalau Ada Masalah
+
+| Gejala | Penyebab & solusi |
+|--------|-------------------|
+| `'git' is not recognized...` atau `'npm' is not recognized...` | Git/Node belum terpasang, atau terminal dibuka sebelum pemasangan. Tutup terminal, buka lagi; bila masih gagal, pasang ulang (Langkah 1/2). |
+| Di PowerShell muncul `npm.ps1 cannot be loaded because running scripts is disabled` | Pakai **Command Prompt** (cmd) saja, atau jalankan sekali di PowerShell: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, ketik **Y**. |
+| `Vite requires Node.js version 20.19+ or 22.12+` | Versi Node terlalu lama. Pasang versi LTS terbaru dari <https://nodejs.org>, lalu buka terminal baru. |
+| `npm ERR! enoent ... package.json` | Terminal tidak berada di folder proyek. Jalankan `cd %USERPROFILE%\mustari-pnup` dulu. |
+| `npm install` gagal/lama sekali saat mengunduh Chromium | Chromium hanya diperlukan untuk skrip pengukuran, bukan untuk membuka web. Lewati unduhannya: jalankan `set PUPPETEER_SKIP_DOWNLOAD=true`, lalu `npm install` lagi (di Mac/Linux: `PUPPETEER_SKIP_DOWNLOAD=true npm install`). |
+| Terminal menampilkan alamat dengan port lain, mis. `http://localhost:3001/` | Port 3000 sedang dipakai aplikasi lain; Vite otomatis memilih port berikutnya. Buka alamat yang tertera di terminal. |
+| Halaman `localhost` tidak bisa dibuka (*This site can't be reached*) | Server belum/tidak berjalan. Pastikan terminal masih terbuka dan perintah `npm run dev` sedang aktif. |
+| Halaman putih kosong | Tekan **Ctrl + F5** untuk memuat ulang. Bila masih kosong, hentikan (Ctrl + C) lalu jalankan `npm run dev` lagi. |
+
+Ingin membuka web dari HP/laptop lain di jaringan Wi-Fi yang sama? Jalankan `npm run dev -- --host`
+lalu buka alamat `Network: http://192.168.x.x:3000/` yang tertera di terminal.
+
 ---
 
 ## Ringkasan Penelitian
@@ -35,14 +186,21 @@ Masing-masing dikompilasi dalam dua versi — **baseline** (*monolithic / eager 
 
 ```
 src/                          Kode sumber aplikasi SIMTA (Vue 3, Pinia, Chart.js, Vue Router)
+  company-profile/            Kode sumber aplikasi Company Profile
+  demo/                       Kode sumber SIMTA versi demo publik (PrimeVue, login simulasi)
 public/                       Aset statis
+index.html                    Entry point `npm run dev` (SIMTA optimized)
 index.baseline.html           Entry point SIMTA versi baseline
 index.optimized.html          Entry point SIMTA versi optimized
 index.cp.baseline.html        Entry point Company Profile versi baseline
 index.cp.optimized.html       Entry point Company Profile versi optimized
+index.demo.html               Entry point SIMTA versi demo
+vite.config.js                Server pengembangan bawaan (`npm run dev`, port 3000)
 vite.config.baseline.js       Build SIMTA tanpa optimasi
 vite.config.optimized.js      Build SIMTA dengan manualChunks + kompresi
 vite.config.cp.*.js           Build Company Profile kedua versi
+vite.config.demo.js           Server & build SIMTA demo (`npm run dev:demo`, port 3100)
+scripts/build-netlify.mjs     Pengemas hasil build menjadi folder siap-deploy Netlify
 dist-baseline/                Hasil build SIMTA baseline (bukti ukuran bundle)
 dist-optimized/               Hasil build SIMTA optimized
 dist-cp-baseline/             Hasil build Company Profile baseline
@@ -67,7 +225,7 @@ laporan_tesis/                Naskah tesis, slide presentasi, dan data pengukura
 
 | Kebutuhan | Versi | Catatan |
 |-----------|-------|---------|
-| Node.js | v20 atau v22 | diuji pada v22.12.0 |
+| Node.js | v20.19+ atau v22.12+ | diuji pada v22.12.0; minimum dari Vite 8 |
 | Python | 3.9+ | diuji pada 3.11.6 |
 | Paket Python | `numpy`, `matplotlib` | `pip install numpy matplotlib` |
 | Koneksi internet | saat `npm install` saja | Puppeteer mengunduh Chromium (~150 MB) |
@@ -170,11 +328,28 @@ data Lighthouse (simpangan baku jauh lebih kecil) sebagai rujukan utama untuk
 klaim persentase pada aplikasi ini — lihat catatan metodologis di
 Sub-bab 3.8 naskah tesis.
 
+## Varian Demo dan Deploy Netlify
+
+Selain empat varian yang diukur, tersedia **SIMTA versi demo** (`src/demo/`) untuk
+demonstrasi publik. Varian ini memakai *entry point* dan konfigurasi sendiri
+(`index.demo.html`, `vite.config.demo.js`) sehingga **tidak memengaruhi** berkas maupun
+hasil pengukuran tesis.
+
+```bash
+npm run dev:demo              # server pengembangan  -> http://localhost:3100/
+npm run build:netlify:simta   # build demo           -> dist-netlify-simta/
+npm run build:netlify:cp      # build Company Profile -> dist-netlify-cp/
+```
+
+Folder `dist-netlify-*` berisi `index.html` dan berkas `_redirects` (agar *deep link* SPA
+tidak 404), siap diunggah ke Netlify. Folder ini dan `dist-demo/` tidak ikut disimpan
+di repositori karena selalu dibangkitkan ulang saat *deploy*.
+
 ## Catatan Metodologis
 
 - **Lapisan data.** `src/services/supabase.js` adalah *service layer* asinkron yang meniru pola pemanggilan Supabase (*promise-based* dengan penundaan jaringan tersimulasi, sumber data di `src/services/mockData.js`), **bukan** koneksi ke basis data daring. Pilihan ini diambil agar pengujian sepenuhnya *CPU-bound* dan dapat direproduksi tanpa bergantung pada layanan pihak ketiga maupun latensi jaringan. Karena *code splitting* bekerja pada lapisan pemuatan modul JavaScript, hal ini tidak memengaruhi validitas perbandingan *baseline* vs *optimized*.
 - **Kondisi pengujian.** Seluruh pengukuran dijalankan di `localhost` dengan *CPU throttling* 4x melalui Puppeteer Chromium API, sehingga variabel jaringan tereliminasi. *Network throttling* tidak diterapkan dan dicatat sebagai saran penelitian lanjutan.
-- **Folder `dist-*` sengaja diikutsertakan** dalam repositori sebagai bukti perbandingan ukuran *bundle* yang dilaporkan pada BAB III, meskipun umumnya hasil *build* tidak disertakan dalam kontrol versi.
+- **Folder `dist-baseline/`, `dist-optimized/`, `dist-cp-baseline/`, dan `dist-cp-optimized/` sengaja diikutsertakan** dalam repositori sebagai bukti perbandingan ukuran *bundle* yang dilaporkan pada BAB III, meskipun umumnya hasil *build* tidak disertakan dalam kontrol versi.
 
 ## Lisensi dan Penggunaan
 

@@ -11,8 +11,26 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
+/**
+ * Dev server Vite selalu jatuh ke index.html (varian 1B) untuk rute
+ * seperti /masuk. Arahkan setiap navigasi halaman ke index.demo.html
+ * agar refresh dan deep link tetap memuat aplikasi demo.
+ */
+const fallbackDemo = {
+    name: 'fallback-demo',
+    configureServer(server) {
+        server.middlewares.use((req, _res, next) => {
+            const jalur = req.url.split('?')[0]
+            if (req.headers.accept?.includes('text/html') && !jalur.includes('.')) {
+                req.url = '/index.demo.html'
+            }
+            next()
+        })
+    },
+}
+
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [vue(), fallbackDemo],
     server: {
         port: 3100,
     },
