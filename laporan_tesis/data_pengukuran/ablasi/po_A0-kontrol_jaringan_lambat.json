@@ -1,0 +1,142 @@
+[
+  {
+    "FCP_ms": 3340,
+    "LCP_ms": 3340,
+    "TBT_ms": 1175,
+    "LoadTime_ms": 3684,
+    "MemoryUsed_MB": "4.21",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 45.7
+  },
+  {
+    "FCP_ms": 3724,
+    "LCP_ms": 3724,
+    "TBT_ms": 1864,
+    "LoadTime_ms": 4295,
+    "MemoryUsed_MB": "4.16",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 101.8
+  },
+  {
+    "FCP_ms": 4092,
+    "LCP_ms": 4092,
+    "TBT_ms": 2352,
+    "LoadTime_ms": 4626,
+    "MemoryUsed_MB": "4.30",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 77.1
+  },
+  {
+    "FCP_ms": 3328,
+    "LCP_ms": 3328,
+    "TBT_ms": 1181,
+    "LoadTime_ms": 3803,
+    "MemoryUsed_MB": "4.37",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 40.9
+  },
+  {
+    "FCP_ms": 3288,
+    "LCP_ms": 3288,
+    "TBT_ms": 1070,
+    "LoadTime_ms": 3636,
+    "MemoryUsed_MB": "4.53",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 93.3
+  },
+  {
+    "FCP_ms": 3676,
+    "LCP_ms": 3676,
+    "TBT_ms": 1612,
+    "LoadTime_ms": 4105,
+    "MemoryUsed_MB": "4.11",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 75.5
+  },
+  {
+    "FCP_ms": 3888,
+    "LCP_ms": 3888,
+    "TBT_ms": 2105,
+    "LoadTime_ms": 4509,
+    "MemoryUsed_MB": "4.22",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 86.3
+  },
+  {
+    "FCP_ms": 3852,
+    "LCP_ms": 3852,
+    "TBT_ms": 2057,
+    "LoadTime_ms": 4541,
+    "MemoryUsed_MB": "4.08",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 100.2
+  },
+  {
+    "FCP_ms": 3928,
+    "LCP_ms": 3928,
+    "TBT_ms": 2001,
+    "LoadTime_ms": 4622,
+    "MemoryUsed_MB": "4.00",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 81.7
+  },
+  {
+    "FCP_ms": 4388,
+    "LCP_ms": 4388,
+    "TBT_ms": 2037,
+    "LoadTime_ms": 4297,
+    "MemoryUsed_MB": "4.03",
+    "jumlah_js": 1,
+    "transfer_js_KB": 352.46,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dfk1hFCm.js"
+    ],
+    "Navigasi_ms": 66.7
+  }
+]

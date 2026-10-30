@@ -1,0 +1,212 @@
+{
+  "A0-kontrol": {
+    "jumlah_berkas_js": 1,
+    "total_mentah_KB": 352.17,
+    "total_gzip_KB": 120.54,
+    "berkas": [
+      {
+        "nama": "index.ablasi-Dfk1hFCm.js",
+        "mentah_KB": 352.17,
+        "gzip_KB": 120.54,
+        "gz_disajikan": false
+      }
+    ]
+  },
+  "A1-splitting": {
+    "jumlah_berkas_js": 3,
+    "total_mentah_KB": 352.26,
+    "total_gzip_KB": 120.59,
+    "berkas": [
+      {
+        "nama": "index.ablasi-C5gN-U5I.js",
+        "mentah_KB": 56.43,
+        "gzip_KB": 16.26,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "vendor-chart-C-UwHdSx.js",
+        "mentah_KB": 194.91,
+        "gzip_KB": 65.84,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "vendor-vue-DcHw82Db.js",
+        "mentah_KB": 100.92,
+        "gzip_KB": 38.49,
+        "gz_disajikan": false
+      }
+    ]
+  },
+  "A2-lazy": {
+    "jumlah_berkas_js": 7,
+    "total_mentah_KB": 354.82,
+    "total_gzip_KB": 125.16,
+    "berkas": [
+      {
+        "nama": "DaftarJudulView-CUMerlOt.js",
+        "mentah_KB": 5.42,
+        "gzip_KB": 2.32,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "DashboardView-D5Jy4t3x.js",
+        "mentah_KB": 204.57,
+        "gzip_KB": 69.07,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "DetailBimbinganView-CAbRqkg-.js",
+        "mentah_KB": 7.54,
+        "gzip_KB": 2.94,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "index.ablasi-Doty7kUm.js",
+        "mentah_KB": 109.44,
+        "gzip_KB": 41.66,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "JadwalSeminarView-C3keueXv.js",
+        "mentah_KB": 6.16,
+        "gzip_KB": 2.42,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "PengaturanView-d4U4jk84.js",
+        "mentah_KB": 4.9,
+        "gzip_KB": 1.9,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "supabase-YsujmOJS.js",
+        "mentah_KB": 16.79,
+        "gzip_KB": 4.85,
+        "gz_disajikan": false
+      }
+    ]
+  },
+  "A3-prefetch": {
+    "jumlah_berkas_js": 7,
+    "total_mentah_KB": 355.22,
+    "total_gzip_KB": 125.23,
+    "berkas": [
+      {
+        "nama": "DaftarJudulView-CFoFLvCU.js",
+        "mentah_KB": 5.42,
+        "gzip_KB": 2.32,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "DashboardView-ZCGpH2ua.js",
+        "mentah_KB": 204.57,
+        "gzip_KB": 69.07,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "DetailBimbinganView-CDV_Z9Pl.js",
+        "mentah_KB": 7.54,
+        "gzip_KB": 2.94,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "index.ablasi-BrIZ0Nvh.js",
+        "mentah_KB": 109.84,
+        "gzip_KB": 41.73,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "JadwalSeminarView-DEfgWIex.js",
+        "mentah_KB": 6.16,
+        "gzip_KB": 2.42,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "PengaturanView-CELjl1J-.js",
+        "mentah_KB": 4.9,
+        "gzip_KB": 1.9,
+        "gz_disajikan": false
+      },
+      {
+        "nama": "supabase-YsujmOJS.js",
+        "mentah_KB": 16.79,
+        "gzip_KB": 4.85,
+        "gz_disajikan": false
+      }
+    ]
+  },
+  "A4-gzip": {
+    "jumlah_berkas_js": 1,
+    "total_mentah_KB": 352.17,
+    "total_gzip_KB": 120.54,
+    "berkas": [
+      {
+        "nama": "index.ablasi-Dn7C0iTe.js",
+        "mentah_KB": 352.17,
+        "gzip_KB": 120.54,
+        "gz_disajikan": true
+      }
+    ]
+  },
+  "A5-gabungan": {
+    "jumlah_berkas_js": 9,
+    "total_mentah_KB": 355.7,
+    "total_gzip_KB": 125.64,
+    "berkas": [
+      {
+        "nama": "DaftarJudulView-bS4o5nGW.js",
+        "mentah_KB": 5.46,
+        "gzip_KB": 2.34,
+        "gz_disajikan": true
+      },
+      {
+        "nama": "DashboardView-DzUF8uLy.js",
+        "mentah_KB": 7.8,
+        "gzip_KB": 2.56,
+        "gz_disajikan": true
+      },
+      {
+        "nama": "DetailBimbinganView-CCEaik5C.js",
+        "mentah_KB": 7.58,
+        "gzip_KB": 2.97,
+        "gz_disajikan": true
+      },
+      {
+        "nama": "index.ablasi-BKzrO-OT.js",
+        "mentah_KB": 11.11,
+        "gzip_KB": 4.21,
+        "gz_disajikan": true
+      },
+      {
+        "nama": "JadwalSeminarView-D33HdA1-.js",
+        "mentah_KB": 6.2,
+        "gzip_KB": 2.46,
+        "gz_disajikan": true
+      },
+      {
+        "nama": "PengaturanView-BGEB0z9N.js",
+        "mentah_KB": 4.93,
+        "gzip_KB": 1.92,
+        "gz_disajikan": true
+      },
+      {
+        "nama": "supabase-CelTQgPn.js",
+        "mentah_KB": 16.79,
+        "gzip_KB": 4.85,
+        "gz_disajikan": true
+      },
+      {
+        "nama": "vendor-chart-BMD3DpH8.js",
+        "mentah_KB": 194.91,
+        "gzip_KB": 65.84,
+        "gz_disajikan": true
+      },
+      {
+        "nama": "vendor-vue-Dvm_kqLP.js",
+        "mentah_KB": 100.92,
+        "gzip_KB": 38.49,
+        "gz_disajikan": true
+      }
+    ]
+  }
+}

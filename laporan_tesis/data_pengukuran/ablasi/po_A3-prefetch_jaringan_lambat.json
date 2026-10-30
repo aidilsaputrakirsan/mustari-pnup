@@ -1,0 +1,182 @@
+[
+  {
+    "FCP_ms": 1660,
+    "LCP_ms": 1660,
+    "TBT_ms": 1019,
+    "LoadTime_ms": 1961,
+    "MemoryUsed_MB": "4.87",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 72.3
+  },
+  {
+    "FCP_ms": 1868,
+    "LCP_ms": 1868,
+    "TBT_ms": 1095,
+    "LoadTime_ms": 2128,
+    "MemoryUsed_MB": "4.83",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 69.3
+  },
+  {
+    "FCP_ms": 1676,
+    "LCP_ms": 1676,
+    "TBT_ms": 1007,
+    "LoadTime_ms": 1964,
+    "MemoryUsed_MB": "4.12",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 120
+  },
+  {
+    "FCP_ms": 1732,
+    "LCP_ms": 1732,
+    "TBT_ms": 1328,
+    "LoadTime_ms": 1977,
+    "MemoryUsed_MB": "4.51",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 72.2
+  },
+  {
+    "FCP_ms": 1952,
+    "LCP_ms": 1952,
+    "TBT_ms": 1612,
+    "LoadTime_ms": 2179,
+    "MemoryUsed_MB": "4.10",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 104.8
+  },
+  {
+    "FCP_ms": 1992,
+    "LCP_ms": 1992,
+    "TBT_ms": 1680,
+    "LoadTime_ms": 2232,
+    "MemoryUsed_MB": "4.72",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 68.5
+  },
+  {
+    "FCP_ms": 1632,
+    "LCP_ms": 1632,
+    "TBT_ms": 1217,
+    "LoadTime_ms": 1948,
+    "MemoryUsed_MB": "5.00",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 83.6
+  },
+  {
+    "FCP_ms": 1752,
+    "LCP_ms": 1752,
+    "TBT_ms": 1292,
+    "LoadTime_ms": 2047,
+    "MemoryUsed_MB": "5.08",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 84.1
+  },
+  {
+    "FCP_ms": 1756,
+    "LCP_ms": 1756,
+    "TBT_ms": 1147,
+    "LoadTime_ms": 2022,
+    "MemoryUsed_MB": "4.90",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 89.5
+  },
+  {
+    "FCP_ms": 1684,
+    "LCP_ms": 1684,
+    "TBT_ms": 1133,
+    "LoadTime_ms": 1977,
+    "MemoryUsed_MB": "4.76",
+    "jumlah_js": 5,
+    "transfer_js_KB": 345.63,
+    "dekode_js_KB": 344.17,
+    "berkas_js": [
+      "index.ablasi-BrIZ0Nvh.js",
+      "DashboardView-ZCGpH2ua.js",
+      "supabase-YsujmOJS.js",
+      "DaftarJudulView-CFoFLvCU.js",
+      "DetailBimbinganView-CDV_Z9Pl.js"
+    ],
+    "Navigasi_ms": 95.2
+  }
+]

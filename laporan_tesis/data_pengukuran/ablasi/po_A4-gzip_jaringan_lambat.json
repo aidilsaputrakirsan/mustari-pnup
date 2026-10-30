@@ -1,0 +1,142 @@
+[
+  {
+    "FCP_ms": 2096,
+    "LCP_ms": 2096,
+    "TBT_ms": 1277,
+    "LoadTime_ms": 2591,
+    "MemoryUsed_MB": "4.98",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 57.8
+  },
+  {
+    "FCP_ms": 2012,
+    "LCP_ms": 2012,
+    "TBT_ms": 1183,
+    "LoadTime_ms": 2459,
+    "MemoryUsed_MB": "4.18",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 62.6
+  },
+  {
+    "FCP_ms": 1964,
+    "LCP_ms": 1964,
+    "TBT_ms": 1123,
+    "LoadTime_ms": 2441,
+    "MemoryUsed_MB": "4.48",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 64.8
+  },
+  {
+    "FCP_ms": 2056,
+    "LCP_ms": 2056,
+    "TBT_ms": 1240,
+    "LoadTime_ms": 2417,
+    "MemoryUsed_MB": "4.88",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 68
+  },
+  {
+    "FCP_ms": 1932,
+    "LCP_ms": 1932,
+    "TBT_ms": 1052,
+    "LoadTime_ms": 2421,
+    "MemoryUsed_MB": "4.15",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 64.5
+  },
+  {
+    "FCP_ms": 2060,
+    "LCP_ms": 2060,
+    "TBT_ms": 1187,
+    "LoadTime_ms": 2526,
+    "MemoryUsed_MB": "4.15",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 104.3
+  },
+  {
+    "FCP_ms": 2084,
+    "LCP_ms": 2084,
+    "TBT_ms": 1236,
+    "LoadTime_ms": 2482,
+    "MemoryUsed_MB": "4.12",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 73.2
+  },
+  {
+    "FCP_ms": 2064,
+    "LCP_ms": 2064,
+    "TBT_ms": 1213,
+    "LoadTime_ms": 2391,
+    "MemoryUsed_MB": "4.55",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 54.1
+  },
+  {
+    "FCP_ms": 2032,
+    "LCP_ms": 2032,
+    "TBT_ms": 1105,
+    "LoadTime_ms": 2427,
+    "MemoryUsed_MB": "4.33",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 65.8
+  },
+  {
+    "FCP_ms": 2128,
+    "LCP_ms": 2128,
+    "TBT_ms": 1263,
+    "LoadTime_ms": 2582,
+    "MemoryUsed_MB": "5.51",
+    "jumlah_js": 1,
+    "transfer_js_KB": 120.83,
+    "dekode_js_KB": 352.17,
+    "berkas_js": [
+      "index.ablasi-Dn7C0iTe.js"
+    ],
+    "Navigasi_ms": 72.7
+  }
+]

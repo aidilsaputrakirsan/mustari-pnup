@@ -1,0 +1,1414 @@
+{
+  "po": {
+    "A0-kontrol": {
+      "ideal": {
+        "FCP_ms": {
+          "mean": 1250.0,
+          "sd": 79.9,
+          "median": 1234.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1250.0,
+          "sd": 79.9,
+          "median": 1234.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 250.4,
+          "sd": 56.9,
+          "median": 241.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 418.8,
+          "sd": 17.7,
+          "median": 410.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 11.1,
+          "sd": 3.0,
+          "median": 10.8,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 1.0,
+          "sd": 0.0,
+          "median": 1.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 352.5,
+          "sd": 0.0,
+          "median": 352.5,
+          "n": 10
+        }
+      },
+      "cpu_lambat": {
+        "FCP_ms": {
+          "mean": 1629.2,
+          "sd": 142.1,
+          "median": 1588.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1629.2,
+          "sd": 142.1,
+          "median": 1588.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1395.2,
+          "sd": 284.1,
+          "median": 1263.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 1392.5,
+          "sd": 552.3,
+          "median": 1034.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 68.2,
+          "sd": 28.8,
+          "median": 58.1,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 1.0,
+          "sd": 0.0,
+          "median": 1.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 352.5,
+          "sd": 0.0,
+          "median": 352.5,
+          "n": 10
+        }
+      },
+      "jaringan_lambat": {
+        "FCP_ms": {
+          "mean": 3750.4,
+          "sd": 357.6,
+          "median": 3788.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 3750.4,
+          "sd": 357.6,
+          "median": 3788.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1745.4,
+          "sd": 456.6,
+          "median": 1932.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 4211.8,
+          "sd": 385.8,
+          "median": 4296.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 76.9,
+          "sd": 20.9,
+          "median": 79.4,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 1.0,
+          "sd": 0.0,
+          "median": 1.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 352.5,
+          "sd": 0.0,
+          "median": 352.5,
+          "n": 10
+        }
+      }
+    },
+    "A1-splitting": {
+      "ideal": {
+        "FCP_ms": {
+          "mean": 1612.0,
+          "sd": 335.1,
+          "median": 1684.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1612.0,
+          "sd": 335.1,
+          "median": 1684.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 288.8,
+          "sd": 108.3,
+          "median": 257.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 456.4,
+          "sd": 55.8,
+          "median": 448.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 14.2,
+          "sd": 1.9,
+          "median": 14.3,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 3.0,
+          "sd": 0.0,
+          "median": 3.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 353.1,
+          "sd": 0.0,
+          "median": 353.1,
+          "n": 10
+        }
+      },
+      "cpu_lambat": {
+        "FCP_ms": {
+          "mean": 1706.0,
+          "sd": 168.3,
+          "median": 1704.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1706.0,
+          "sd": 168.3,
+          "median": 1704.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1353.4,
+          "sd": 180.1,
+          "median": 1310.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 1122.4,
+          "sd": 394.1,
+          "median": 927.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 72.0,
+          "sd": 15.1,
+          "median": 74.9,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 3.0,
+          "sd": 0.0,
+          "median": 3.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 353.1,
+          "sd": 0.0,
+          "median": 353.1,
+          "n": 10
+        }
+      },
+      "jaringan_lambat": {
+        "FCP_ms": {
+          "mean": 3480.4,
+          "sd": 198.0,
+          "median": 3444.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 3480.4,
+          "sd": 198.0,
+          "median": 3444.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1418.7,
+          "sd": 321.4,
+          "median": 1526.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 3997.6,
+          "sd": 270.1,
+          "median": 4023.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 68.7,
+          "sd": 18.9,
+          "median": 77.8,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 3.0,
+          "sd": 0.0,
+          "median": 3.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 353.1,
+          "sd": 0.0,
+          "median": 353.1,
+          "n": 10
+        }
+      }
+    },
+    "A2-lazy": {
+      "ideal": {
+        "FCP_ms": {
+          "mean": 1346.8,
+          "sd": 121.6,
+          "median": 1308.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1346.8,
+          "sd": 121.6,
+          "median": 1308.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 263.5,
+          "sd": 110.5,
+          "median": 248.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 514.3,
+          "sd": 215.2,
+          "median": 451.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 47.9,
+          "sd": 56.9,
+          "median": 29.8,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 3.0,
+          "sd": 0.0,
+          "median": 3.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 331.7,
+          "sd": 0.0,
+          "median": 331.7,
+          "n": 10
+        }
+      },
+      "cpu_lambat": {
+        "FCP_ms": {
+          "mean": 1426.8,
+          "sd": 149.9,
+          "median": 1406.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1426.8,
+          "sd": 149.9,
+          "median": 1406.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1156.0,
+          "sd": 134.4,
+          "median": 1171.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 928.4,
+          "sd": 90.1,
+          "median": 937.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 93.9,
+          "sd": 19.5,
+          "median": 94.5,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 3.0,
+          "sd": 0.0,
+          "median": 3.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 331.7,
+          "sd": 0.0,
+          "median": 331.7,
+          "n": 10
+        }
+      },
+      "jaringan_lambat": {
+        "FCP_ms": {
+          "mean": 1842.8,
+          "sd": 212.7,
+          "median": 1778.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1842.8,
+          "sd": 212.7,
+          "median": 1778.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1287.1,
+          "sd": 279.0,
+          "median": 1259.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 2115.3,
+          "sd": 154.8,
+          "median": 2064.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 297.2,
+          "sd": 16.8,
+          "median": 296.5,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 3.0,
+          "sd": 0.0,
+          "median": 3.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 331.7,
+          "sd": 0.0,
+          "median": 331.7,
+          "n": 10
+        }
+      }
+    },
+    "A3-prefetch": {
+      "ideal": {
+        "FCP_ms": {
+          "mean": 1379.6,
+          "sd": 179.3,
+          "median": 1340.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1379.6,
+          "sd": 179.3,
+          "median": 1340.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 306.3,
+          "sd": 122.4,
+          "median": 289.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 431.5,
+          "sd": 54.6,
+          "median": 411.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 17.2,
+          "sd": 5.5,
+          "median": 15.1,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 5.0,
+          "sd": 0.0,
+          "median": 5.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 345.6,
+          "sd": 0.0,
+          "median": 345.6,
+          "n": 10
+        }
+      },
+      "cpu_lambat": {
+        "FCP_ms": {
+          "mean": 1484.4,
+          "sd": 183.2,
+          "median": 1434.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1484.4,
+          "sd": 183.2,
+          "median": 1434.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1216.1,
+          "sd": 170.3,
+          "median": 1200.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 951.8,
+          "sd": 118.9,
+          "median": 917.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 89.1,
+          "sd": 21.2,
+          "median": 84.8,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 5.0,
+          "sd": 0.0,
+          "median": 5.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 345.6,
+          "sd": 0.0,
+          "median": 345.6,
+          "n": 10
+        }
+      },
+      "jaringan_lambat": {
+        "FCP_ms": {
+          "mean": 1770.4,
+          "sd": 125.3,
+          "median": 1742.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1770.4,
+          "sd": 125.3,
+          "median": 1742.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1253.0,
+          "sd": 232.3,
+          "median": 1182.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 2043.5,
+          "sd": 101.4,
+          "median": 1999.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 86.0,
+          "sd": 16.9,
+          "median": 83.8,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 5.0,
+          "sd": 0.0,
+          "median": 5.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 345.6,
+          "sd": 0.0,
+          "median": 345.6,
+          "n": 10
+        }
+      }
+    },
+    "A4-gzip": {
+      "ideal": {
+        "FCP_ms": {
+          "mean": 1285.6,
+          "sd": 62.6,
+          "median": 1278.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1285.6,
+          "sd": 62.6,
+          "median": 1278.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 284.8,
+          "sd": 91.9,
+          "median": 303.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 458.7,
+          "sd": 86.3,
+          "median": 431.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 13.7,
+          "sd": 2.9,
+          "median": 13.3,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 1.0,
+          "sd": 0.0,
+          "median": 1.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 120.8,
+          "sd": 0.0,
+          "median": 120.8,
+          "n": 10
+        }
+      },
+      "cpu_lambat": {
+        "FCP_ms": {
+          "mean": 1607.2,
+          "sd": 146.7,
+          "median": 1558.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1607.2,
+          "sd": 146.7,
+          "median": 1558.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1318.8,
+          "sd": 185.1,
+          "median": 1375.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 1366.6,
+          "sd": 504.2,
+          "median": 1393.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 72.8,
+          "sd": 9.1,
+          "median": 74.5,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 1.0,
+          "sd": 0.0,
+          "median": 1.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 120.8,
+          "sd": 0.0,
+          "median": 120.8,
+          "n": 10
+        }
+      },
+      "jaringan_lambat": {
+        "FCP_ms": {
+          "mean": 2042.8,
+          "sd": 59.9,
+          "median": 2058.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 2042.8,
+          "sd": 59.9,
+          "median": 2058.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1187.9,
+          "sd": 73.6,
+          "median": 1200.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 2473.7,
+          "sd": 70.4,
+          "median": 2450.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 68.8,
+          "sd": 13.8,
+          "median": 65.3,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 1.0,
+          "sd": 0.0,
+          "median": 1.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 120.8,
+          "sd": 0.0,
+          "median": 120.8,
+          "n": 10
+        }
+      }
+    },
+    "A5-gabungan": {
+      "ideal": {
+        "FCP_ms": {
+          "mean": 1255.2,
+          "sd": 43.3,
+          "median": 1248.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1255.2,
+          "sd": 43.3,
+          "median": 1248.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 214.1,
+          "sd": 78.9,
+          "median": 202.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 408.4,
+          "sd": 16.6,
+          "median": 407.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 17.4,
+          "sd": 3.4,
+          "median": 16.0,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 7.0,
+          "sd": 0.0,
+          "median": 7.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 123.3,
+          "sd": 0.0,
+          "median": 123.3,
+          "n": 10
+        }
+      },
+      "cpu_lambat": {
+        "FCP_ms": {
+          "mean": 1388.8,
+          "sd": 178.7,
+          "median": 1292.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1388.8,
+          "sd": 178.7,
+          "median": 1292.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1100.6,
+          "sd": 133.0,
+          "median": 1091.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 857.2,
+          "sd": 84.8,
+          "median": 817.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 69.5,
+          "sd": 7.6,
+          "median": 66.9,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 7.0,
+          "sd": 0.0,
+          "median": 7.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 123.3,
+          "sd": 0.0,
+          "median": 123.3,
+          "n": 10
+        }
+      },
+      "jaringan_lambat": {
+        "FCP_ms": {
+          "mean": 1634.4,
+          "sd": 45.2,
+          "median": 1626.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1634.4,
+          "sd": 45.2,
+          "median": 1626.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 925.7,
+          "sd": 163.4,
+          "median": 864.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 2441.7,
+          "sd": 72.9,
+          "median": 2440.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 72.3,
+          "sd": 6.2,
+          "median": 69.7,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 7.0,
+          "sd": 0.0,
+          "median": 7.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 123.3,
+          "sd": 0.0,
+          "median": 123.3,
+          "n": 10
+        }
+      }
+    },
+    "R-baseline": {
+      "ideal": {
+        "FCP_ms": {
+          "mean": 1335.2,
+          "sd": 128.6,
+          "median": 1298.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1335.2,
+          "sd": 128.6,
+          "median": 1298.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 184.7,
+          "sd": 87.1,
+          "median": 158.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 427.9,
+          "sd": 27.9,
+          "median": 419.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 12.6,
+          "sd": 3.7,
+          "median": 11.3,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 1.0,
+          "sd": 0.0,
+          "median": 1.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 338.7,
+          "sd": 0.0,
+          "median": 338.7,
+          "n": 10
+        }
+      },
+      "cpu_lambat": {
+        "FCP_ms": {
+          "mean": 1572.4,
+          "sd": 55.1,
+          "median": 1574.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1572.4,
+          "sd": 55.1,
+          "median": 1574.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1380.1,
+          "sd": 123.5,
+          "median": 1390.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 1528.5,
+          "sd": 458.5,
+          "median": 1798.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 71.2,
+          "sd": 11.8,
+          "median": 65.1,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 1.0,
+          "sd": 0.0,
+          "median": 1.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 338.7,
+          "sd": 0.0,
+          "median": 338.7,
+          "n": 10
+        }
+      },
+      "jaringan_lambat": {
+        "FCP_ms": {
+          "mean": 3258.4,
+          "sd": 193.4,
+          "median": 3176.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 3258.4,
+          "sd": 193.4,
+          "median": 3176.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1142.7,
+          "sd": 240.4,
+          "median": 1063.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 3654.2,
+          "sd": 164.7,
+          "median": 3623.5,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 65.6,
+          "sd": 9.4,
+          "median": 62.2,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 1.0,
+          "sd": 0.0,
+          "median": 1.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 338.7,
+          "sd": 0.0,
+          "median": 338.7,
+          "n": 10
+        }
+      }
+    },
+    "R-optimized": {
+      "ideal": {
+        "FCP_ms": {
+          "mean": 1307.6,
+          "sd": 46.8,
+          "median": 1296.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1307.6,
+          "sd": 46.8,
+          "median": 1296.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 279.4,
+          "sd": 60.2,
+          "median": 288.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 414.2,
+          "sd": 42.3,
+          "median": 393.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 244.3,
+          "sd": 12.9,
+          "median": 241.6,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 7.0,
+          "sd": 0.0,
+          "median": 7.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 109.2,
+          "sd": 0.0,
+          "median": 109.2,
+          "n": 10
+        }
+      },
+      "cpu_lambat": {
+        "FCP_ms": {
+          "mean": 1333.6,
+          "sd": 92.0,
+          "median": 1304.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1333.6,
+          "sd": 92.0,
+          "median": 1304.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 1065.1,
+          "sd": 76.5,
+          "median": 1048.5,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 896.4,
+          "sd": 127.0,
+          "median": 831.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 313.8,
+          "sd": 15.6,
+          "median": 309.5,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 7.0,
+          "sd": 0.0,
+          "median": 7.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 109.2,
+          "sd": 0.0,
+          "median": 109.2,
+          "n": 10
+        }
+      },
+      "jaringan_lambat": {
+        "FCP_ms": {
+          "mean": 1609.6,
+          "sd": 91.1,
+          "median": 1590.0,
+          "n": 10
+        },
+        "LCP_ms": {
+          "mean": 1609.6,
+          "sd": 91.1,
+          "median": 1590.0,
+          "n": 10
+        },
+        "TBT_ms": {
+          "mean": 983.9,
+          "sd": 149.6,
+          "median": 1007.0,
+          "n": 10
+        },
+        "LoadTime_ms": {
+          "mean": 2192.9,
+          "sd": 361.9,
+          "median": 2298.0,
+          "n": 10
+        },
+        "Navigasi_ms": {
+          "mean": 328.0,
+          "sd": 25.8,
+          "median": 321.5,
+          "n": 10
+        },
+        "jumlah_js": {
+          "mean": 7.0,
+          "sd": 0.0,
+          "median": 7.0,
+          "n": 10
+        },
+        "transfer_js_KB": {
+          "mean": 109.2,
+          "sd": 0.0,
+          "median": 109.2,
+          "n": 10
+        }
+      }
+    }
+  },
+  "lh": {
+    "A0-kontrol": {
+      "PerformanceScore": {
+        "mean": 59.8,
+        "sd": 10.3,
+        "median": 54.0,
+        "n": 5
+      },
+      "FCP_ms": {
+        "mean": 3923.6,
+        "sd": 96.7,
+        "median": 3980.0,
+        "n": 5
+      },
+      "LCP_ms": {
+        "mean": 4366.8,
+        "sd": 187.9,
+        "median": 4471.0,
+        "n": 5
+      },
+      "TTI_ms": {
+        "mean": 4838.0,
+        "sd": 403.4,
+        "median": 4992.0,
+        "n": 5
+      },
+      "TBT_ms": {
+        "mean": 734.2,
+        "sd": 417.8,
+        "median": 903.0,
+        "n": 5
+      },
+      "SpeedIndex": {
+        "mean": 3923.6,
+        "sd": 96.7,
+        "median": 3980.0,
+        "n": 5
+      }
+    },
+    "A1-splitting": {
+      "PerformanceScore": {
+        "mean": 61.0,
+        "sd": 6.4,
+        "median": 60.0,
+        "n": 5
+      },
+      "FCP_ms": {
+        "mean": 3701.0,
+        "sd": 31.1,
+        "median": 3708.0,
+        "n": 5
+      },
+      "LCP_ms": {
+        "mean": 4083.8,
+        "sd": 118.2,
+        "median": 4054.0,
+        "n": 5
+      },
+      "TTI_ms": {
+        "mean": 4558.8,
+        "sd": 257.5,
+        "median": 4533.0,
+        "n": 5
+      },
+      "TBT_ms": {
+        "mean": 757.8,
+        "sd": 278.0,
+        "median": 765.0,
+        "n": 5
+      },
+      "SpeedIndex": {
+        "mean": 3701.0,
+        "sd": 31.1,
+        "median": 3708.0,
+        "n": 5
+      }
+    },
+    "A2-lazy": {
+      "PerformanceScore": {
+        "mean": 60.8,
+        "sd": 4.2,
+        "median": 60.0,
+        "n": 5
+      },
+      "FCP_ms": {
+        "mean": 3242.0,
+        "sd": 37.2,
+        "median": 3245.0,
+        "n": 5
+      },
+      "LCP_ms": {
+        "mean": 4326.0,
+        "sd": 140.1,
+        "median": 4351.0,
+        "n": 5
+      },
+      "TTI_ms": {
+        "mean": 4774.4,
+        "sd": 182.4,
+        "median": 4789.0,
+        "n": 5
+      },
+      "TBT_ms": {
+        "mean": 729.6,
+        "sd": 145.7,
+        "median": 764.0,
+        "n": 5
+      },
+      "SpeedIndex": {
+        "mean": 3314.8,
+        "sd": 126.9,
+        "median": 3262.0,
+        "n": 5
+      }
+    },
+    "A3-prefetch": {
+      "PerformanceScore": {
+        "mean": 61.8,
+        "sd": 3.2,
+        "median": 62.0,
+        "n": 5
+      },
+      "FCP_ms": {
+        "mean": 3302.6,
+        "sd": 50.4,
+        "median": 3322.0,
+        "n": 5
+      },
+      "LCP_ms": {
+        "mean": 4474.4,
+        "sd": 126.9,
+        "median": 4440.0,
+        "n": 5
+      },
+      "TTI_ms": {
+        "mean": 4880.2,
+        "sd": 184.1,
+        "median": 4827.0,
+        "n": 5
+      },
+      "TBT_ms": {
+        "mean": 626.8,
+        "sd": 125.6,
+        "median": 601.0,
+        "n": 5
+      },
+      "SpeedIndex": {
+        "mean": 3318.4,
+        "sd": 79.3,
+        "median": 3322.0,
+        "n": 5
+      }
+    },
+    "A4-gzip": {
+      "PerformanceScore": {
+        "mean": 80.4,
+        "sd": 7.5,
+        "median": 78.0,
+        "n": 5
+      },
+      "FCP_ms": {
+        "mean": 2642.8,
+        "sd": 34.2,
+        "median": 2636.0,
+        "n": 5
+      },
+      "LCP_ms": {
+        "mean": 2872.2,
+        "sd": 139.2,
+        "median": 2863.0,
+        "n": 5
+      },
+      "TTI_ms": {
+        "mean": 3178.2,
+        "sd": 242.5,
+        "median": 3204.0,
+        "n": 5
+      },
+      "TBT_ms": {
+        "mean": 439.2,
+        "sd": 223.3,
+        "median": 472.0,
+        "n": 5
+      },
+      "SpeedIndex": {
+        "mean": 2917.8,
+        "sd": 366.9,
+        "median": 2799.0,
+        "n": 5
+      }
+    },
+    "A5-gabungan": {
+      "PerformanceScore": {
+        "mean": 81.8,
+        "sd": 5.4,
+        "median": 80.0,
+        "n": 5
+      },
+      "FCP_ms": {
+        "mean": 2731.2,
+        "sd": 26.2,
+        "median": 2724.0,
+        "n": 5
+      },
+      "LCP_ms": {
+        "mean": 2972.8,
+        "sd": 81.1,
+        "median": 2978.0,
+        "n": 5
+      },
+      "TTI_ms": {
+        "mean": 3154.2,
+        "sd": 174.8,
+        "median": 3200.0,
+        "n": 5
+      },
+      "TBT_ms": {
+        "mean": 347.2,
+        "sd": 178.7,
+        "median": 397.0,
+        "n": 5
+      },
+      "SpeedIndex": {
+        "mean": 2813.0,
+        "sd": 133.2,
+        "median": 2752.0,
+        "n": 5
+      }
+    },
+    "R-baseline": {
+      "PerformanceScore": {
+        "mean": 62.4,
+        "sd": 4.8,
+        "median": 60.0,
+        "n": 5
+      },
+      "FCP_ms": {
+        "mean": 3749.0,
+        "sd": 77.8,
+        "median": 3778.0,
+        "n": 5
+      },
+      "LCP_ms": {
+        "mean": 4174.8,
+        "sd": 113.9,
+        "median": 4210.0,
+        "n": 5
+      },
+      "TTI_ms": {
+        "mean": 4581.2,
+        "sd": 177.5,
+        "median": 4580.0,
+        "n": 5
+      },
+      "TBT_ms": {
+        "mean": 619.8,
+        "sd": 189.8,
+        "median": 738.0,
+        "n": 5
+      },
+      "SpeedIndex": {
+        "mean": 3749.0,
+        "sd": 77.8,
+        "median": 3778.0,
+        "n": 5
+      }
+    },
+    "R-optimized": {
+      "PerformanceScore": {
+        "mean": 88.4,
+        "sd": 4.2,
+        "median": 90.0,
+        "n": 5
+      },
+      "FCP_ms": {
+        "mean": 2758.0,
+        "sd": 33.3,
+        "median": 2772.0,
+        "n": 5
+      },
+      "LCP_ms": {
+        "mean": 2886.2,
+        "sd": 49.3,
+        "median": 2867.0,
+        "n": 5
+      },
+      "TTI_ms": {
+        "mean": 2943.2,
+        "sd": 117.3,
+        "median": 2916.0,
+        "n": 5
+      },
+      "TBT_ms": {
+        "mean": 124.8,
+        "sd": 152.3,
+        "median": 93.0,
+        "n": 5
+      },
+      "SpeedIndex": {
+        "mean": 2845.2,
+        "sd": 153.0,
+        "median": 2792.0,
+        "n": 5
+      }
+    }
+  },
+  "ukuran": {
+    "A0-kontrol": {
+      "jumlah_berkas_js": 1,
+      "total_mentah_KB": 352.17,
+      "total_gzip_KB": 120.54
+    },
+    "A1-splitting": {
+      "jumlah_berkas_js": 3,
+      "total_mentah_KB": 352.26,
+      "total_gzip_KB": 120.59
+    },
+    "A2-lazy": {
+      "jumlah_berkas_js": 7,
+      "total_mentah_KB": 354.82,
+      "total_gzip_KB": 125.16
+    },
+    "A3-prefetch": {
+      "jumlah_berkas_js": 7,
+      "total_mentah_KB": 355.22,
+      "total_gzip_KB": 125.23
+    },
+    "A4-gzip": {
+      "jumlah_berkas_js": 1,
+      "total_mentah_KB": 352.17,
+      "total_gzip_KB": 120.54
+    },
+    "A5-gabungan": {
+      "jumlah_berkas_js": 9,
+      "total_mentah_KB": 355.7,
+      "total_gzip_KB": 125.64
+    }
+  }
+}

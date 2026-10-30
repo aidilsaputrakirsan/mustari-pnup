@@ -1,0 +1,202 @@
+[
+  {
+    "FCP_ms": 1288,
+    "LCP_ms": 1288,
+    "TBT_ms": 154,
+    "LoadTime_ms": 411,
+    "MemoryUsed_MB": "5.27",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-chart-BMD3DpH8.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 15.7
+  },
+  {
+    "FCP_ms": 1276,
+    "LCP_ms": 1276,
+    "TBT_ms": 296,
+    "LoadTime_ms": 438,
+    "MemoryUsed_MB": "4.93",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-chart-BMD3DpH8.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 16.3
+  },
+  {
+    "FCP_ms": 1236,
+    "LCP_ms": 1236,
+    "TBT_ms": 275,
+    "LoadTime_ms": 407,
+    "MemoryUsed_MB": "4.93",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-chart-BMD3DpH8.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 15.7
+  },
+  {
+    "FCP_ms": 1252,
+    "LCP_ms": 1252,
+    "TBT_ms": 278,
+    "LoadTime_ms": 410,
+    "MemoryUsed_MB": "5.08",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "vendor-chart-BMD3DpH8.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 21.7
+  },
+  {
+    "FCP_ms": 1236,
+    "LCP_ms": 1236,
+    "TBT_ms": 148,
+    "LoadTime_ms": 433,
+    "MemoryUsed_MB": "4.05",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-chart-BMD3DpH8.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 19
+  },
+  {
+    "FCP_ms": 1248,
+    "LCP_ms": 1248,
+    "TBT_ms": 148,
+    "LoadTime_ms": 391,
+    "MemoryUsed_MB": "4.03",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-chart-BMD3DpH8.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 13.2
+  },
+  {
+    "FCP_ms": 1180,
+    "LCP_ms": 1180,
+    "TBT_ms": 185,
+    "LoadTime_ms": 389,
+    "MemoryUsed_MB": "5.23",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "vendor-chart-BMD3DpH8.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 14.1
+  },
+  {
+    "FCP_ms": 1248,
+    "LCP_ms": 1248,
+    "TBT_ms": 219,
+    "LoadTime_ms": 407,
+    "MemoryUsed_MB": "5.01",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-chart-BMD3DpH8.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 22.9
+  },
+  {
+    "FCP_ms": 1348,
+    "LCP_ms": 1348,
+    "TBT_ms": 100,
+    "LoadTime_ms": 407,
+    "MemoryUsed_MB": "4.58",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-chart-BMD3DpH8.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 20.7
+  },
+  {
+    "FCP_ms": 1240,
+    "LCP_ms": 1240,
+    "TBT_ms": 338,
+    "LoadTime_ms": 391,
+    "MemoryUsed_MB": "5.24",
+    "jumlah_js": 7,
+    "transfer_js_KB": 123.32,
+    "dekode_js_KB": 344.58,
+    "berkas_js": [
+      "index.ablasi-BKzrO-OT.js",
+      "vendor-chart-BMD3DpH8.js",
+      "vendor-vue-Dvm_kqLP.js",
+      "DashboardView-DzUF8uLy.js",
+      "supabase-CelTQgPn.js",
+      "DaftarJudulView-bS4o5nGW.js",
+      "DetailBimbinganView-CCEaik5C.js"
+    ],
+    "Navigasi_ms": 14.7
+  }
+]

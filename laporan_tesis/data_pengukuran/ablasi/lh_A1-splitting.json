@@ -1,0 +1,42 @@
+[
+  {
+    "PerformanceScore": 56,
+    "FCP_ms": 3708,
+    "LCP_ms": 4208,
+    "TTI_ms": 4804,
+    "TBT_ms": 996,
+    "SpeedIndex": 3708
+  },
+  {
+    "PerformanceScore": 63,
+    "FCP_ms": 3726,
+    "LCP_ms": 4043,
+    "TTI_ms": 4452,
+    "TBT_ms": 626,
+    "SpeedIndex": 3726
+  },
+  {
+    "PerformanceScore": 60,
+    "FCP_ms": 3668,
+    "LCP_ms": 4054,
+    "TTI_ms": 4533,
+    "TBT_ms": 765,
+    "SpeedIndex": 3668
+  },
+  {
+    "PerformanceScore": 55,
+    "FCP_ms": 3669,
+    "LCP_ms": 4192,
+    "TTI_ms": 4808,
+    "TBT_ms": 1039,
+    "SpeedIndex": 3669
+  },
+  {
+    "PerformanceScore": 71,
+    "FCP_ms": 3734,
+    "LCP_ms": 3922,
+    "TTI_ms": 4197,
+    "TBT_ms": 363,
+    "SpeedIndex": 3734
+  }
+]

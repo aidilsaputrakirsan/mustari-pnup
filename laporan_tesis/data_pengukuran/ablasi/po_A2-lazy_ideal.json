@@ -1,0 +1,162 @@
+[
+  {
+    "FCP_ms": 1296,
+    "LCP_ms": 1296,
+    "TBT_ms": 420,
+    "LoadTime_ms": 414,
+    "MemoryUsed_MB": "4.71",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 30.9
+  },
+  {
+    "FCP_ms": 1616,
+    "LCP_ms": 1616,
+    "TBT_ms": 161,
+    "LoadTime_ms": 498,
+    "MemoryUsed_MB": "4.28",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 30.1
+  },
+  {
+    "FCP_ms": 1272,
+    "LCP_ms": 1272,
+    "TBT_ms": 117,
+    "LoadTime_ms": 397,
+    "MemoryUsed_MB": "4.35",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 20.3
+  },
+  {
+    "FCP_ms": 1300,
+    "LCP_ms": 1300,
+    "TBT_ms": 349,
+    "LoadTime_ms": 448,
+    "MemoryUsed_MB": "3.99",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 24.6
+  },
+  {
+    "FCP_ms": 1412,
+    "LCP_ms": 1412,
+    "TBT_ms": 387,
+    "LoadTime_ms": 455,
+    "MemoryUsed_MB": "4.90",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 31
+  },
+  {
+    "FCP_ms": 1316,
+    "LCP_ms": 1316,
+    "TBT_ms": 357,
+    "LoadTime_ms": 1117,
+    "MemoryUsed_MB": "3.98",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 24.5
+  },
+  {
+    "FCP_ms": 1328,
+    "LCP_ms": 1328,
+    "TBT_ms": 251,
+    "LoadTime_ms": 478,
+    "MemoryUsed_MB": "4.96",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 206.7
+  },
+  {
+    "FCP_ms": 1208,
+    "LCP_ms": 1208,
+    "TBT_ms": 246,
+    "LoadTime_ms": 403,
+    "MemoryUsed_MB": "5.19",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 59.5
+  },
+  {
+    "FCP_ms": 1472,
+    "LCP_ms": 1472,
+    "TBT_ms": 226,
+    "LoadTime_ms": 507,
+    "MemoryUsed_MB": "4.28",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 22.4
+  },
+  {
+    "FCP_ms": 1248,
+    "LCP_ms": 1248,
+    "TBT_ms": 121,
+    "LoadTime_ms": 426,
+    "MemoryUsed_MB": "4.96",
+    "jumlah_js": 3,
+    "transfer_js_KB": 331.68,
+    "dekode_js_KB": 330.8,
+    "berkas_js": [
+      "index.ablasi-Doty7kUm.js",
+      "DashboardView-D5Jy4t3x.js",
+      "supabase-YsujmOJS.js"
+    ],
+    "Navigasi_ms": 29.4
+  }
+]

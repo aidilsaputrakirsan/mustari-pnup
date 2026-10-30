@@ -1,0 +1,142 @@
+[
+  {
+    "FCP_ms": 1516,
+    "LCP_ms": 1516,
+    "TBT_ms": 1321,
+    "LoadTime_ms": 1777,
+    "MemoryUsed_MB": "5.52",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 59.9
+  },
+  {
+    "FCP_ms": 1568,
+    "LCP_ms": 1568,
+    "TBT_ms": 1209,
+    "LoadTime_ms": 984,
+    "MemoryUsed_MB": "4.61",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 72.5
+  },
+  {
+    "FCP_ms": 1624,
+    "LCP_ms": 1624,
+    "TBT_ms": 1315,
+    "LoadTime_ms": 992,
+    "MemoryUsed_MB": "4.13",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 64.1
+  },
+  {
+    "FCP_ms": 1476,
+    "LCP_ms": 1476,
+    "TBT_ms": 1472,
+    "LoadTime_ms": 1820,
+    "MemoryUsed_MB": "4.56",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 61
+  },
+  {
+    "FCP_ms": 1540,
+    "LCP_ms": 1540,
+    "TBT_ms": 1237,
+    "LoadTime_ms": 1051,
+    "MemoryUsed_MB": "4.57",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 63
+  },
+  {
+    "FCP_ms": 1544,
+    "LCP_ms": 1544,
+    "TBT_ms": 1459,
+    "LoadTime_ms": 1864,
+    "MemoryUsed_MB": "4.44",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 66.1
+  },
+  {
+    "FCP_ms": 1660,
+    "LCP_ms": 1660,
+    "TBT_ms": 1514,
+    "LoadTime_ms": 2004,
+    "MemoryUsed_MB": "5.30",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 86.6
+  },
+  {
+    "FCP_ms": 1604,
+    "LCP_ms": 1604,
+    "TBT_ms": 1259,
+    "LoadTime_ms": 976,
+    "MemoryUsed_MB": "4.64",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 86.2
+  },
+  {
+    "FCP_ms": 1580,
+    "LCP_ms": 1580,
+    "TBT_ms": 1511,
+    "LoadTime_ms": 1893,
+    "MemoryUsed_MB": "4.96",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 63
+  },
+  {
+    "FCP_ms": 1612,
+    "LCP_ms": 1612,
+    "TBT_ms": 1504,
+    "LoadTime_ms": 1924,
+    "MemoryUsed_MB": "5.27",
+    "jumlah_js": 1,
+    "transfer_js_KB": 338.7,
+    "dekode_js_KB": 338.41,
+    "berkas_js": [
+      "index.baseline-DEhl4Vvi.js"
+    ],
+    "Navigasi_ms": 89.6
+  }
+]
