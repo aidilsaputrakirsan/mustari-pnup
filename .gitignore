@@ -35,3 +35,9 @@ stats.html
 dist-netlify-*
 
 dist-demo
+
+# Cache Python
+__pycache__/
+
+# Hasil build studi ablasi (dibangkitkan ulang via `node build_ablasi.cjs`)
+dist-ablasi
