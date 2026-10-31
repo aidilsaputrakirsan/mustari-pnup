@@ -26,6 +26,9 @@ OUT = os.path.join(HERE, "Revisi-Penguji-Perbandingan-Teknik" + ("-PRATINJAU-DAT
 DATA = os.path.join(HERE, "data_pengukuran", "ablasi", "ringkasan_ablasi_DUMMY.json" if DUMMY else "ringkasan_ablasi.json")
 IMG = os.path.join(HERE, "chapters", "images", "dummy") if DUMMY else os.path.join(HERE, "chapters", "images")
 LABEL_DUMMY = ""
+# Mode cetak (dipakai gabung_revisi_ablasi.py): tanpa kotak "Penempatan" dan pemisah halaman
+CETAK = False
+LEBAR_TEKS = 5.85  # inci; lebar area teks naskah (A4, margin kiri 1,4" dan kanan 1")
 
 VARIAN = ["A0-kontrol", "A1-splitting", "A2-lazy", "A3-prefetch", "A4-gzip", "A5-gabungan"]
 NAMA = {
@@ -108,6 +111,15 @@ def tambah_teks(p, teks):
     return p
 
 
+def spasi_naskah(p, sebelum=6, sesudah=6):
+    """Samakan spasi dengan paragraf isi naskah tesis (1,15; 6 pt) saat mode cetak."""
+    if CETAK:
+        p.paragraph_format.line_spacing = 1.15
+        p.paragraph_format.space_before = Pt(sebelum)
+        p.paragraph_format.space_after = Pt(sesudah)
+    return p
+
+
 def para(doc, teks, indent=True, align=WD_ALIGN_PARAGRAPH.JUSTIFY):
     *awal, teks = teks.split("\n")
     for t in awal:
@@ -116,6 +128,7 @@ def para(doc, teks, indent=True, align=WD_ALIGN_PARAGRAPH.JUSTIFY):
     p.alignment = align
     if indent:
         p.paragraph_format.first_line_indent = Inches(0.5)
+    spasi_naskah(p)
     return tambah_teks(p, teks)
 
 
@@ -125,6 +138,7 @@ def butir(doc, teks, nomor=None):
     p.paragraph_format.left_indent = Inches(0.5)
     p.paragraph_format.first_line_indent = Inches(-0.25)
     tambah_teks(p, (f"{nomor}. " if nomor else "– ") + teks)
+    spasi_naskah(p, 4, 4)
     return p
 
 
@@ -135,6 +149,7 @@ def judul(doc, teks, level):
 def caption(doc, teks):
     p = doc.add_paragraph(style="Normal")
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    spasi_naskah(p, 4, 8)
     label, _, sisa = teks.partition(" ", )
     no, _, isi = sisa.partition(" ")
     r = p.add_run(f"{label} {no} "); r.bold = True
@@ -146,6 +161,8 @@ def caption(doc, teks):
 
 def kotak_catatan(doc, teks):
     """Paragraf berlatar abu-abu untuk instruksi penempatan (bukan isi tesis)."""
+    if CETAK:
+        return None
     p = doc.add_paragraph(style="Normal")
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     pPr = p._p.get_or_add_pPr()
@@ -175,6 +192,8 @@ def shade(cell, fill):
 
 
 def tabel(doc, header, baris, lebar, tebal_baris=None, ukuran=9):
+    if sum(lebar) > LEBAR_TEKS:
+        lebar = [w * LEBAR_TEKS / sum(lebar) for w in lebar]
     t = doc.add_table(rows=1 + len(baris), cols=len(header))
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     t.autofit = False
@@ -204,7 +223,7 @@ def gambar(doc, file, lebar, teks):
     path = os.path.join(IMG, file)
     if os.path.exists(path):
         p = doc.add_paragraph(style="Normal"); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.add_run().add_picture(path, width=Inches(lebar))
+        p.add_run().add_picture(path, width=Inches(min(lebar, LEBAR_TEKS)))
     else:
         para(doc, f"[Gambar {file} belum dibangkitkan — jalankan analisis_ablasi.py]", indent=False,
              align=WD_ALIGN_PARAGRAPH.CENTER)
@@ -220,6 +239,8 @@ def tandai_dummy(doc):
 
 
 def halaman_baru(doc):
+    if CETAK:
+        return
     doc.add_paragraph(style="Normal").add_run().add_break(WD_BREAK.PAGE)
 
 
@@ -260,7 +281,8 @@ def bagian_pengantar(doc):
 
 
 def bagian_teori(doc):
-    judul(doc, "C. Naskah Sisipan", 1)
+    if not CETAK:
+        judul(doc, "C. Naskah Sisipan", 1)
     kotak_catatan(doc, "BAB II, setelah Sub-bab 2.1.9 Kompleksitas Aplikasi Web (sebelum 2.2).")
     judul(doc, "2.1.10 Prefetching dan Kompresi Gzip", 3)
     para(doc, "Dua teknik lain yang diterapkan pada versi _optimized_ bekerja pada lapisan yang berbeda dari _code splitting_ dan "
